@@ -48,25 +48,17 @@ public class ChambreDaoTest {
 		assertEquals(c_ref.getPrix(), c.getPrix(), c.getPrix());
 	}
 
-//	@Test
-//	public void testGetChambresByNum() {
-//		ArrayList<Chambre> liste = new ArrayList<Chambre>();
-//		liste = ChambreDao.getChambresByNum(1);
-//		for (Eleve e : liste) {
-//			e.affiche();
-//			assertEquals("AGUE MAX", e.getNom());
-//		}
-//	}
+	@Test
+	public void testGetChambresByNum() {
+		ArrayList<Chambre> liste = new ArrayList<Chambre>();
+		System.out.println("Test get chambre by num :");
+		liste = ChambreDao.getChambresByNum("AGUE001");
+		for (Chambre c : liste) {
+			c.affiche();
+			assertEquals("AGUE MAX", c.getPrix());
+		}
+	}
 
-//	@Test
-//	public void testGetChambresNoOccupied() {
-//		ArrayList<Chambre> liste = new ArrayList<Eleve>();
-//		liste = EleveDao.getElevesByNom("AGUE MAX");
-//		for (Eleve e : liste) {
-//			e.affiche();
-//			assertEquals("AGUE MAX", e.getNom());
-//		}
-//	}
 
 	@Test
 	public void testGetChambresWithPrice() {

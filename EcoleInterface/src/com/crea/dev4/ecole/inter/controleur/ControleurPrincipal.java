@@ -35,13 +35,13 @@ public class ControleurPrincipal extends HttpServlet {
 			throws ServletException, IOException {
 		pagejsp = "/WEB-INF/error.jsp";
 		// Mettre en place une architecture d'un controleur unique
-		// 0- On se base sur un accès unique par un test sur un paramï¿½tre
+		// 0- On se base sur un accï¿½s unique par un test sur un paramï¿½tre
 		// d'identification de la requï¿½te
 		String idform = request.getParameter("idaction"); // a partir de chaque formulaire HTML/XHTML/JSTL/JSP
 
 		switch (idform) {
 		/**********************************************************
-		 * Traitement métier pour les fonctionnalités de l'élève
+		 * Traitement mï¿½tier pour les fonctionnalitï¿½s de l'ï¿½lï¿½ve
 		 *********************************************************/
 		case "getelevebynum":
 			pagejsp = EleveMetier.processGetEleveBynum(request);
@@ -71,7 +71,7 @@ public class ControleurPrincipal extends HttpServlet {
 			pagejsp = EleveMetier.processUpdateChambreByEleve(request);
 			break;
 		/**********************************************************
-		 * Traitement métier pour les fonctionnalités de la chambre
+		 * Traitement mï¿½tier pour les fonctionnalitï¿½s de la chambre
 		 *********************************************************/
 		case "addchambre":
 			pagejsp = ChambreMetier.processAddChambre(request);
@@ -93,17 +93,22 @@ public class ControleurPrincipal extends HttpServlet {
 		case "searchChambre":
 			pagejsp = ChambreMetier.processGetChambreByNo(request);
 			break;
-
+		case "getChambresByPrice":
+			pagejsp= ChambreMetier.processGetChambreByPrice(request);
+			break;
+		case "getChambreByEleveNum":
+			pagejsp= ChambreMetier.processGetChambreByEleveNum(request);
+			break;
 		/**********************************************************
-		 * Traitement métier pour les fonctionnalités du Livre
+		 * Traitement mï¿½tier pour les fonctionnalitï¿½s du Livre
 		 *********************************************************/
 		// TD DO
 		/**********************************************************
-		 * Traitement métier pour les fonctionnalités de Uv
+		 * Traitement mï¿½tier pour les fonctionnalitï¿½s de Uv
 		 *********************************************************/
 		// TD DO
 		/**********************************************************
-		 * Traitement métier pour les fonctionnalités de Inscrit
+		 * Traitement mï¿½tier pour les fonctionnalitï¿½s de Inscrit
 		 *********************************************************/
 		// TD DO
 		default:

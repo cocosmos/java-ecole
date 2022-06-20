@@ -21,9 +21,9 @@ public class ChambreMetier {
 			Float prix = Float.parseFloat(request.getParameter("prixchambre"));
 			Chambre chambreNew = new Chambre(num, prix);
 			int code = ChambreDao.addChambre(chambreNew);
-			System.out.println("COde de l'opération : " + code);
+			System.out.println("COde de l'operation : " + code);
 			if (code == 1) {
-				addornot = "Chambre " + chambreNew.getNo() + " ajouté avec succes !!";
+				addornot = "Chambre " + chambreNew.getNo() + " ajoute avec succes !!";
 				request.setAttribute("txtconfirmationsearch", addornot);
 				pagejsp = "/confirmation.jsp";
 			}
@@ -79,46 +79,69 @@ public class ChambreMetier {
 	public static String processGetChambreByNo(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		int nochambre = Integer.parseInt(request.getParameter("nochambre"));
-		String foundornot = "La chambre n°" + nochambre + " not found";
+		String foundornot = "La chambre no: " + nochambre + " not found";
 
 		Chambre findchambre = ChambreDao.getChambreByNo(nochambre);
 		if (findchambre != null && findchambre.getNo() == nochambre) {
-			foundornot = "La chambre n°" + findchambre.getNo() + " prix : " + findchambre.getPrix() + " CHF is found";
+			foundornot = "La chambre ne" + findchambre.getNo() + " prix : " + findchambre.getPrix() + " CHF is found";
 		}
 		request.setAttribute("txtresult", foundornot);
 		pagejsp = "/foundornot.jsp";
 		return pagejsp;
-
 	}
-
+	
 	/**
-	 * Delete a chambre by no
-	 * 
-	 * @param request no of chambre
-	 * @return pages allchambreform with message
+	 * Search by price superior of price searched
+	 * @param request price of chambre
+	 * @return all chambres with superior price
 	 */
-
-	public static String processDeleteChambre(HttpServletRequest request) {
+	
+	public static String processGetChambreByPrice(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
-		String deleteornot = "Erreur : un eleve est assigné à cette chambre";
-		int num = Integer.parseInt(request.getParameter("nochambre")); // a partir de chaque formulaire
-																		// HTML/XHTML/JSTL/JSP
-		Chambre chambreToFind = ChambreDao.getChambreByNo(num);
+		Float prixchambre =Float.parseFloat(request.getParameter("prixchambre"));
+		String foundornot = "";
 
-		if (chambreToFind == null) {
-			request.setAttribute("txterro", "Erreur Chambre Inexistant");
-			pagejsp = "/allchambreform.jsp";
+		ArrayList<Chambre> allchambres =new ArrayList<Chambre>();
+		allchambres = ChambreDao.getChambresByPrice(prixchambre);
+		
+		if(allchambres.isEmpty()) {
+			 foundornot ="Aucune chambre trouve a un prix superieur a : " + prixchambre + " CHF";
+			 request.setAttribute("txtresult", foundornot);
+			pagejsp = "/foundornot.jsp";
 		} else {
-			int code = ChambreDao.deleteChambreByNo(num);
-			System.out.println("Code de l'opération : " + code + " no " + num);
-			if (code == 1) {
-				deleteornot = "La chambre " + chambreToFind.getNo() + " a été supprimé !!";
-			}
-			request.setAttribute("txtconfirmation", deleteornot);
-			pagejsp = "/allchambreform.jsp";
+			request.setAttribute("allchambres", allchambres);
+			pagejsp = "/allchambre.jsp";
 		}
+		
 		return pagejsp;
 	}
+	
+	/**
+	 * Get Chambre by num of the eleve
+	 * @param request num of the eleve
+	 * @return all chambres of the eleve
+	 */
+	
+	public static String processGetChambreByEleveNum(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String numelev =request.getParameter("numelev");
+		String foundornot = "";
+
+		ArrayList<Chambre> allchambres =new ArrayList<Chambre>();
+		allchambres = ChambreDao.getChambresByNum(numelev);
+		
+		if(allchambres.isEmpty()) {
+			 foundornot ="Aucune chambre trouve avec cette identifiant la : " + numelev ;
+			 request.setAttribute("txtresult", foundornot);
+			pagejsp = "/foundornot.jsp";
+		} else {
+			request.setAttribute("allchambres", allchambres);
+			pagejsp = "/allchambre.jsp";
+		}
+		
+		return pagejsp;
+	}
+
 
 	/**
 	 * Update price room
@@ -136,18 +159,51 @@ public class ChambreMetier {
 		Chambre chambreToFind = ChambreDao.getChambreByNo(no);
 
 		if (chambreToFind == null) {
-			request.setAttribute("txterro", "Erreur Chambre Inexistant");
+			request.setAttribute("txtconfirmation", "Erreur : Chambre Inexistant");
 			pagejsp = "/allchambreform.jsp";
-		} else {
+		} else if(chambreToFind.getPrix()==newPrix) {
+			request.setAttribute("txtconfirmation", "Meme prix");
+			pagejsp = "/allchambreform.jsp";
+		}
+		else {
 
 			code = ChambreDao.updateChambrePriceByNo(no, newPrix);
-			updatedornot = "Le prix de la chambre numéro " + no + " a été changé de " + chambreToFind.getPrix() + " en "
+			updatedornot = "Le prix de la chambre numero: " + no + " a ete change de " + chambreToFind.getPrix() + " en "
 					+ newPrix;
 			request.setAttribute("txtconfirmation", updatedornot);
 			pagejsp = "/allchambreform.jsp";
 		}
 		return pagejsp;
 
+	}
+	
+	/**
+	 * Delete a chambre by no
+	 * 
+	 * @param request no of chambre
+	 * @return pages allchambreform with message
+	 */
+
+	public static String processDeleteChambre(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String deleteornot = "Erreur : un eleve est assigne e cette chambre";
+		int num = Integer.parseInt(request.getParameter("nochambre")); // a partir de chaque formulaire
+																		// HTML/XHTML/JSTL/JSP
+		Chambre chambreToFind = ChambreDao.getChambreByNo(num);
+
+		if (chambreToFind == null) {
+			request.setAttribute("txterro", "Erreur Chambre Inexistant");
+			pagejsp = "/allchambreform.jsp";
+		} else {
+			int code = ChambreDao.deleteChambreByNo(num);
+			System.out.println("Code de l'operation : " + code + " no " + num);
+			if (code == 1) {
+				deleteornot = "La chambre " + chambreToFind.getNo() + " a ete supprime !!";
+			}
+			request.setAttribute("txtconfirmation", deleteornot);
+			pagejsp = "/allchambreform.jsp";
+		}
+		return pagejsp;
 	}
 
 }

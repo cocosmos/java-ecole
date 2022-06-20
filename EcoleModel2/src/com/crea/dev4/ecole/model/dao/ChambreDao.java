@@ -35,60 +35,36 @@ public class ChambreDao {
 	}
 
 	// get chambres by num
-//	public static ArrayList<Chambre> getChambresByNum(String numEleve) {
-//		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
-//		String request = null;
-//		ResultSet response = null;
-//		int i = 0;
-//		Chambre chamtmp = new Chambre();
-//		// =1=> connexion ï¿½ la BD
-//		DBAction.DBConnexion();
-//		request = "SELECT * FROM chambre WHERE num = \'" + numEleve + "\'";
-//		try {
-//			response = DBAction.getStm().executeQuery(request);
-//			while (response.next()) {
-//				chamtmp.setNo(response.getInt(1));
-//				chamtmp.setPrix(response.getFloat(2));
-//				chamtmp.affiche();
-//				i++;
-//			}
-//			if (!response.isClosed()) {
-//				response.close();
-//			}
-//		} catch (SQLException e) {
-//			listeChambres.add(chamtmp);
-//			e.printStackTrace();
-//		}
-//		return listeChambres;
-//	}
+	public static ArrayList<Chambre> getChambresByNum(String numEleve) {
+		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
+		String request = null;
+		ResultSet response = null;
+		int i = 0;
+		Chambre chamtmp = new Chambre();
+		// =1=> connexion ï¿½ la BD
+		DBAction.DBConnexion();
+		request = "SELECT * FROM chambre WHERE no IN (SELECT DISTINCT no FROM eleve WHERE num = \'" + numEleve + "\')";
+			
+		try {
+			response = DBAction.getStm().executeQuery(request);
+			while (response.next()) {
+				chamtmp.setNo(response.getInt(1));
+				chamtmp.setPrix(response.getFloat(2));
+				chamtmp.affiche();
+				i++;
+			}
+			if (!response.isClosed()) {
+				response.close();
+			}
+		} catch (SQLException e) {
+			listeChambres.add(chamtmp);
+			e.printStackTrace();
+		}
+		return listeChambres;
+	}
 
-	// get chambres no occupied
 
-//	public static ArrayList<Chambre> getChambresNoOccupied() {
-//		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
-//		String request = null;
-//		ResultSet response = null;
-//		int i = 0;
-//		Chambre chamtmp = new Chambre();
-//		// =1=>connexion à la BD DBAction.DBConnexion();
-//		request = "SELECT `chambre.no` FROM `chambre` WHERE `chambre.no` NOT IN (SELECT DISTINCT `eleve.no` FROM `eleve`)";
-//		try {
-//			response = DBAction.getStm().executeQuery(request);
-//			while (response.next()) {
-//				chamtmp.setNo(response.getInt(1));
-//				chamtmp.setPrix(response.getFloat(2));
-//				chamtmp.affiche();
-//				i++;
-//			}
-//			if (!response.isClosed()) {
-//				response.close();
-//			}
-//		} catch (SQLException e) {
-//			listeChambres.add(chamtmp);
-//			e.printStackTrace();
-//		}
-//		return listeChambres;
-//	}
+
 
 	// get chambres with price
 	public static ArrayList<Chambre> getChambresByPrice(float price) {
@@ -128,7 +104,7 @@ public class ChambreDao {
 		ResultSet response = null;
 		int i = 0;
 
-		// =1=> connexion à la BD
+		// =1=> connexion ï¿½ la BD
 		DBAction.DBConnexion();
 
 		try {
@@ -160,7 +136,7 @@ public class ChambreDao {
 		ResultSet response = null;
 		int i = 0;
 
-		// =1=> connexion à la BD
+		// =1=> connexion ï¿½ la BD
 		DBAction.DBConnexion();
 
 		try {

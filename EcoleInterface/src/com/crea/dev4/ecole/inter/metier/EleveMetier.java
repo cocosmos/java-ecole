@@ -35,7 +35,7 @@ public class EleveMetier {
 																	// HTML/XHTML/JSTL/JSP
 			Eleve elnew = new Eleve(num, 0, nom, age, adresse);
 			int code = EleveDao.addEleve(elnew);
-			System.out.println("COde de l'opération : " + code);
+			System.out.println("COde de l'operation : " + code);
 			if (code == 1) {
 				addornot = "Student " + elnew.getNom() + " added with success !!";
 			}
@@ -71,7 +71,7 @@ public class EleveMetier {
 			elevbychambre = EleveDao.getEleveByNo(numchamb);
 
 			if (elevbychambre.isEmpty()) {
-				foundornot = "Aucun élève trouvé dans la chambre (" + numchamb + ")";
+				foundornot = "Aucun eleve trouve dans la chambre (" + numchamb + ")";
 			} else {
 				for (Eleve e : elevbychambre) {
 					foundornot += "L'eleve (" + e.getNum() + ", " + e.getNom() + ") is found <br><br>";
@@ -98,7 +98,7 @@ public class EleveMetier {
 			elevbyyear = EleveDao.getLstElevesByDateNaissance(year);
 
 			if (elevbyyear.isEmpty()) {
-				foundornot = "Aucun élève trouvé par année de naissance(" + year + ")";
+				foundornot = "Aucun eleve trouve par annee de naissance(" + year + ")";
 			} else {
 				for (Eleve e : elevbyyear) {
 					foundornot += "L'eleve (" + e.getNum() + ", " + e.getNom() + ", " + e.getAge()
@@ -125,7 +125,7 @@ public class EleveMetier {
 		elevbynom = EleveDao.getElevesByNom(nomElev);
 
 		if (elevbynom.isEmpty()) {
-			foundornot = "Aucun élève trouvé par nom (" + nomElev + ")";
+			foundornot = "Aucun eleve trouve par nom (" + nomElev + ")";
 		} else {
 			for (Eleve e : elevbynom) {
 				foundornot += "L'eleve (" + e.getNum() + ", " + e.getNom() + ", " + e.getAge() + ") is found <br><br>";
@@ -136,7 +136,11 @@ public class EleveMetier {
 		pagejsp = "/foundornot.jsp";
 		return pagejsp;
 	}
-
+/**
+ * Delete one eleve
+ * @param request
+ * @return
+ */
 	public static String processDeleteEleve(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		String deleteornot = "not deleted";
@@ -149,12 +153,12 @@ public class EleveMetier {
 			pagejsp = "/deleteeleve.jsp";
 		} else {
 			int code = EleveDao.deleteEleveBynum(num);
-			System.out.println("Code de l'opération : " + code);
+			System.out.println("Code de l'operation : " + code);
 			if (code == 1) {
-				deleteornot = "L'élève " + elevToFind.getNom() + " numéro :" + num + " a été supprimé !!";
+				deleteornot = "L'eleve " + elevToFind.getNom() + " numero :" + num + " a ete supprime !!";
 			}
-			request.setAttribute("txtconfirmationsearch", deleteornot);
-			pagejsp = "/confirmation.jsp";
+			request.setAttribute("txtconfirmationall", deleteornot);
+			pagejsp = "/alleleveform.jsp";
 		}
 		return pagejsp;
 	}
@@ -194,21 +198,25 @@ public class EleveMetier {
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
 
 		if (elevToFind == null) {
-			request.setAttribute("txtconfirmation", "Erreur Eleve Inexistant");
-			pagejsp = "/allelevesform.jsp";
-		} else {
+			request.setAttribute("txtconfirmationall", "Erreur Eleve Inexistant");
+			pagejsp = "/alleleveform.jsp";
+		}else if(elevToFind.getAdresse().equals(newAdress)) {
+			request.setAttribute("txtconfirmationall", "Adresse inchange");
+			pagejsp = "/alleleveform.jsp";
+		}
+		else {
 
 			try {
 				code = EleveDao.updateEleveAdresseBynum(num, newAdress);
-				updatedornot = "L'adresse de l'élève numéro " + num + " a été changé de " + elevToFind.getAdresse()
+				updatedornot = "L'adresse de l'eleve numero " + num + " a ete change de " + elevToFind.getAdresse()
 						+ " en " + newAdress;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				System.out.println("Code de l'opération : " + code);
+				System.out.println("Code de l'operation : " + code);
 				e.printStackTrace();
 			}
-			request.setAttribute("txtconfirmation", updatedornot);
-			pagejsp = "/allelevesform.jsp";
+			request.setAttribute("txtconfirmationall", updatedornot);
+			pagejsp = "/alleleveform.jsp";
 		}
 		return pagejsp;
 
@@ -230,10 +238,14 @@ public class EleveMetier {
 		if (chambreExist == null) {
 			request.setAttribute("txtconfirmationall", "Erreur Chambre inexistante");
 			pagejsp = "/alleleveform.jsp";
+			
+		}else if(elevToFind.getNo()==newChambre) {
+			request.setAttribute("txtconfirmationall", "Meme chambre");
+			pagejsp = "/alleleveform.jsp";
 		} else {
 
 			code = EleveDao.updateEleveNumChambreBynum(num, chambreExist.getNo());
-			updatedornot = "L'élève numéro " + num + " a changé de la chambre n°" + elevToFind.getNo() + " en n°"
+			updatedornot = "L'eleve numero " + num + " a change de la chambre no:" + elevToFind.getNo() + " en no:"
 					+ newChambre;
 			request.setAttribute("txtconfirmationall", updatedornot);
 			pagejsp = "/alleleveform.jsp";

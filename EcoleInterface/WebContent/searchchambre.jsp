@@ -14,26 +14,22 @@
 		<h1 class="pgtitre">Rechercher des chambres</h1>
 		<form name="id" action="ControleurPrincipal?idaction=searchChambre" method="POST">
 		  <div class="mb-3">
-		    <label for="numchambre" class="form-label">Par Numéro de chambre: </label>
-		    <input type="number" class="form-control" id="nochambre" name="nochambre">
+		    <label for="numchambre" class="form-label" >Par Numéro de chambre: </label>
+		    <input type="number" class="form-control" id="nochambre" required name="nochambre">
 		  </div>
-		<!--   <div class="mb-3">
-		    <label for="prixchambre" class="form-label">Prix Chambre</label>
-		    <input type="number" class="form-control" id="prixchambre" name="prixchambre"> 
-		  </div>-->
 		  <button type="submit" class="btn btn-primary">Valider</button>
 		</form>
-		<form name="id" action="ControleurPrincipal?idaction=searchChambreByEleve" method="POST">
+		<form name="id" action="ControleurPrincipal?idaction=getChambreByEleveNum" method="POST">
 		  <div class="mb-3">
-		    <label for="numchambre" class="form-label">Par son Occupant: </label>
-		    <input type="number" class="form-control" id="nochambre" name="nochambre">
+		    <label for="numelev" class="form-label">Par le numéro de son Occupant: </label>
+		    <input type="text" class="form-control" id="numelev" required name="numelev">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Valider</button>
 		</form>
 		<form name="id" action="ControleurPrincipal?idaction=getChambresByPrice" method="POST">
 		  <div class="mb-3">
-		    <label for="prixchambre" class="form-label">Prix Chambre</label>
-		    <input type="number" class="form-control" id="prixchambre" name="prixchambre"> 
+		    <label for="prixchambre" class="form-label">Prix de chambre inferieur a :</label>
+		    <input type="number" class="form-control" id="prixchambre" required name="prixchambre"> 
 		  </div>
 		  <button type="submit" class="btn btn-primary">Valider</button>
 		</form>
