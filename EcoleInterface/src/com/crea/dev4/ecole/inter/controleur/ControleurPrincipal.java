@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.crea.dev4.ecole.inter.metier.ChambreMetier;
 import com.crea.dev4.ecole.inter.metier.EleveMetier;
 
 /**
@@ -69,7 +70,14 @@ public class ControleurPrincipal extends HttpServlet {
 		/**********************************************************
 		 * Traitement métier pour les fonctionnalités de la chambre
 		 *********************************************************/
-		// TD DO
+		case "addchambre":
+			pagejsp = ChambreMetier.processAddChambre(request);
+			break;
+
+		case "getallChambres":
+			pagejsp = ChambreMetier.processGetAllChambres(request);
+			break;
+
 		/**********************************************************
 		 * Traitement métier pour les fonctionnalités du Livre
 		 *********************************************************/
