@@ -105,12 +105,18 @@ public class ControleurPrincipal extends HttpServlet {
 		case "getAllUv":
 			pagejsp= UvMetier.processGetAllUv(request);
 			break;
-//		case "updateUvNbh":
-//			pagejsp= UvMetier.processUpdateUvNbh(request);
-//			break;
-//		case "deleteUv":
-//			pagejsp= UvMetier.processDeleteUv(request);
-//			break;
+		case "updateUvNbh":
+			pagejsp= UvMetier.processUpdateUvNbh(request);
+			break;
+		case "updateUvCoord":
+			pagejsp= UvMetier.processUpdateUvCoord(request);
+			break;
+			
+			
+			
+		case "deleteUv":
+			pagejsp= UvMetier.processDeleteUv(request);
+			break;
 			
 			
 		/**********************************************************

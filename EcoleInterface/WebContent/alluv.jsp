@@ -41,7 +41,7 @@
 						<form name="id" class="form"
 							action="ControleurPrincipal?idaction=updateUvCoord"
 							method="POST">
-							<input id="nocode" type="hidden" name="nochambre"
+							<input id="nocode" type="hidden" name="nocode"
 								value="<c:out value="${uv.code}" />">
 							<div class="input-group mb-3">
 								<input class="form-control" id="coord" type="text"
