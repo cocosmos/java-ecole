@@ -40,7 +40,7 @@ public class ChambreDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		Chambre chamtmp = new Chambre();
+		
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM chambre WHERE no IN (SELECT DISTINCT no FROM eleve WHERE num = \'" + numEleve + "\')";
@@ -48,16 +48,18 @@ public class ChambreDao {
 		try {
 			response = DBAction.getStm().executeQuery(request);
 			while (response.next()) {
+				Chambre chamtmp = new Chambre();
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
 				chamtmp.affiche();
+				listeChambres.add(chamtmp);
 				i++;
 			}
 			if (!response.isClosed()) {
 				response.close();
 			}
 		} catch (SQLException e) {
-			listeChambres.add(chamtmp);
+			
 			e.printStackTrace();
 		}
 		return listeChambres;
