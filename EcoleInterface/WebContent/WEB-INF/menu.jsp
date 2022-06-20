@@ -28,7 +28,7 @@
 <ul>
 	<li><a href="addchambre.jsp">Add Chambre</a></li>
 	<li><a href="allchambreform.jsp">All Chambres</a></li>
-	<li><a href="../chambre/searchchambre.jsp">Search Chambre</a></li>
+	<li><a href="searchchambre.jsp">Search Chambre</a></li>
 </ul>
 </div>
 </div>

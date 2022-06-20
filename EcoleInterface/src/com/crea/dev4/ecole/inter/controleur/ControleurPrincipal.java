@@ -67,6 +67,9 @@ public class ControleurPrincipal extends HttpServlet {
 		case "updateeleve":
 			pagejsp = EleveMetier.processUpdateEleve(request);
 			break;
+		case "updatechambrebyeleve":
+			pagejsp = EleveMetier.processUpdateChambreByEleve(request);
+			break;
 		/**********************************************************
 		 * Traitement métier pour les fonctionnalités de la chambre
 		 *********************************************************/
@@ -77,11 +80,18 @@ public class ControleurPrincipal extends HttpServlet {
 		case "getallChambres":
 			pagejsp = ChambreMetier.processGetAllChambres(request);
 			break;
+		case "getallChambresNoOccupied":
+			pagejsp = ChambreMetier.processGetAllChambresNoOccupied(request);
+			break;
 		case "deleteChambre":
 			pagejsp = ChambreMetier.processDeleteChambre(request);
 			break;
 		case "updatePrixChambre":
 			pagejsp = ChambreMetier.processUpdatePrixChambre(request);
+			break;
+
+		case "searchChambre":
+			pagejsp = ChambreMetier.processGetChambreByNo(request);
 			break;
 
 		/**********************************************************

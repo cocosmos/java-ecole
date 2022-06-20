@@ -91,6 +91,16 @@ public class ChambreDaoTest {
 	}
 
 	@Test
+	public void testGetAllChambresNoOccupied() {
+		ArrayList<Chambre> liste = new ArrayList<Chambre>();
+		System.out.println("Test get all chambres no occupied:");
+		liste = ChambreDao.getChambresNoOccupied();
+		for (Chambre c : liste) {
+			c.affiche();
+		}
+	}
+
+	@Test
 	public void testAddChambre() {
 		int insert_false = -2;
 		int insert_true = 1;

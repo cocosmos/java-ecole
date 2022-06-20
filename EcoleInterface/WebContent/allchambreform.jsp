@@ -8,9 +8,15 @@
 </head>
 <body>
 	<div align="center">
-		<h2 class="pgtitre">La liste de tous les chambres</h2>
+		<h2 class="pgtitre">La liste de toutes les chambres</h2>
 		<form name="id" class="form"
 			action="ControleurPrincipal?idaction=getallChambres" method="POST">
+			 <button type="submit" class="btn btn-primary">Valider</button>
+		</form>
+		<br>
+		<h2 class="pgtitre">La liste de toutes les chambres non occupées</h2>
+		<form name="id" class="form"
+			action="ControleurPrincipal?idaction=getallChambresNoOccupied" method="POST">
 			 <button type="submit" class="btn btn-primary">Valider</button>
 		</form>
 		<%

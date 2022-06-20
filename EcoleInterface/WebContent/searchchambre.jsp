@@ -7,27 +7,42 @@
 	<link href="style.css" rel="stylesheet">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Ecole</title>
+	<title>Rechercher des chambres</title>
 </head>
 <body>
-	<h2>Liste de tous les élèves</h2>
-	<table style="width: 60%; border: 1px solid black; margin: auto;">
-		<thead>
-			<tr>
-				<th>Numero</th>
-				<th>Nom</th>
-				<th>Adresse</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${allelevs}" var="ele">
-				<tr>
-					<td><c:out value="${ele.num}" /></td>
-					<td><c:out value="${ele.nom}" /></td>
-					<td><c:out value="${ele.adresse}" /></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<div class="container">
+		<h1 class="pgtitre">Rechercher des chambres</h1>
+		<form name="id" action="ControleurPrincipal?idaction=searchChambre" method="POST">
+		  <div class="mb-3">
+		    <label for="numchambre" class="form-label">Par Numéro de chambre: </label>
+		    <input type="number" class="form-control" id="nochambre" name="nochambre">
+		  </div>
+		<!--   <div class="mb-3">
+		    <label for="prixchambre" class="form-label">Prix Chambre</label>
+		    <input type="number" class="form-control" id="prixchambre" name="prixchambre"> 
+		  </div>-->
+		  <button type="submit" class="btn btn-primary">Valider</button>
+		</form>
+		<form name="id" action="ControleurPrincipal?idaction=searchChambreByEleve" method="POST">
+		  <div class="mb-3">
+		    <label for="numchambre" class="form-label">Par son Occupant: </label>
+		    <input type="number" class="form-control" id="nochambre" name="nochambre">
+		  </div>
+		  <button type="submit" class="btn btn-primary">Valider</button>
+		</form>
+		<form name="id" action="ControleurPrincipal?idaction=getChambresByPrice" method="POST">
+		  <div class="mb-3">
+		    <label for="prixchambre" class="form-label">Prix Chambre</label>
+		    <input type="number" class="form-control" id="prixchambre" name="prixchambre"> 
+		  </div>
+		  <button type="submit" class="btn btn-primary">Valider</button>
+		</form>
+		<%
+			String txterro = (String) request.getAttribute("txterro");
+			if(txterro!=null) {
+			out.print(txterro);
+			}
+			%>
+	</div>
 </body>
 </html>

@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Confirmation Page</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<%
-String result = (String)request.getAttribute("txtconfirmationsearch");
-out.println(result);
-%>
-
+<h1>error</h1>
 </body>
 </html>
