@@ -197,7 +197,7 @@ public class ChambreDao {
 		// 1: connexion à la BD
 		DBAction.DBConnexion();
 		// 2: préparer ma requpete de suppression
-		request = "DELETE FROM chambre WHERE no ='" + noChambre + "'";
+		request = "DELETE FROM chambre WHERE no =" + noChambre + "";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {

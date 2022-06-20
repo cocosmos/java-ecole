@@ -13,6 +13,13 @@
 			action="ControleurPrincipal?idaction=getallChambres" method="POST">
 			 <button type="submit" class="btn btn-primary">Valider</button>
 		</form>
+		<%
+			String result = (String)request.getAttribute("txtconfirmation");
+			if(result!=null){
+				out.println(result);
+			}
+			
+			%>
 	</div>
 </body>
 </html>

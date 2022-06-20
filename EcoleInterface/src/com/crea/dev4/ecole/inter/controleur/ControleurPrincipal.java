@@ -77,6 +77,12 @@ public class ControleurPrincipal extends HttpServlet {
 		case "getallChambres":
 			pagejsp = ChambreMetier.processGetAllChambres(request);
 			break;
+		case "deleteChambre":
+			pagejsp = ChambreMetier.processDeleteChambre(request);
+			break;
+		case "updatePrixChambre":
+			pagejsp = ChambreMetier.processUpdatePrixChambre(request);
+			break;
 
 		/**********************************************************
 		 * Traitement métier pour les fonctionnalités du Livre

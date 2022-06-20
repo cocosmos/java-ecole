@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Confirmation ajout Eleve</title>
+<title>Confirmation Page</title>
 </head>
 <body>
 

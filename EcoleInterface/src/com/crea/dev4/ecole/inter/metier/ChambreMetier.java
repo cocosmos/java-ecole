@@ -45,4 +45,51 @@ public class ChambreMetier {
 		pagejsp = "/allchambre.jsp";
 		return pagejsp;
 	}
+
+	public static String processDeleteChambre(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String deleteornot = "Erreur : un eleve est assigné à cette chambre";
+		int num = Integer.parseInt(request.getParameter("nochambre")); // a partir de chaque formulaire
+																		// HTML/XHTML/JSTL/JSP
+		Chambre chambreToFind = ChambreDao.getChambreByNo(num);
+
+		if (chambreToFind == null) {
+			request.setAttribute("txterro", "Erreur Chambre Inexistant");
+			pagejsp = "/allchambreform.jsp";
+		} else {
+			int code = ChambreDao.deleteChambreByNo(num);
+			System.out.println("Code de l'opération : " + code + " no " + num);
+			if (code == 1) {
+				deleteornot = "La chambre " + chambreToFind.getNo() + " a été supprimé !!";
+			}
+			request.setAttribute("txtconfirmation", deleteornot);
+			pagejsp = "/allchambreform.jsp";
+		}
+		return pagejsp;
+	}
+
+	public static String processUpdatePrixChambre(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String updatedornot = "not updated";
+		int num = Integer.parseInt(request.getParameter("nochambre"));
+		Float newPrix = Float.parseFloat(request.getParameter("prixchambre"));
+		int code = 0;
+
+		Chambre chambreToFind = ChambreDao.getChambreByNo(num);
+
+		if (chambreToFind == null) {
+			request.setAttribute("txterro", "Erreur Chambre Inexistant");
+			pagejsp = "/allchambreform.jsp";
+		} else {
+
+			code = ChambreDao.updateChambrePriceByNo(num, newPrix);
+			updatedornot = "Le prix de la chambre numéro " + num + " a été changé de " + chambreToFind.getPrix()
+					+ " en " + newPrix;
+			request.setAttribute("txtconfirmation", updatedornot);
+			pagejsp = "/allchambreform.jsp";
+		}
+		return pagejsp;
+
+	}
+
 }
