@@ -2,14 +2,26 @@ package com.crea.dev4.ecole.inter.metier;
 
 import java.util.ArrayList;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.crea.dev4.ecole.model.beans.Chambre;
 import com.crea.dev4.ecole.model.dao.ChambreDao;
 
+
+/**
+ * Chambre Metier
+ * @author mipam
+ * 
+ */
+
 public class ChambreMetier {
 
-	/* Add Chambre */
+	/**
+	 * Add a new Chambre
+	 * @param request a new no of chambre and price
+	 * @return success or error
+	 */
 	public static String processAddChambre(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		String addornot = "not added";
@@ -39,8 +51,8 @@ public class ChambreMetier {
 	/**
 	 * Get all chambres
 	 * 
-	 * @param request message
-	 * @return page
+	 * @param request all chambres
+	 * @return all chambres
 	 */
 
 	public static String processGetAllChambres(HttpServletRequest request) {
@@ -56,8 +68,8 @@ public class ChambreMetier {
 	/**
 	 * Get all chambres no occupied
 	 * 
-	 * @param request
-	 * @return
+	 * @param request all chambres
+	 * @return all chambre where eleve is null
 	 */
 
 	public static String processGetAllChambresNoOccupied(HttpServletRequest request) {
@@ -79,14 +91,21 @@ public class ChambreMetier {
 	public static String processGetChambreByNo(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		int nochambre = Integer.parseInt(request.getParameter("nochambre"));
-		String foundornot = "La chambre no: " + nochambre + " not found";
-
+		String foundornot = "La chambre no: " + nochambre + " is not found";
+		ArrayList<Chambre> allchambres =new ArrayList<Chambre>();
+		
 		Chambre findchambre = ChambreDao.getChambreByNo(nochambre);
-		if (findchambre != null && findchambre.getNo() == nochambre) {
-			foundornot = "La chambre ne" + findchambre.getNo() + " prix : " + findchambre.getPrix() + " CHF is found";
+		
+		if (findchambre == null) {
+			request.setAttribute("txtresult", foundornot);
+			pagejsp = "/foundornot.jsp";
 		}
-		request.setAttribute("txtresult", foundornot);
-		pagejsp = "/foundornot.jsp";
+		else {
+			allchambres.add(findchambre);
+			request.setAttribute("allchambres", allchambres);
+			pagejsp = "/allchambre.jsp";
+		}
+	
 		return pagejsp;
 	}
 	
@@ -107,7 +126,7 @@ public class ChambreMetier {
 		if(allchambres.isEmpty()) {
 			 foundornot ="Aucune chambre trouve a un prix superieur a : " + prixchambre + " CHF";
 			 request.setAttribute("txtresult", foundornot);
-			pagejsp = "/foundornot.jsp";
+			 pagejsp = "/foundornot.jsp";
 		} else {
 			request.setAttribute("allchambres", allchambres);
 			pagejsp = "/allchambre.jsp";
