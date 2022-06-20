@@ -10,13 +10,14 @@
 	<title>Ecole</title>
 </head>
 <body>
-	<h2>Liste de tous les élèves</h2>
+	<h2 align="center">Liste de tous les élèves</h2>
 	<table style="width: 60%; border: 1px solid black; margin: auto;">
 		<thead>
 			<tr>
 				<th>Numero</th>
 				<th>Nom</th>
 				<th>Adresse</th>
+				<th>Suppression</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,7 +25,20 @@
 				<tr>
 					<td><c:out value="${ele.num}" /></td>
 					<td><c:out value="${ele.nom}" /></td>
-					<td><c:out value="${ele.adresse}" /></td>
+					<td>
+					<form name="id" class="form" action="ControleurPrincipal?idaction=updateeleve" method="POST">
+							<input name="numelev" id="numelev" type="hidden" value="<c:out value="${ele.num}" />">
+							<input type="text" name="adresselev" id="adresselev" value="<c:out value="${ele.adresse}" />">
+							 <button type="submit" class="btn btn-primary">Modifier</button>
+						</form>
+					
+					</td>
+					<td>
+						<form name="id" class="form" action="ControleurPrincipal?idaction=deleteEleveBynum" method="POST">
+							<input type="hidden" name="numelev" id="numelev" value="<c:out value="${ele.num}" />">
+							 <button type="submit" class="btn btn-danger">Supprimer</button>
+						</form>
+						</td>
 				</tr>
 			</c:forEach>
 		</tbody>
