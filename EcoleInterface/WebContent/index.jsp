@@ -5,5 +5,5 @@
 <html>
 <title>Welcome Page</title>
 </head>
-
+<img src="./resources/campus.jpg" alt="Campus School of Engineering" />
 </html>

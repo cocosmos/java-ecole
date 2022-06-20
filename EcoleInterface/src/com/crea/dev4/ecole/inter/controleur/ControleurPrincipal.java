@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.crea.dev4.ecole.inter.metier.ChambreMetier;
 import com.crea.dev4.ecole.inter.metier.EleveMetier;
+import com.crea.dev4.ecole.inter.metier.LivreMetier;
 import com.crea.dev4.ecole.inter.metier.UvMetier;
 
 /**
@@ -125,17 +126,31 @@ public class ControleurPrincipal extends HttpServlet {
 		/**********************************************************
 		 * Traitement metier pour les fonctionnalites du Livre
 		 *********************************************************/
-		// TD DO
+//		case "addLivre":
+//			pagejsp = LivreMetier.processAddLivre(request);
+//			break;
+//		case "getLivreByCote":
+//			pagejsp = LivreMetier.processGetLivreByCote(request);
+//			break;
+//		case "getAllLivres":
+//			pagejsp = LivreMetier.processGetAllLivres(request);
+//			break;
+//		case "getAllLivresSharedToEleve":
+//			pagejsp = LivreMetier.processGetLivresSharedToEleve(request);
+//			break;
+//		case "getAllLivresAvailable":
+//			pagejsp = LivreMetier.processGetLivresAvailable(request);
+//			break;
+//		case "updateLivreTitle":
+//			pagejsp = LivreMetier.processUpdateLivreTitle(request);
+//			break;
+//		case "updateLivreBorrower":
+//			pagejsp = LivreMetier.processUpdateLivreBorrower(request);
+//			break;
+//		case "deleteLivreByCote":
+//			pagejsp = LivreMetier.processDeleteLivreByCote(request);
+//			break;
 			
-			
-			
-			
-		
-		
-			
-			
-			
-		
 		/**********************************************************
 		 * Traitement m�tier pour les fonctionnalites de Inscrit
 		 *********************************************************/
