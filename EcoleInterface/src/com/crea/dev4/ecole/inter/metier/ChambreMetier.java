@@ -11,7 +11,7 @@ import com.crea.dev4.ecole.model.dao.ChambreDao;
 
 /**
  * Chambre Metier
- * @author mipam
+ * @author Mipam
  * 
  */
 

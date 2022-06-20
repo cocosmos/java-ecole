@@ -31,6 +31,13 @@
 	<li><a href="searchchambre.jsp">Search Chambre</a></li>
 </ul>
 </div>
+<div class="col">
+<h2>UV</h2>
+<ul>
+	<li><a href="alluvform.jsp">All UV</a></li>
+	<li><a href="searchuv.jsp">Search UV</a></li>
+</ul>
+</div>
 </div>
 </header>
 </html>
