@@ -75,7 +75,7 @@ public class UvDao {
 		
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
-		request = "SELECT * FROM chambre WHERE prix > " + nbh;
+		request = "SELECT * FROM uv WHERE nbh > " + nbh;
 		try {
 			response = DBAction.getStm().executeQuery(request);
 			while (response.next()) {
