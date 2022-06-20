@@ -11,27 +11,27 @@ import com.crea.dev4.ecole.model.utils.DBAction;
 public class EleveDao {
 
 	/**
-	 * Rï¿½cupï¿½rer un ï¿½lï¿½ve par son numï¿½ro
+	 * Récupérer un éléve par son numéro
 	 * 
-	 * @param num : numero de l'ï¿½lï¿½ve
-	 * @return : un Ã©lÃ¨ve retrouvï¿½ sinon null s'il n'est pas retrouvï¿½e sinon
-	 *         un ï¿½lï¿½ve vide avec un age = -1 dans le cas d'une erreur
+	 * @param num : numero de l'éléve
+	 * @return : un Ã©lÃ¨ve retrouvé sinon null s'il n'est pas retrouvée sinon un
+	 *         éléve vide avec un age = -1 dans le cas d'une erreur
 	 * 
 	 */
 	public static Eleve getEleveByNum(String num) {
 		Eleve e = new Eleve();
 		String request = null;
 		ResultSet response = null;
-		// =1=> connexion ï¿½ la BD
+		// =1=> connexion é la BD
 		DBAction.DBConnexion();
-		// =2.1=> prï¿½parer notre requï¿½te sql SELECT
+		// =2.1=> préparer notre requéte sql SELECT
 		request = "SELECT * FROM eleve WHERE num = \'" + num + "\'";
-		// =2.2=> rï¿½cupï¿½rer un statement
-		// =2.3=> executer une requï¿½te de selection "num"
+		// =2.2=> récupérer un statement
+		// =2.3=> executer une requéte de selection "num"
 //				request = "SELECT * FROM eleve WHERE num = \""+ num + "\"";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La rï¿½cupï¿½ration du rï¿½sultat dans un objet Eleve
+			// 3==> La récupération du résultat dans un objet Eleve
 			if (response.next()) {
 				e.setNum(response.getString(1));
 				e.setNo(response.getInt(2));
@@ -51,24 +51,24 @@ public class EleveDao {
 
 	/**
 	 * 
-	 * @param numToFind : le numï¿½ro de l'ï¿½lï¿½ve ï¿½ charger dans la BD
-	 * @return : Objet de mapping (wrapper) {Eleve, CodeAction} si Eleve retrouvï¿½
-	 *         : (l'objet Eleve, CodeAction = 1) si Eleve non retrouvï¿½ : (null,
+	 * @param numToFind : le numéro de l'éléve é charger dans la BD
+	 * @return : Objet de mapping (wrapper) {Eleve, CodeAction} si Eleve retrouvé :
+	 *         (l'objet Eleve, CodeAction = 1) si Eleve non retrouvé : (null,
 	 *         CodeAction = -1) si Exception SQL : (null, CodeAction = -2) [Cette
-	 *         partie devrait ï¿½tre dï¿½veloppï¿½e plus en dï¿½tail]
+	 *         partie devrait étre développée plus en détail]
 	 * 
-	 *         l'ï¿½lï¿½ve trouvï¿½, oubien null
+	 *         l'éléve trouvé, oubien null
 	 * 
 	 */
 
 	/*
 	 * public static EleveWrap getEleveByNum(String numToFind) { Eleve elevtmp = new
 	 * Eleve(); ResultSet rs = null; EleveWrap elvMaptmp = new EleveWrap();
-	 * elvMaptmp.setCodeaction(1);// trouvï¿½
+	 * elvMaptmp.setCodeaction(1);// trouvé
 	 * 
-	 * // Se connecter ï¿½ la BD DBAction.DBConnexion(); // ecrire requete String
+	 * // Se connecter é la BD DBAction.DBConnexion(); // ecrire requete String
 	 * requete = "Select * from Eleve where num = \'" + numToFind + "\'"; //
-	 * recupï¿½rer un statment + executer une requete try { rs =
+	 * recupérer un statment + executer une requete try { rs =
 	 * DBAction.getStm().executeQuery(requete);
 	 * 
 	 * if (rs.next()) { // elevtmp.setNum(numToFind);
@@ -76,31 +76,31 @@ public class EleveDao {
 	 * elevtmp.setNom(rs.getString(3)); elevtmp.setAge(rs.getInt(4));
 	 * elevtmp.setAdresse(rs.getString(5)); elvMaptmp.setElv(elevtmp); if
 	 * (!rs.isClosed()) { rs.close(); } } else { elvMaptmp.setCodeaction(-1); // le
-	 * code -1 est relatif ï¿½ une execution correcte mais ï¿½ un eleve non //
-	 * existant } } catch (SQLException e) { elvMaptmp.setCodeaction(-2);// une
-	 * erreur SQL e.printStackTrace(); } // rï¿½cupï¿½rer le rï¿½sultat //
-	 * vï¿½rifier que le nombre d'uplet = 1 return elvMaptmp; }
+	 * code -1 est relatif é une execution correcte mais é un eleve non // existant
+	 * } } catch (SQLException e) { elvMaptmp.setCodeaction(-2);// une erreur SQL
+	 * e.printStackTrace(); } // récupérer le résultat // vérifier que le nombre
+	 * d'uplet = 1 return elvMaptmp; }
 	 */
 	/***
 	 * 
 	 * @param nomEleve
-	 * @return un nombre d'ï¿½lï¿½ment = 0 ( "nom d'ï¿½lï¿½ve" non existant) un
-	 *         nombre d'ï¿½lï¿½ment = 1 et un age = -1 du premier objet de la liste
-	 *         retourï¿½e dans le cas d'une erreur SQL [Cette partie devrait ï¿½tre
-	 *         dï¿½veloppï¿½e plus en dï¿½tail] sinon la liste des ï¿½lï¿½ve
-	 *         correpondant au nom recherchï¿½
+	 * @return un nombre d'élément = 0 ( "nom d'éléve" non existant) un nombre
+	 *         d'élément = 1 et un age = -1 du premier objet de la liste retourée
+	 *         dans le cas d'une erreur SQL [Cette partie devrait étre développée
+	 *         plus en détail] sinon la liste des éléve correpondant au nom
+	 *         recherché
 	 */
 	public static ArrayList<Eleve> getElevesByNom(String nomEleve) {
 		ArrayList<Eleve> lstelevtmp = new ArrayList<Eleve>();
 		ResultSet rs = null;
 		Eleve elevtmp = new Eleve();
 		int i = 0;
-		// Se connecter ï¿½ la BD
+		// Se connecter é la BD
 		DBAction.DBConnexion();
 		// ecrire requete
 		String requete = "Select * from Eleve where nom = \'" + nomEleve + "\'";
 		// System.out.println("******* " + requete + "***********");
-		// recupï¿½rer un statment + executer une requete
+		// recupérer un statment + executer une requete
 		try {
 			rs = DBAction.getStm().executeQuery(requete);
 			while (rs.next()) {
@@ -120,26 +120,26 @@ public class EleveDao {
 			lstelevtmp.add(elevtmp);
 			e.printStackTrace();
 		}
-		// rï¿½cupï¿½rer le rï¿½sultat
-		// vï¿½rifier que le nombre d'uplet = 1
+		// récupérer le résultat
+		// vérifier que le nombre d'uplet = 1
 		return lstelevtmp;
 	}
 
 	/**
-	 * Rï¿½cupï¿½rer les ï¿½lï¿½ves par leurs numï¿½ro de chambre ;
+	 * Récupérer les éléves par leurs numéro de chambre ;
 	 * 
-	 * @param no_ch : numï¿½ro de chambre
-	 * @return : une liste d'ï¿½lï¿½ves retrouvï¿½s sinon null
+	 * @param no_ch : numéro de chambre
+	 * @return : une liste d'éléves retrouvés sinon null
 	 */
 	public static ArrayList<Eleve> getEleveByNo(int no) throws SQLException {
-		// Création de ma liste d'ï¿½lï¿½ve partageant la mï¿½me chambre
+		// Création de ma liste d'éléve partageant la méme chambre
 		ArrayList<Eleve> listEleveNo = new ArrayList<Eleve>();
 
 		String req = "SELECT num, no, nom, age, adresse FROM eleve where no = " + no + " ";
 		// Connexion
 		DBAction.DBConnexion();// System.out.println(req);
 
-		// exécution de la requï¿½te et init
+		// exécution de la requéte et init
 		DBAction.setRes(DBAction.getStm().executeQuery(req));
 
 		// Creation de l'objet eleveTemp à travers le ResultSet BD
@@ -161,22 +161,21 @@ public class EleveDao {
 	}
 
 	/**
-	 * Supprimer un ï¿½lï¿½ve par son numï¿½ro
+	 * Supprimer un éléve par son numéro
 	 * 
-	 * @param num : numï¿½ro de l'ï¿½lï¿½ve ï¿½ supprimer
-	 * @return : 1 si l'ï¿½lï¿½ve a ï¿½tï¿½ retrouvï¿½ et surpprimï¿½, sinon -1
-	 *         oubien le code d'ï¿½rreur s'il y a eu une erreur ï¿½ l'ï¿½chelle de
-	 *         la BD
+	 * @param num : numéro de l'éléve é supprimer
+	 * @return : 1 si l'éléve a été retrouvé et surpprimé, sinon -1 oubien le code
+	 *         d'érreur s'il y a eu une erreur é l'échelle de la BD
 	 */
 	public static int deleteEleveBynum(String num) {
 		int result = -1;
-		// 1: connexion ï¿½ la BD
+		// 1: connexion é la BD
 		DBAction.DBConnexion();
-		// 2: prï¿½parer ma requpete de suppression
+		// 2: préparer ma requpete de suppression
 		String req = "DELETE FROM eleve WHERE num = '" + num + "' ";
 		try {
 			result = DBAction.getStm().executeUpdate(req);
-			System.out.println("Requete executï¿½e");
+			System.out.println("Requete executée");
 		} catch (SQLException ex) {
 			result = -ex.getErrorCode();
 			System.out.println(ex.getMessage());
@@ -188,12 +187,12 @@ public class EleveDao {
 	}
 
 	/**
-	 * Mettre ï¿½ jour lï¿½adresse dï¿½un ï¿½lï¿½ve identifiï¿½ par son numï¿½ro
+	 * Mettre é jour léadresse déun éléve identifié par son numéro
 	 * 
-	 * @param num        : le numï¿½ro de l'ï¿½lï¿½ve
-	 * @param newAdresse : la nouvelle adresse ï¿½ mettre ï¿½ jour
-	 * @return 1 si mise ï¿½ jour oubien 0 si rien n'a ï¿½tï¿½ mis ï¿½ jour sinon
-	 *         -code_erreur s'il y a eu une erreur ï¿½ l'ï¿½chelle de la BD
+	 * @param num        : le numéro de l'éléve
+	 * @param newAdresse : la nouvelle adresse é mettre é jour
+	 * @return 1 si mise é jour oubien 0 si rien n'a été mis é jour sinon
+	 *         -code_erreur s'il y a eu une erreur é l'échelle de la BD
 	 */
 	public static int updateEleveAdresseBynum(String num, String newAdresse) throws SQLException {
 		int result = -1;
@@ -206,12 +205,12 @@ public class EleveDao {
 	}
 
 	/**
-	 * Mettre ï¿½ jour le numï¿½ro dï¿½un ï¿½lï¿½ve identifiï¿½ par son numï¿½ro
+	 * Mettre é jour le numéro déun éléve identifié par son numéro
 	 * 
-	 * @param num   : le numï¿½ro de l'ï¿½lï¿½ve
+	 * @param num   : le numéro de l'éléve
 	 * @param newNo : la nouvelle chambre
-	 * @return 1 si mise ï¿½ jour oubien 0 oubien code d'ï¿½rreur s'il y a eu une
-	 *         erreur ï¿½ l'ï¿½chelle de la BD
+	 * @return 1 si mise é jour oubien 0 oubien code d'érreur s'il y a eu une erreur
+	 *         é l'échelle de la BD
 	 */
 	public static int updateEleveNumChambreBynum(String num, int newNo) {
 		int result = -1;
@@ -229,11 +228,11 @@ public class EleveDao {
 	}
 
 	/**
-	 * Ajouter un nouvel ï¿½lï¿½ve
+	 * Ajouter un nouvel éléve
 	 * 
-	 * @param new_eleve : le nouvel elï¿½ve ï¿½ jouter
-	 * @return 1 si ajout 0 sinon oubien le code d'ï¿½rreur s'il y a eu une erreur
-	 *         ï¿½ l'ï¿½chelle de la B
+	 * @param new_eleve : le nouvel eléve é jouter
+	 * @return 1 si ajout 0 sinon oubien le code d'érreur s'il y a eu une erreur é
+	 *         l'échelle de la B
 	 */
 	public static int addEleve(Eleve new_eleve) {
 		int result = -1;
@@ -244,7 +243,7 @@ public class EleveDao {
 		try {
 			result = DBAction.getStm().executeUpdate(req);
 		} catch (SQLException ex) {
-			if (ex.getErrorCode() == 1062) {// la clï¿½ existe dï¿½jï¿½
+			if (ex.getErrorCode() == 1062) {// la clé existe déjé
 				result = -2;
 			}
 			System.out.println(ex.getMessage());
@@ -256,36 +255,36 @@ public class EleveDao {
 	}
 
 	/**
-	 * Rï¿½cupï¿½rer un ensemble dï¿½ï¿½lï¿½ve qui ont la mï¿½me date de naissance
+	 * Récupérer un ensemble dééléve qui ont la méme date de naissance
 	 * 
 	 * @param d : date de naissance
-	 * @return liste des ï¿½lï¿½ve oubien null si aucun ï¿½lï¿½ve ne correspond ï¿½
-	 *         la date de naissance
+	 * @return liste des éléve oubien null si aucun éléve ne correspond é la date de
+	 *         naissance
 	 */
 	public static ArrayList<Eleve> getLstElevesByDateNaissance(int anneeNaissance) throws SQLException {
 		ArrayList<Eleve> listEleveAnneeNaissance = new ArrayList<Eleve>();
-		// on recupere l'annï¿½e en cours
+		// on recupere l'année en cours
 		Calendar c = Calendar.getInstance();
 		int year = c.get(Calendar.YEAR);
 
-		// Variable ï¿½ passer en paramï¿½tre dans la requï¿½te pour avoir les
-		// ï¿½lï¿½ves d'une
+		// Variable é passer en paramétre dans la requéte pour avoir les
+		// éléves d'une
 		// tranche d'age:
-		// Je fais la diffï¿½rence entre l'annï¿½e en cours et l'annï¿½e passï¿½e en
-		// paramï¿½tre
+		// Je fais la différence entre l'année en cours et l'année passée en
+		// paramétre
 		// de la fonction.
 		int anneeNaissanceEleves = year - anneeNaissance;
 		String req = "SELECT num, no, nom, age, adresse FROM eleve WHERE age =" + anneeNaissanceEleves + " ";
 		// Connexion
 		DBAction.DBConnexion();
-		// exï¿½cution de la requï¿½te et init
+		// exécution de la requéte et init
 		DBAction.setRes(DBAction.getStm().executeQuery(req));
 
 		while (DBAction.getRes().next()) {
 			// int i = 0;
 			// Instanciation de mon objet Eleve
 			Eleve elevTemp = new Eleve();
-			// Creation de l'objet eleveTemp ï¿½ travers le ResultSet BD
+			// Creation de l'objet eleveTemp é travers le ResultSet BD
 			elevTemp.setNum(DBAction.getRes().getString(1));
 			elevTemp.setNo(DBAction.getRes().getInt(2));
 			elevTemp.setNom(DBAction.getRes().getString(3));
@@ -300,9 +299,9 @@ public class EleveDao {
 	}
 
 	/**
-	 * Rï¿½cupï¿½rer la liste de tout les ï¿½lï¿½ves
+	 * Récupérer la liste de tout les éléves
 	 * 
-	 * @return la liste de tout les ï¿½lï¿½ves
+	 * @return la liste de tout les éléves
 	 */
 	public static ArrayList<Eleve> getAllEleves() throws SQLException {
 		ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
@@ -310,14 +309,14 @@ public class EleveDao {
 		String req = "SELECT num, no, nom, age, adresse FROM eleve ";
 		// Connexion
 		DBAction.DBConnexion();
-		// exï¿½cution de la requï¿½te et init
+		// exécution de la requéte et init
 		DBAction.setRes(DBAction.getStm().executeQuery(req));
 
 		while (DBAction.getRes().next()) {
 			// int i = 0;
 			// Instanciation de mon objet Eleve
 			Eleve elevTemp = new Eleve();
-			// Creation de l'objet eleveTemp ï¿½ travers le ResultSet BD
+			// Creation de l'objet eleveTemp é travers le ResultSet BD
 			elevTemp.setNum(DBAction.getRes().getString(1));
 			elevTemp.setNo(DBAction.getRes().getInt(2));
 			elevTemp.setNom(DBAction.getRes().getString(3));

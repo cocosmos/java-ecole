@@ -12,7 +12,15 @@
 		<form name="id" class="form"
 			action="ControleurPrincipal?idaction=getallEleves" method="POST">
 			<input type="submit" value="All Eleves" class="submit" />
+			
 		</form>
+		<%
+			String result = (String)request.getAttribute("txtconfirmationall");
+			if(result!=null){
+				out.println(result);
+			}
+			
+			%>
 	</div>
 </body>
 </html>

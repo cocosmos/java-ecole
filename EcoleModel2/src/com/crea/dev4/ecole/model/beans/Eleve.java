@@ -1,5 +1,13 @@
 package com.crea.dev4.ecole.model.beans;
 
+/**
+ * 
+ * @author mipam
+ * 
+ *         Bean Eleve
+ *
+ */
+
 public class Eleve {
 	// Attributs
 	private String num;

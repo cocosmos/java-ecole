@@ -5,10 +5,19 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.crea.dev4.ecole.model.beans.Chambre;
 import com.crea.dev4.ecole.model.beans.Eleve;
+import com.crea.dev4.ecole.model.dao.ChambreDao;
 import com.crea.dev4.ecole.model.dao.EleveDao;
 
 public class EleveMetier {
+
+	/**
+	 * Add an Eleve
+	 * 
+	 * @param request
+	 * @return
+	 */
 
 	public static String processAddEleve(HttpServletRequest request) {
 
@@ -30,7 +39,7 @@ public class EleveMetier {
 			if (code == 1) {
 				addornot = "Student " + elnew.getNom() + " added with success !!";
 			}
-			request.setAttribute("txtconfirmationadd", addornot);
+			request.setAttribute("txtconfirmationsearch", addornot);
 			pagejsp = "/confirmation.jsp";
 		} else {
 			request.setAttribute("txterro", "Erreur Eleve Existant");
@@ -144,12 +153,18 @@ public class EleveMetier {
 			if (code == 1) {
 				deleteornot = "L'élève " + elevToFind.getNom() + " numéro :" + num + " a été supprimé !!";
 			}
-			request.setAttribute("txtconfirmationadd", deleteornot);
+			request.setAttribute("txtconfirmationsearch", deleteornot);
 			pagejsp = "/confirmation.jsp";
 		}
 		return pagejsp;
 	}
 
+	/**
+	 * Get All eleves
+	 * 
+	 * @param request
+	 * @return page jsp
+	 */
 	public static String processGetAllEleves(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		ArrayList<Eleve> allelevs = new ArrayList<Eleve>();
@@ -163,6 +178,12 @@ public class EleveMetier {
 		return pagejsp;
 	}
 
+	/**
+	 * Update adresse of un eleve
+	 * 
+	 * @param request
+	 * @return page jsp
+	 */
 	public static String processUpdateEleve(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		String updatedornot = "not updated";
@@ -173,8 +194,8 @@ public class EleveMetier {
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
 
 		if (elevToFind == null) {
-			request.setAttribute("txterro", "Erreur Eleve Inexistant");
-			pagejsp = "/editeleve.jsp";
+			request.setAttribute("txtconfirmation", "Erreur Eleve Inexistant");
+			pagejsp = "/allelevesform.jsp";
 		} else {
 
 			try {
@@ -186,8 +207,36 @@ public class EleveMetier {
 				System.out.println("Code de l'opération : " + code);
 				e.printStackTrace();
 			}
-			request.setAttribute("txtconfirmationadd", updatedornot);
-			pagejsp = "/confirmation.jsp";
+			request.setAttribute("txtconfirmation", updatedornot);
+			pagejsp = "/allelevesform.jsp";
+		}
+		return pagejsp;
+
+	}
+
+	public static String processUpdateChambreByEleve(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String updatedornot = "not updated";
+		String num = request.getParameter("numelev");
+		int newChambre = Integer.parseInt(request.getParameter("nochambre"));
+		int code = 0;
+
+		Eleve elevToFind = EleveDao.getEleveByNum(num);
+
+		Chambre chambreExist = ChambreDao.getChambreByNo(newChambre);
+
+		System.out.println("no chambre: " + chambreExist);
+
+		if (chambreExist == null) {
+			request.setAttribute("txtconfirmationall", "Erreur Chambre inexistante");
+			pagejsp = "/alleleveform.jsp";
+		} else {
+
+			code = EleveDao.updateEleveNumChambreBynum(num, chambreExist.getNo());
+			updatedornot = "L'élève numéro " + num + " a changé de la chambre n°" + elevToFind.getNo() + " en n°"
+					+ newChambre;
+			request.setAttribute("txtconfirmationall", updatedornot);
+			pagejsp = "/alleleveform.jsp";
 		}
 		return pagejsp;
 

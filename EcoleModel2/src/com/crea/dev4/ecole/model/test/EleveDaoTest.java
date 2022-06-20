@@ -126,4 +126,13 @@ public class EleveDaoTest {
 		}
 	}
 
+	@Test
+	public void testUpdateEleveNumChambreBynum() {
+		int update_false = 0;
+		int update_true = 1;
+		System.out.println("Test update chambre eleve:");
+		assertEquals(update_false, EleveDao.updateEleveNumChambreBynum("AGUE009", 8));
+		assertEquals(update_true, EleveDao.updateEleveNumChambreBynum("AGUE001", 9));
+	}
+
 }
