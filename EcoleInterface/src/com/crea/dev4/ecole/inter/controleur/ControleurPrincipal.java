@@ -126,9 +126,9 @@ public class ControleurPrincipal extends HttpServlet {
 		/**********************************************************
 		 * Traitement metier pour les fonctionnalites du Livre
 		 *********************************************************/
-//		case "addLivre":
-//			pagejsp = LivreMetier.processAddLivre(request);
-//			break;
+		case "addLivre":
+			pagejsp = LivreMetier.processAddLivre(request);
+			break;
 //		case "getLivreByCote":
 //			pagejsp = LivreMetier.processGetLivreByCote(request);
 //			break;

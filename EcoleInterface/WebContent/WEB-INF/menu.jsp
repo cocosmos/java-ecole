@@ -45,7 +45,7 @@
 		<div class="col">
 			<h2>Livre</h2>
 			<ul>
-				<li><a href="addlivreform.jsp">Add Livre</a></li>
+				<li><a href="addlivre.jsp">Add Livre</a></li>
 				<li><a href="alllivreform.jsp">All Livres</a></li>
 				<li><a href="searchlivre.jsp">Search Livres</a></li>
 			</ul>
