@@ -17,27 +17,27 @@ public class EleveDaoTest {
 	@Before
 	public void testAddListeEleveToTest() {
 		int insert = 1;
-		assertEquals(insert, EleveDao.addEleve(new Eleve("AGUE001", 0, "AGUE MAX", 40, "18 Rue Labat 75018 Paris")));
-		assertEquals(insert, EleveDao.addEleve(new Eleve("AGUE002", 0, "AGUE MAX", 42, "19 Rue Le Monde Paris")));
-		assertEquals(insert,
-				EleveDao.addEleve(new Eleve("KAMTO005", 0, "KAMTO Diog�ne", 50, "54 Rue des Ebisoires 78300 Poissy")));
+		assertEquals(insert, EleveDao.addEleve(new Eleve("AGUE0010", 0, "AGUE MAX", 40, "18 Rue Labat 75018 Paris")));
+		assertEquals(insert, EleveDao.addEleve(new Eleve("AGUE0020", 0, "AGUE MAX", 42, "19 Rue Le Monde Paris")));
 		assertEquals(insert, EleveDao
-				.addEleve(new Eleve("LAURENCY004", 0, "LAURENCY Patrick", 52, "79 Rue des Poules 75015 Paris")));
-		assertEquals(insert,
-				EleveDao.addEleve(new Eleve("TABIS003", 0, "Ghislaine TABIS", 30, "12 Rue du louvre 75013 Paris")));
+				.addEleve(new Eleve("KAMTO0050", 0, "KAMTO Diog�ne", 50, "54 Rue des Ebisoires 78300 Poissy")));
 		assertEquals(insert, EleveDao
-				.addEleve(new Eleve("TAHAE002", 0, "TAHA RIDENE", 30, "12 Rue des Chantiers 78000 Versailles")));
+				.addEleve(new Eleve("LAURENCY0040", 0, "LAURENCY Patrick", 52, "79 Rue des Poules 75015 Paris")));
+		assertEquals(insert,
+				EleveDao.addEleve(new Eleve("TABIS0030", 0, "Ghislaine TABIS", 30, "12 Rue du louvre 75013 Paris")));
+		assertEquals(insert, EleveDao
+				.addEleve(new Eleve("TAHAE0020", 0, "TAHA RIDENE", 30, "12 Rue des Chantiers 78000 Versailles")));
 	}
 
 	@After
 	public void testDeleteListeEleveToTest() {
 		int delete = 1;
-		assertEquals(delete, EleveDao.deleteEleveBynum("AGUE001"));
-		assertEquals(delete, EleveDao.deleteEleveBynum("AGUE002"));
-		assertEquals(delete, EleveDao.deleteEleveBynum("KAMTO005"));
-		assertEquals(delete, EleveDao.deleteEleveBynum("LAURENCY004"));
-		assertEquals(delete, EleveDao.deleteEleveBynum("TABIS003"));
-		assertEquals(delete, EleveDao.deleteEleveBynum("TAHAE002"));
+		assertEquals(delete, EleveDao.deleteEleveBynum("AGUE0010"));
+		assertEquals(delete, EleveDao.deleteEleveBynum("AGUE0020"));
+		assertEquals(delete, EleveDao.deleteEleveBynum("KAMTO0050"));
+		assertEquals(delete, EleveDao.deleteEleveBynum("LAURENCY0040"));
+		assertEquals(delete, EleveDao.deleteEleveBynum("TABIS0030"));
+		assertEquals(delete, EleveDao.deleteEleveBynum("TAHAE0020"));
 		System.out.println("Eleve Supprim� ou pas : " + delete);
 	}
 
@@ -108,6 +108,7 @@ public class EleveDaoTest {
 	@Test
 	public void testGetLstElevesByDateNaissance() throws SQLException {
 		ArrayList<Eleve> liste = new ArrayList<Eleve>();
+
 		liste = EleveDao.getLstElevesByDateNaissance(1992);
 		for (Eleve e : liste) {
 			e.affiche();
@@ -118,6 +119,7 @@ public class EleveDaoTest {
 	@Test
 	public void testGetAllEleves() throws SQLException {
 		ArrayList<Eleve> liste = new ArrayList<Eleve>();
+		System.out.println("Test get all eleves:");
 		liste = EleveDao.getAllEleves();
 		for (Eleve e : liste) {
 			e.affiche();

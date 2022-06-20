@@ -108,26 +108,31 @@ public class ChambreDao {
 	// get all chambres
 	public static ArrayList<Chambre> getAllChambres() {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
-		String request = null;
+		String request = "SELECT * FROM chambre";
+
 		ResultSet response = null;
 		int i = 0;
-		Chambre chamtmp = new Chambre();
-		// =1=> connexion ï¿½ la BD
+
+		// =1=> connexion à la BD
 		DBAction.DBConnexion();
-		request = "SELECT * FROM chambre";
+
 		try {
 			response = DBAction.getStm().executeQuery(request);
+
 			while (response.next()) {
+				Chambre chamtmp = new Chambre();
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
-				chamtmp.affiche();
+				listeChambres.add(chamtmp);
 				i++;
+
 			}
+
 			if (!response.isClosed()) {
 				response.close();
 			}
 		} catch (SQLException e) {
-			listeChambres.add(chamtmp);
+			// listeChambres.add(chamtmp);
 			e.printStackTrace();
 		}
 		return listeChambres;

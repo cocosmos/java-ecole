@@ -3,6 +3,7 @@ package com.crea.dev4.ecole.model.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -17,21 +18,21 @@ public class ChambreDaoTest {
 	@Before
 	public void testAddListeEleveToTest() {
 		int insert = 1;
-		assertEquals(insert, ChambreDao.addChambre(new Chambre(1, 500.50f)));
-		assertEquals(insert, ChambreDao.addChambre(new Chambre(2, 300.50f)));
-		assertEquals(insert, ChambreDao.addChambre(new Chambre(3, 200.50f)));
-		assertEquals(insert, ChambreDao.addChambre(new Chambre(4, 100.50f)));
-		assertEquals(insert, ChambreDao.addChambre(new Chambre(5, 50.50f)));
+		assertEquals(insert, ChambreDao.addChambre(new Chambre(10, 500.50f)));
+		assertEquals(insert, ChambreDao.addChambre(new Chambre(11, 300.50f)));
+		assertEquals(insert, ChambreDao.addChambre(new Chambre(12, 200.50f)));
+		assertEquals(insert, ChambreDao.addChambre(new Chambre(13, 100.50f)));
+		assertEquals(insert, ChambreDao.addChambre(new Chambre(14, 50.50f)));
 	}
 
 	@After
 	public void testDeleteListeEleveToTest() {
 		int delete = 1;
-		assertEquals(delete, ChambreDao.deleteChambreByNo(1));
-		assertEquals(delete, ChambreDao.deleteChambreByNo(2));
-		assertEquals(delete, ChambreDao.deleteChambreByNo(3));
-		assertEquals(delete, ChambreDao.deleteChambreByNo(4));
-		assertEquals(delete, ChambreDao.deleteChambreByNo(5));
+		assertEquals(delete, ChambreDao.deleteChambreByNo(10));
+		assertEquals(delete, ChambreDao.deleteChambreByNo(11));
+		assertEquals(delete, ChambreDao.deleteChambreByNo(12));
+		assertEquals(delete, ChambreDao.deleteChambreByNo(13));
+		assertEquals(delete, ChambreDao.deleteChambreByNo(14));
 		// System.out.println("Chambre Supprimé ou pas : " + delete);
 	}
 
@@ -80,7 +81,7 @@ public class ChambreDaoTest {
 	}
 
 	@Test
-	public void testGetAllChambres() {
+	public void testGetAllChambres() throws SQLException {
 		ArrayList<Chambre> liste = new ArrayList<Chambre>();
 		System.out.println("Test get all chambres:");
 		liste = ChambreDao.getAllChambres();

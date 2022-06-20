@@ -99,7 +99,7 @@ public class EleveDao {
 		DBAction.DBConnexion();
 		// ecrire requete
 		String requete = "Select * from Eleve where nom = \'" + nomEleve + "\'";
-		System.out.println("******* " + requete + "***********");
+		// System.out.println("******* " + requete + "***********");
 		// recup�rer un statment + executer une requete
 		try {
 			rs = DBAction.getStm().executeQuery(requete);
@@ -181,7 +181,8 @@ public class EleveDao {
 			result = -ex.getErrorCode();
 			System.out.println(ex.getMessage());
 		}
-		System.out.println("[" + req + "] Suppression : Valeur de result = " + result);
+		// System.out.println("[" + req + "] Suppression : Valeur de result = " +
+		// result);
 		DBAction.DBClose();
 		return result;
 	}
@@ -199,7 +200,7 @@ public class EleveDao {
 		DBAction.DBConnexion();
 		String req = "UPDATE eleve SET adresse = '" + newAdresse + "' WHERE num ='" + num + "' ";
 		result = DBAction.getStm().executeUpdate(req);
-		System.out.println("Requete executee");
+		// System.out.println("Requete executee");
 		DBAction.DBClose();
 		return result;
 	}
@@ -304,7 +305,6 @@ public class EleveDao {
 	 * @return la liste de tout les �l�ves
 	 */
 	public static ArrayList<Eleve> getAllEleves() throws SQLException {
-
 		ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
 
 		String req = "SELECT num, no, nom, age, adresse FROM eleve ";
