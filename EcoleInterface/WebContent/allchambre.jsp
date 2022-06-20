@@ -10,7 +10,7 @@
 	<title>Chambres</title>
 </head>
 <body>
-	<h1 align="center">Liste de toutes les chambres</h1>
+	<h1 align="center">List all chambres</h1>
 	
 		<table style="width: 60%;margin: auto;" class="table table-dark table-striped">
 			<thead>

@@ -20,7 +20,7 @@ public class UvDao {
 		request = "SELECT * FROM uv WHERE code = \'" + code + "\'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La r�cup�ration du r�sultat dans un objet Chmabre
+			// 3==> La r�cup�ration du r�sultat dans un objet UV
 			if (response.next()) {
 				u.setCode(response.getString(1));
 				u.setNbh(response.getInt(2));
@@ -41,24 +41,26 @@ public class UvDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		Uv uvtmp = new Uv();
+		
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM uv";
 		try {
 			response = DBAction.getStm().executeQuery(request);
 			while (response.next()) {
+				Uv uvtmp = new Uv();
 				uvtmp.setCode(response.getString(1));
 				uvtmp.setNbh(response.getInt(2));
 				uvtmp.setCoord(response.getString(3));
 				uvtmp.affiche();
+				listeUvs.add(uvtmp);
 				i++;
 			}
 			if (!response.isClosed()) {
 				response.close();
 			}
 		} catch (SQLException e) {
-			listeUvs.add(uvtmp);
+			
 			e.printStackTrace();
 		}
 		return listeUvs;
@@ -70,24 +72,26 @@ public class UvDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		Uv uvtmp = new Uv();
+		
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM chambre WHERE prix > " + nbh;
 		try {
 			response = DBAction.getStm().executeQuery(request);
 			while (response.next()) {
+				Uv uvtmp = new Uv();
 				uvtmp.setCode(response.getString(1));
 				uvtmp.setNbh(response.getInt(2));
 				uvtmp.setCoord(response.getString(3));
 				uvtmp.affiche();
+				listeUvs.add(uvtmp);
 				i++;
 			}
 			if (!response.isClosed()) {
 				response.close();
 			}
 		} catch (SQLException e) {
-			listeUvs.add(uvtmp);
+			
 			e.printStackTrace();
 		}
 		return listeUvs;

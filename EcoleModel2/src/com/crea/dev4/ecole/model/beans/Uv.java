@@ -35,7 +35,7 @@ public void setCoord(String coord) {
 }
 
 public void affiche() {
-	System.out.print("code "+ code + " nbh "+ nbh+ " coord "+coord );
+	System.out.print("code "+ code + " nbh "+ nbh+ " coord "+coord+ "\n");
 }
 public String toString() {
 	return "code "+ code + " nbh "+ nbh+ " coord "+coord;

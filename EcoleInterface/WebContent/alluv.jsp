@@ -52,7 +52,7 @@
 					</td>
 					<td>
 						<form name="id" class="form"
-							action="ControleurPrincipal?idaction=deleteChambre" method="POST">
+							action="ControleurPrincipal?idaction=deleteUv" method="POST">
 							<input class="form-control" id="nocode" type="hidden"
 								name="nocode" value="<c:out value="${uv.code}" />">
 							<button type="submit" class="btn btn-danger">

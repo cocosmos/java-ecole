@@ -10,7 +10,7 @@
 <div align="center">
 	<h1 class="pgtitre">List all UV</h1>
 	<form name="id" class="form"
-		action="ControleurPrincipal?idaction=getAllUV" method="POST">
+		action="ControleurPrincipal?idaction=getAllUv" method="POST">
 		 <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 		

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.crea.dev4.ecole.inter.metier.ChambreMetier;
 import com.crea.dev4.ecole.inter.metier.EleveMetier;
+import com.crea.dev4.ecole.inter.metier.UvMetier;
 
 /**
  * Servlet implementation class ControleurPrincipal
@@ -76,7 +77,6 @@ public class ControleurPrincipal extends HttpServlet {
 		case "addchambre":
 			pagejsp = ChambreMetier.processAddChambre(request);
 			break;
-
 		case "getallChambres":
 			pagejsp = ChambreMetier.processGetAllChambres(request);
 			break;
@@ -89,7 +89,6 @@ public class ControleurPrincipal extends HttpServlet {
 		case "updatePrixChambre":
 			pagejsp = ChambreMetier.processUpdatePrixChambre(request);
 			break;
-
 		case "searchChambre":
 			pagejsp = ChambreMetier.processGetChambreByNo(request);
 			break;
@@ -99,20 +98,43 @@ public class ControleurPrincipal extends HttpServlet {
 		case "getChambreByEleveNum":
 			pagejsp= ChambreMetier.processGetChambreByEleveNum(request);
 			break;
+			
 		/**********************************************************
-		 * Traitement m�tier pour les fonctionnalit�s du Livre
+		 * Traitement metier pour les fonctionnalites de Uv
+		 *********************************************************/
+		case "getAllUv":
+			pagejsp= UvMetier.processGetAllUv(request);
+			break;
+//		case "updateUvNbh":
+//			pagejsp= UvMetier.processUpdateUvNbh(request);
+//			break;
+//		case "deleteUv":
+//			pagejsp= UvMetier.processDeleteUv(request);
+//			break;
+			
+			
+		/**********************************************************
+		 * Traitement metier pour les fonctionnalites du Livre
 		 *********************************************************/
 		// TD DO
+			
+			
+			
+			
+		
+		
+			
+			
+			
+		
 		/**********************************************************
-		 * Traitement m�tier pour les fonctionnalit�s de Uv
-		 *********************************************************/
-		// TD DO
-		/**********************************************************
-		 * Traitement m�tier pour les fonctionnalit�s de Inscrit
+		 * Traitement m�tier pour les fonctionnalites de Inscrit
 		 *********************************************************/
 		// TD DO
 		default:
+			pagejsp= "/index.jsp";
 			System.out.println("None selected");
+			break;
 		}
 
 		// Confirmer le dispatching
