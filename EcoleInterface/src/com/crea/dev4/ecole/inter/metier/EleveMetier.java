@@ -31,7 +31,7 @@ public class EleveMetier {
 				addornot = "Student " + elnew.getNom() + " added with success !!";
 			}
 			request.setAttribute("txtconfirmationadd", addornot);
-			pagejsp = "/confirmationadd.jsp";
+			pagejsp = "/confirmation.jsp";
 		} else {
 			request.setAttribute("txterro", "Erreur Eleve Existant");
 			pagejsp = "/addeleve.jsp";
@@ -145,7 +145,7 @@ public class EleveMetier {
 				deleteornot = "L'élève " + elevToFind.getNom() + " numéro :" + num + " a été supprimé !!";
 			}
 			request.setAttribute("txtconfirmationadd", deleteornot);
-			pagejsp = "/confirmationadd.jsp";
+			pagejsp = "/confirmation.jsp";
 		}
 		return pagejsp;
 	}
@@ -187,7 +187,7 @@ public class EleveMetier {
 				e.printStackTrace();
 			}
 			request.setAttribute("txtconfirmationadd", updatedornot);
-			pagejsp = "/confirmationadd.jsp";
+			pagejsp = "/confirmation.jsp";
 		}
 		return pagejsp;
 
