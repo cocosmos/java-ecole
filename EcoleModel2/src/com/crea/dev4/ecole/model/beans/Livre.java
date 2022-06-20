@@ -1,13 +1,16 @@
 package com.crea.dev4.ecole.model.beans;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+
 public class Livre {
 	// Attributs
 	private String cote;
 	private String num;
 	private String titre;
-	private long datepret;
+	private Date datepret;
 
-	public Livre(String cote, String num, String titre, long datepret) {
+	public Livre(String cote, String num, String titre, Date datepret) {
 		super();
 		this.cote = cote;
 		this.num = num;
@@ -16,7 +19,7 @@ public class Livre {
 	}
 
 	public Livre() {
-		this("", "", "", System.currentTimeMillis());
+		this("", null, "", null);
 	}
 
 	public String getCote() {
@@ -43,12 +46,12 @@ public class Livre {
 		this.titre = titre;
 	}
 
-	public long getDatepret() {
+	public Date getDatepret() {
 		return datepret;
 	}
 
-	public void setDatepret(long datepret) {
-		this.datepret = datepret;
+	public void setDatepret(Date date) {
+		this.datepret = date;
 	}
 
 	public void affiche() {

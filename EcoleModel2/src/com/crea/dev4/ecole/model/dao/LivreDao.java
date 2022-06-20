@@ -25,7 +25,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getLong(4));
+				l.setDatepret(response.getDate(4));
 				l.affiche();
 			} else {
 				l = null;
@@ -53,7 +53,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getLong(4));
+				l.setDatepret(response.getDate(4));
 				l.affiche();
 				i++;
 			}
@@ -85,7 +85,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getLong(4));
+				l.setDatepret(response.getDate(4));
 				l.affiche();
 				i++;
 			}
@@ -117,7 +117,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getLong(4));
+				l.setDatepret(response.getDate(4));
 				l.affiche();
 				i++;
 			}
@@ -138,8 +138,7 @@ public class LivreDao {
 		String request = null;
 
 		DBAction.DBConnexion();
-		request = "INSERT INTO livre (cote, num, titre, datepret)" + " VALUES ('" + newLivre.getCote() + "',"
-				+ newLivre.getNum() + "'," + newLivre.getTitre() + "'," + newLivre.getDatepret() + "') ";
+		request = "INSERT INTO livre (cote, titre) VALUES ('" + newLivre.getCote() + "','" + newLivre.getTitre() + "') ";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {
