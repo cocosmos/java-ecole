@@ -2,15 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
+
 <title>All Livres</title>
-</head>
+
 <body>
 	<h1 align="center">All Livres</h1>
 
-	<table style="width: 60%; margin: auto;"
-		class="table table-dark table-striped">
+	<table class="table table-dark table-striped">
 		<thead>
 			<tr>
 				<th>Cote</th>

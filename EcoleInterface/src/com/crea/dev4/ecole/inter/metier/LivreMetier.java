@@ -104,7 +104,6 @@ public class LivreMetier {
 				pagejsp = "/alllivre.jsp";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			request.setAttribute("txtconfirmation", "ERROR");
 			pagejsp = "/alllivreform.jsp";
 			e.printStackTrace();
