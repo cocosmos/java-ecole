@@ -28,7 +28,7 @@ public class InscritMetier {
 		allinscrits = InscritDao.getAllInscrit();
 
 		if (allinscrits.isEmpty()) {
-			request.setAttribute("txtconfirmation", "No Inscrits founded");
+			request.setAttribute("txterro", "No Inscrits founded");
 			pagejsp = "/allinscritsform.jsp";
 		} else {
 			request.setAttribute("allinscrits", allinscrits);
@@ -53,7 +53,7 @@ public class InscritMetier {
 		allinscrits = InscritDao.getInscritsByEleveNum(num);
 
 		if (allinscrits.isEmpty()) {
-			request.setAttribute("txtconfirmation", "No Inscrits founded");
+			request.setAttribute("txterro", "No Inscrits founded");
 			pagejsp = "/alleleveform.jsp";
 		} else {
 			request.setAttribute("allinscrits", allinscrits);
@@ -84,10 +84,11 @@ public class InscritMetier {
 			System.out.println("Code de l'operation : " + codeSucces + " code " + code + " num " + num);
 			if (codeSucces == 1) {
 				deleteornot = "Inscrits : \n code: " + code + " num: " + num + " is deleted !!";
+				request.setAttribute("successornot", "success");
 			}
 		}
 
-		request.setAttribute("txtconfirmation", deleteornot);
+		request.setAttribute("txterro", deleteornot);
 		pagejsp = "/allinscritsform.jsp";
 
 		return pagejsp;

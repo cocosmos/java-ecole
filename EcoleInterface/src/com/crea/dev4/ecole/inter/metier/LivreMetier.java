@@ -24,20 +24,23 @@ public class LivreMetier {
 		String titre = request.getParameter("titre");
 		Livre livreToFind = LivreDao.getLivreByCote(cote);
 
-		if (livreToFind == null) {
+		
+		if (cote.equals("")||titre.equals("")){addornot = "Fields cannot be null ";}
+		else if(livreToFind == null) {
 			Livre livreNew = new Livre(cote, null, titre, null);
 			int code = LivreDao.addLivre(livreNew);
 			System.out.println("COde de l'operation : " + code);
 			if (code == 1) {
 				addornot = "Livre cote: " + cote + " added with success !!";
-				request.setAttribute("txterro", addornot);
-				pagejsp = "/addlivre.jsp";
+				request.setAttribute("successornot", "success");
 			}
 		} else {
-			request.setAttribute("txterro", "Error Livre already exist ");
-			pagejsp = "/addlivre.jsp";
+			addornot = "Error Livre already exist ";
+	
 		}
-
+		
+		request.setAttribute("txterro", addornot);
+		pagejsp = "/addlivre.jsp";
 		return pagejsp;
 
 	}
@@ -71,7 +74,7 @@ public class LivreMetier {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			request.setAttribute("txtconfirmation", "ERROR");
+			request.setAttribute("txterro", "ERROR");
 			pagejsp = "/alllivreform.jsp";
 			e.printStackTrace();
 		}
@@ -96,7 +99,7 @@ public class LivreMetier {
 			alllivres = LivreDao.getAllLivres();
 			alleleves = EleveDao.getAllEleves();
 			if (alllivres.isEmpty()) {
-				request.setAttribute("txtconfirmation", "No Livre founded");
+				request.setAttribute("txterro", "No Livre founded");
 				pagejsp = "/alllivreform.jsp";
 			} else {
 				request.setAttribute("alllivres", alllivres);
@@ -104,7 +107,7 @@ public class LivreMetier {
 				pagejsp = "/alllivre.jsp";
 			}
 		} catch (SQLException e) {
-			request.setAttribute("txtconfirmation", "ERROR");
+			request.setAttribute("txterro", "ERROR");
 			pagejsp = "/alllivreform.jsp";
 			e.printStackTrace();
 		}
@@ -128,7 +131,7 @@ public class LivreMetier {
 			alllivres = LivreDao.getLivresAvailable();
 			alleleves = EleveDao.getAllEleves();
 			if (alllivres.isEmpty()) {
-				request.setAttribute("txtconfirmation", "No Livre founded");
+				request.setAttribute("txterro", "No Livre founded");
 				pagejsp = "/alllivreform.jsp";
 			} else {
 				request.setAttribute("alllivres", alllivres);
@@ -136,8 +139,8 @@ public class LivreMetier {
 				pagejsp = "/alllivre.jsp";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			request.setAttribute("txtconfirmation", "ERROR");
+			
+			request.setAttribute("txterro", "ERROR");
 			pagejsp = "/alllivreform.jsp";
 			e.printStackTrace();
 		}
@@ -170,8 +173,8 @@ public class LivreMetier {
 				pagejsp = "/alllivre.jsp";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			request.setAttribute("txtconfirmation", "ERROR");
+		
+			request.setAttribute("txterro", "ERROR");
 			pagejsp = "/alllivreform.jsp";
 			e.printStackTrace();
 		}
@@ -192,19 +195,17 @@ public class LivreMetier {
 		String newTitle = request.getParameter("titre");
 		Livre LivreFinded = LivreDao.getLivreByCote(cote);
 
-		if (newTitle == null) {
-			request.setAttribute("txtconfirmation", "Error");
-			pagejsp = "/alllivreform.jsp";
-
+		if (newTitle.equals("")) {
+			updatedornot= "Field cannot be null";
 		} else if (LivreFinded.getTitre().equals(newTitle)) {
-			request.setAttribute("txtconfirmation", "Same Title - Not Updated");
-			pagejsp = "/alllivreform.jsp";
+			updatedornot = "Same Title - Not Updated";
 		} else {
 			LivreDao.updateLivreTitreByCote(cote, newTitle);
 			updatedornot = "Livre Cote: " + cote + " changed from " + LivreFinded.getTitre() + " to " + newTitle;
-			request.setAttribute("txtconfirmation", updatedornot);
-			pagejsp = "/alllivreform.jsp";
+			request.setAttribute("successornot", "success");
 		}
+		pagejsp = "/alllivreform.jsp";
+		request.setAttribute("txterro", updatedornot);
 		return pagejsp;
 
 	}
@@ -222,25 +223,20 @@ public class LivreMetier {
 		String newEleve = request.getParameter("numelev");
 		Livre LivreFinded = LivreDao.getLivreByCote(cote);
 
-		if (newEleve == "") {
-			newEleve = null;
-		}
 
-		if (LivreFinded == null) {
-			request.setAttribute("txtconfirmation", "Error");
-			pagejsp = "/alllivreform.jsp";
-
+		if (newEleve.equals("")) {
+			updatedornot= "Field cannot be null";
 		} else if (LivreFinded.getNum() == newEleve) { // Same value
-			request.setAttribute("txtconfirmation", "Same Borrower - Not Updated");
-			pagejsp = "/alllivreform.jsp";
+			updatedornot ="Same Borrower - Not Updated";
+		
 		} else {
 			LivreDao.updateLivreNumByCote(cote, newEleve);
 			updatedornot = "Livre Cote: " + cote + " assigned to " + newEleve;
-			request.setAttribute("txtconfirmation", updatedornot);
-			pagejsp = "/alllivreform.jsp";
+			request.setAttribute("successornot", "success");
 		}
+		request.setAttribute("txterro", updatedornot);
+		pagejsp = "/alllivreform.jsp";
 		return pagejsp;
-
 	}
 
 	/**
@@ -257,21 +253,19 @@ public class LivreMetier {
 													// HTML/XHTML/JSTL/JSP
 		Livre LivreFinded = LivreDao.getLivreByCote(cote);
 
-		if (LivreFinded == null) {
-			request.setAttribute("txtconfirmation", "Error Livre not exist");
-			pagejsp = "/alllivreform.jsp";
-		} else if (LivreFinded.getNum() != null) {
-			request.setAttribute("txtconfirmation", deleteornot);
-			pagejsp = "/alllivreform.jsp";
+		 if (LivreFinded == null) {
+			
+			deleteornot = "Error Livre not exist";
 		} else {
 			int code = LivreDao.deleteLivreByNo(cote);
 			System.out.println("Code de l'operation : " + code + " cote " + cote);
 			if (code == 1) {
 				deleteornot = "Livre : " + cote + " is deleted !!";
+				request.setAttribute("successornot", "success");
 			}
-			request.setAttribute("txtconfirmation", deleteornot);
-			pagejsp = "/alllivreform.jsp";
 		}
+		request.setAttribute("txterro", deleteornot);
+		pagejsp = "/alllivreform.jsp";
 		return pagejsp;
 	}
 

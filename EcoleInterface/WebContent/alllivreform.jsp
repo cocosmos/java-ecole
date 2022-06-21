@@ -19,12 +19,9 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
-	<span>
-		<%
-		String result = (String) request.getAttribute("txtconfirmation");
-		if (result != null) {
-			out.println(result);
-		}
-		%>
-	</span>
+	<c:if test="${txterro!=null}">
+			<div class="mt-5 alert alert-<c:out value="${successornot}" default="danger"/>" role="alert">
+				<c:out value="${txterro}"/>
+			</div>
+		</c:if>
 </div>

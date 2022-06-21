@@ -47,7 +47,7 @@ public class UvMetier {
 		alluv = UvDao.getAllUvs();
 		
 		if(alluv.isEmpty()) {
-			request.setAttribute("txtconfirmation", "No Uv founded");
+			request.setAttribute("txterro", "No Uv founded");
 			pagejsp = "/alluvform.jsp";
 		}else {
 			request.setAttribute("alluv", alluv);
@@ -94,19 +94,18 @@ public class UvMetier {
 		Uv UvFinded = UvDao.getUvByCode(nocode);
 
 		if (newHours==0) {
-			request.setAttribute("txtconfirmation", "Error : Nothing in the input");
-			pagejsp = "/alluvform.jsp";
+			updatedornot="Error : Nothing in the input";
 			
 		} else if(UvFinded.getNbh()==newHours) {
-			request.setAttribute("txtconfirmation", "Same Nbh - Not Updated");
-			pagejsp = "/alluvform.jsp";
+			updatedornot= "Same Nbh - Not Updated";
 		}
 		else {
 			UvDao.updateNbhByCode(nocode, newHours);
 			updatedornot = "Uv Code: " + nocode + " changed from " + UvFinded.getNbh() + " to "+ newHours;
-			request.setAttribute("txtconfirmation", updatedornot);
-			pagejsp = "/alluvform.jsp";
+			request.setAttribute("successornot", "success");
 		}
+		request.setAttribute("txterro", updatedornot);
+		pagejsp = "/alluvform.jsp";
 		return pagejsp;
 
 	}
@@ -123,20 +122,20 @@ public class UvMetier {
 		String newCoord = request.getParameter("coord");
 		Uv UvFinded = UvDao.getUvByCode(nocode);
 
-		if (newCoord==null) {
-			request.setAttribute("txtconfirmation", "Error");
-			pagejsp = "/alluvform.jsp";
+		if (newCoord.equals("")) {
+			updatedornot="Cannot be null";
 			
 		} else if(UvFinded.getCoord().equals(newCoord)) {
-			request.setAttribute("txtconfirmation", "Same Coord - Not Updated");
+			updatedornot="Same Coord - Not Updated";
 			pagejsp = "/alluvform.jsp";
 		}
 		else {
 			UvDao.updateCoordByCode(nocode, newCoord);
 			updatedornot = "Uv Code: " + nocode + " changed from " + UvFinded.getCoord() + " to "+ newCoord;
-			request.setAttribute("txtconfirmation", updatedornot);
-			pagejsp = "/alluvform.jsp";
+			request.setAttribute("successornot", "success");
 		}
+		request.setAttribute("txterro", updatedornot);
+		pagejsp = "/alluvform.jsp";
 		return pagejsp;
 		
 	}
@@ -149,30 +148,25 @@ public class UvMetier {
 	
 	public static String processDeleteUv(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
-		String deleteornot = "Erreur : one inscrit is assigned to this UV";
+		String deleteornot = "Erreur : there is come inscrit is assigned to this UV";
 		String nocode = request.getParameter("nocode"); // a partir de chaque formulaire
 																		// HTML/XHTML/JSTL/JSP
 		Uv UvFinded = UvDao.getUvByCode(nocode);
 
 		if (UvFinded == null) {
-			request.setAttribute("txterro", "Error UV not exist");
+			deleteornot ="Error UV not exist";
 			pagejsp = "/alluvform.jsp";
 		} else {
 			int code = UvDao.deleteUvByCode(nocode);
 			System.out.println("Code de l'operation : " + code + " nocode " + nocode);
 			if (code == 1) {
 				deleteornot = "Uv" + nocode + " is deleted !!";
+				request.setAttribute("successornot", "success");
 			}
-			request.setAttribute("txtconfirmation", deleteornot);
-			pagejsp = "/alluvform.jsp";
 		}
+		request.setAttribute("txterro", deleteornot);
+		pagejsp = "/alluvform.jsp";
 		return pagejsp;
 	}
-	
-	
-	
-	
-	
-	
 	
 }

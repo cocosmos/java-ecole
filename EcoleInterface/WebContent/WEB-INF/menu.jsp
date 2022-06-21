@@ -31,7 +31,7 @@
         <button class="fs-2 btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed nav-link" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
           Eleves
         </button>
-        <div class="collapse show" id="home-collapse">
+        <div class="collapse" id="home-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ">
            		<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="addeleve.jsp">Add Eleve</a></li>
 				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="alleleveform.jsp">All Eleves</a></li>
