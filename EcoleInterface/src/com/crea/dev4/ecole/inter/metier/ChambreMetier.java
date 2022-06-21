@@ -33,35 +33,44 @@ public class ChambreMetier {
 			Float prix = Float.parseFloat(request.getParameter("prixchambre"));
 			Chambre chambreNew = new Chambre(num, prix);
 			int code = ChambreDao.addChambre(chambreNew);
+			
 			System.out.println("COde de l'operation : " + code);
+			
 			if (code == 1) {
 				addornot = "Chambre " + chambreNew.getNo() + " ajoute avec succes !!";
-				request.setAttribute("txtconfirmationsearch", addornot);
-				pagejsp = "/confirmation.jsp";
+				request.setAttribute("successornot", "success");
 			}
-		} else {
-			request.setAttribute("txterro", "Erreur Chambre Existante");
-			pagejsp = "/addchambre.jsp";
+		} else if(chambreToFind!=null) {
+			addornot = "Erreur Chambre Existante";
 		}
+		request.setAttribute("txterro",addornot); 
+		pagejsp = "/addchambre.jsp";
 
 		return pagejsp;
-
 	}
 
 	/**
 	 * Get all chambres
 	 * 
-	 * @param request all chambres
-	 * @return all chambres
+	 * @param request all chambres 
+	 * @return all chambres if not empty
 	 */
 
 	public static String processGetAllChambres(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		ArrayList<Chambre> allchambres = new ArrayList<Chambre>();
 		allchambres = ChambreDao.getAllChambres();
+		
+		if(allchambres.isEmpty()) {
+			request.setAttribute("txterro", "No Chambre founded");
+			pagejsp = "/allchambreform.jsp";
+		}else {
+			request.setAttribute("allchambres", allchambres);
+			pagejsp = "/allchambre.jsp";
+		}
 
-		request.setAttribute("allchambres", allchambres);
-		pagejsp = "/allchambre.jsp";
+		
+		
 		return pagejsp;
 	}
 
@@ -76,9 +85,14 @@ public class ChambreMetier {
 		String pagejsp = "/WEB-INF/error.jsp";
 		ArrayList<Chambre> allchambres = new ArrayList<Chambre>();
 		allchambres = ChambreDao.getChambresNoOccupied();
-
-		request.setAttribute("allchambres", allchambres);
-		pagejsp = "/allchambre.jsp";
+		if(allchambres.isEmpty()) {
+			request.setAttribute("txterro", "No Chambre founded");
+			pagejsp = "/allchambreform.jsp";
+		}
+		else {
+			request.setAttribute("allchambres", allchambres);
+			pagejsp = "/allchambre.jsp";
+		}
 		return pagejsp;
 	}
 

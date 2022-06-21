@@ -133,7 +133,8 @@ public class ChambreDao {
 
 	public static ArrayList<Chambre> getChambresNoOccupied() {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
-		String request = "SELECT * FROM chambre WHERE no NOT IN (SELECT DISTINCT no FROM eleve)";
+		String request = "SELECT chambre.no, chambre.prix FROM `chambre` LEFT JOIN eleve ON chambre.no=eleve.no WHERE eleve.no IS NULL;";
+		
 
 		ResultSet response = null;
 		int i = 0;
