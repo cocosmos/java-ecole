@@ -140,12 +140,12 @@ public class ControleurPrincipal extends HttpServlet {
 		case "getAllLivresSharedToEleve":
 			pagejsp = LivreMetier.processGetLivresSharedToEleve(request);
 			break;
-//		case "updateLivreTitle":
-//			pagejsp = LivreMetier.processUpdateLivreTitle(request);
-//			break;
-//		case "updateLivreBorrower":
-//			pagejsp = LivreMetier.processUpdateLivreBorrower(request);
-//			break;
+		case "updateLivreTitle":
+			pagejsp = LivreMetier.processUpdateLivreTitle(request);
+			break;
+		case "updateLivreBorrower":
+			pagejsp = LivreMetier.processUpdateLivreBorrower(request);
+			break;
 //		case "deleteLivreByCote":
 //			pagejsp = LivreMetier.processDeleteLivreByCote(request);
 //			break;

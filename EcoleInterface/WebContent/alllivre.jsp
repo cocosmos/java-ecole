@@ -64,7 +64,9 @@
 						</form>
 					</td>
 					<td><c:if test="${livre.datepret != null}">
-							<c:out value="${livre.datepret}" />
+							<!--<c:out value="${livre.datepret}" />-->
+							<fmt:parseDate value="${ livre.datepret}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+							<fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
 						</c:if></td>
 					<td>
 						<form name="id" class="form"

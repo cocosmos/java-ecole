@@ -2,6 +2,8 @@ package com.crea.dev4.ecole.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import com.crea.dev4.ecole.model.beans.Livre;
@@ -9,6 +11,8 @@ import com.crea.dev4.ecole.model.utils.DBAction;
 
 public class LivreDao {
 	/* GET Functions */
+	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+
 	// get livre by cote
 	public static Livre getLivreByCote(String cote) {
 		Livre l = new Livre();
@@ -25,7 +29,12 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getDate(4));
+				if (response.getString(4) != null) {
+					l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
+				} else {
+					l.setDatepret(null);
+				}
+
 				l.affiche();
 			} else {
 				l = null;
@@ -54,7 +63,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getDate(4));
+				l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
 				l.affiche();
 				listeLivres.add(l);
 				i++;
@@ -88,7 +97,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getDate(4));
+				l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
 				l.affiche();
 				listeLivres.add(l);
 				i++;
@@ -122,7 +131,11 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(response.getDate(4));
+				if (response.getString(4) != null) {
+					l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
+				} else {
+					l.setDatepret(null);
+				}
 				l.affiche();
 				listeLivres.add(l);
 				i++;
@@ -181,6 +194,9 @@ public class LivreDao {
 		int result = -1;
 		String request = null;
 		DBAction.DBConnexion();
+
+		// UPDATE livre SET num='[value-2]', datepret='[value-4]' WHERE cote
+		// ="ISBN10001"
 		request = "UPDATE livre SET num ='" + newNum + "'WHERE cote ='" + cote + "'";
 		try {
 			result = DBAction.getStm().executeUpdate(request);

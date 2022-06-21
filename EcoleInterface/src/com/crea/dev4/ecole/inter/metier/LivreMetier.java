@@ -146,4 +146,64 @@ public class LivreMetier {
 		return pagejsp;
 	}
 
+	/**
+	 * Update Title By Cote
+	 * 
+	 * @param request cote of Livre and New Title of Livre
+	 * @return return message success or error
+	 */
+	public static String processUpdateLivreTitle(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String updatedornot = "not updated";
+		String cote = request.getParameter("cote");
+		String newTitle = request.getParameter("titre");
+		Livre LivreFinded = LivreDao.getLivreByCote(cote);
+
+		if (newTitle == null) {
+			request.setAttribute("txtconfirmation", "Error");
+			pagejsp = "/alllivreform.jsp";
+
+		} else if (LivreFinded.getTitre().equals(newTitle)) {
+			request.setAttribute("txtconfirmation", "Same Title - Not Updated");
+			pagejsp = "/alllivreform.jsp";
+		} else {
+			LivreDao.updateLivreTitreByCote(cote, newTitle);
+			updatedornot = "Livre Cote: " + cote + " changed from " + LivreFinded.getTitre() + " to " + newTitle;
+			request.setAttribute("txtconfirmation", updatedornot);
+			pagejsp = "/alllivreform.jsp";
+		}
+		return pagejsp;
+
+	}
+
+	/**
+	 * Update Borrower By Cote
+	 * 
+	 * @param request cote of Livre and New Title of Livre
+	 * @return return message success or error
+	 */
+	public static String processUpdateLivreBorrower(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String updatedornot = "not updated";
+		String cote = request.getParameter("cote");
+		String newEleve = request.getParameter("numelev");
+		Livre LivreFinded = LivreDao.getLivreByCote(cote);
+
+		if (newEleve == null) {
+			request.setAttribute("txtconfirmation", "Error");
+			pagejsp = "/alllivreform.jsp";
+
+		} else if (LivreFinded.getNum().equals(newEleve)) {
+			request.setAttribute("txtconfirmation", "Same Title - Not Updated");
+			pagejsp = "/alllivreform.jsp";
+		} else {
+			LivreDao.updateLivreNumByCote(cote, newEleve);
+			updatedornot = "Livre Cote: " + cote + " assigned to " + newEleve;
+			request.setAttribute("txtconfirmation", updatedornot);
+			pagejsp = "/alllivreform.jsp";
+		}
+		return pagejsp;
+
+	}
+
 }
