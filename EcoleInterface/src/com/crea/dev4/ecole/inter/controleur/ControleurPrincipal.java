@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.crea.dev4.ecole.inter.metier.ChambreMetier;
 import com.crea.dev4.ecole.inter.metier.EleveMetier;
+import com.crea.dev4.ecole.inter.metier.InscritMetier;
 import com.crea.dev4.ecole.inter.metier.LivreMetier;
 import com.crea.dev4.ecole.inter.metier.UvMetier;
 
@@ -153,7 +154,16 @@ public class ControleurPrincipal extends HttpServlet {
 		/**********************************************************
 		 * Traitement metier pour les fonctionnalites de Inscrit
 		 *********************************************************/
-		// TD DO
+		case "getAllInscrits":
+			pagejsp = InscritMetier.processGetAllInscrits(request);
+			break;
+		case "getInscritsByEleveNum":
+			pagejsp = InscritMetier.processGetInscritsByEleveNum(request);
+			break;
+		case "deleteInscritByCodeAndNum":
+			pagejsp = InscritMetier.processDeleteInscritByCodeAndNum(request);
+			break;
+
 		default:
 			pagejsp = "/index.jsp";
 			System.out.println("None selected");

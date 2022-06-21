@@ -13,9 +13,9 @@
 	rel="stylesheet"
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
+<title>Ecole</title>
 
 </head>
-
 <header class="container">
 
 	<div class="row">
@@ -48,6 +48,12 @@
 				<li><a href="addlivre.jsp">Add Livre</a></li>
 				<li><a href="alllivreform.jsp">All Livres</a></li>
 				<li><a href="searchlivre.jsp">Search Livres</a></li>
+			</ul>
+		</div>
+		<div class="col">
+			<h2>Inscrits</h2>
+			<ul>
+				<li><a href="allinscritsform.jsp">All Inscrits</a></li>
 			</ul>
 		</div>
 	</div>

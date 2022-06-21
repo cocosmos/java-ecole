@@ -1,18 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-	<meta charset="ISO-8859-1">
-	<link href="style.css" rel="stylesheet">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Chambres</title>
-</head>
-<body>
+
 	<h1 align="center">List all chambres</h1>
-	
-		<table style="width: 60%;margin: auto;" class="table table-dark table-striped">
+		<table style="margin: auto;" class="table table-dark table-striped">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -46,6 +36,5 @@
 				
 			</tbody>
 		</table>
-	
 </body>
 </html>

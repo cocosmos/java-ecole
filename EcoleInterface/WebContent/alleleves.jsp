@@ -12,7 +12,7 @@
 <body>
 	<h2 align="center">Liste de tous les élèves</h2>
 	
-	<table style="width: 60%; border: 1px solid black; margin: auto;">
+	<table >
 		<thead>
 			<tr>
 				<th>Numero</th>
@@ -20,7 +20,7 @@
 				<th>Chambre n°</th>
 				<th>Adresse</th>
 				
-				<th>Suppression</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,6 +46,11 @@
 					
 					</td>
 					<td>
+					<form name="id" class="form" action="ControleurPrincipal?idaction=getInscritsByEleveNum" method="POST">
+							<input type="hidden" name="numelev" id="numelev" value="<c:out value="${ele.num}" />">
+							 <button type="submit" class="btn btn-danger">Voir inscrits</button>
+						</form>
+					
 						<form name="id" class="form" action="ControleurPrincipal?idaction=deleteEleveBynum" method="POST">
 							<input type="hidden" name="numelev" id="numelev" value="<c:out value="${ele.num}" />">
 							 <button type="submit" class="btn btn-danger">Supprimer</button>

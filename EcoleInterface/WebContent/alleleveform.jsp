@@ -15,7 +15,7 @@
 			
 		</form>
 		<%
-			String result = (String)request.getAttribute("txtconfirmationall");
+			String result = (String)request.getAttribute("txtconfirmation");
 			if(result!=null){
 				out.println(result);
 			}
