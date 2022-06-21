@@ -18,13 +18,13 @@ public class LivreDao {
 		Livre l = new Livre();
 		String request = null;
 		ResultSet response = null;
-		// =1=> connexion ÔøΩ la BD
+		// =1=> connexion Ë la BD
 		DBAction.DBConnexion();
-		// =2.1=> pr√©parer notre requÔøΩte sql SELECT
+		// =2.1=> preparer notre requËte sql SELECT
 		request = "SELECT * FROM livre WHERE cote = \'" + cote + "\'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La r√©cup√©ration du r√©sultat dans un objet Livre
+			// 3==> La recuperation du resultat dans un objet Livre
 			if (response.next()) {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
@@ -50,14 +50,13 @@ public class LivreDao {
 		ArrayList<Livre> listeLivres = new ArrayList<Livre>();
 		String request = null;
 		ResultSet response = null;
-		int i = 0;
 
-		// =1=> connexion ÔøΩ la BD
+		// =1=> connexion Ë la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num = '" + num + "'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La r√©cup√©ration du r√©sultat dans un objet Livre
+			// 3==> La recuperation du resultat dans un objet Livre
 			while (response.next()) {
 				Livre l = new Livre();
 				l.setCote(response.getString(1));
@@ -70,7 +69,7 @@ public class LivreDao {
 				}
 				l.affiche();
 				listeLivres.add(l);
-				i++;
+
 			}
 			if (!response.isClosed()) {
 				response.close();
@@ -88,14 +87,13 @@ public class LivreDao {
 		ArrayList<Livre> listeLivres = new ArrayList<Livre>();
 		String request = null;
 		ResultSet response = null;
-		int i = 0;
 
-		// =1=> connexion ÔøΩ la BD
+		// =1=> connexion Ë la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num is NULL";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La rÈcupÈration du rÈsultat dans un objet Livre
+			// 3==> La recuperation du resultat dans un objet Livre
 			while (response.next()) {
 				Livre l = new Livre();
 				l.setCote(response.getString(1));
@@ -108,7 +106,7 @@ public class LivreDao {
 				}
 				l.affiche();
 				listeLivres.add(l);
-				i++;
+
 			}
 			if (!response.isClosed()) {
 				response.close();
@@ -126,14 +124,13 @@ public class LivreDao {
 		ArrayList<Livre> listeLivres = new ArrayList<Livre>();
 		String request = null;
 		ResultSet response = null;
-		int i = 0;
 
 		// =1=> connexion ‡ la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La r√©cup√©ration du rÈsultat dans un objet Livre
+			// 3==> La recuperation du resultat dans un objet Livre
 			while (response.next()) {
 				Livre l = new Livre();
 				l.setCote(response.getString(1));
@@ -146,7 +143,7 @@ public class LivreDao {
 				}
 				l.affiche();
 				listeLivres.add(l);
-				i++;
+
 			}
 			if (!response.isClosed()) {
 				response.close();
@@ -170,7 +167,7 @@ public class LivreDao {
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {
-			if (ex.getErrorCode() == 1062) {// la cl√© existe d√©ja
+			if (ex.getErrorCode() == 1062) {// la cle existe deja
 				result = -2;
 			}
 			System.out.println(ex.getMessage());
@@ -228,7 +225,7 @@ public class LivreDao {
 		String request = null;
 		// 1: connexion √† la BD
 		DBAction.DBConnexion();
-		// 2: pr√©parer ma requpete de suppression
+		// 2: preparer ma requpete de suppression
 		request = "DELETE FROM livre WHERE cote ='" + cote + "'";
 		try {
 			result = DBAction.getStm().executeUpdate(request);

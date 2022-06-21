@@ -46,7 +46,8 @@ public class LivreMetier {
 	 * Get Livre by cote
 	 * 
 	 * @param request cote of the livre
-	 * @return result array to display it in the page all livres
+	 * @return result array to display it in the page all livres and all eleves for
+	 *         select
 	 */
 
 	public static String processGetLivreByCote(HttpServletRequest request) {
@@ -54,16 +55,27 @@ public class LivreMetier {
 		String cote = request.getParameter("cote");
 		String foundornot = "Livre cote : " + cote + " is not found";
 		ArrayList<Livre> alllivres = new ArrayList<Livre>();
-		Livre LivreFinded = LivreDao.getLivreByCote(cote);
+		ArrayList<Eleve> alleleves = new ArrayList<Eleve>();
 
-		if (LivreFinded == null) {
-			request.setAttribute("txterro", foundornot);
-			pagejsp = "/searchlivre.jsp";
-		} else {
-			alllivres.add(LivreFinded);
-			request.setAttribute("alllivres", alllivres);
-			pagejsp = "/alllivre.jsp";
+		try {
+			Livre LivreFinded = LivreDao.getLivreByCote(cote);
+			alleleves = EleveDao.getAllEleves();
+			if (LivreFinded == null) {
+				request.setAttribute("txterro", foundornot);
+				pagejsp = "/searchlivre.jsp";
+			} else {
+				alllivres.add(LivreFinded);
+				request.setAttribute("alllivres", alllivres);
+				request.setAttribute("allleleves", alleleves);
+				pagejsp = "/alllivre.jsp";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			request.setAttribute("txtconfirmation", "ERROR");
+			pagejsp = "/alllivreform.jsp";
+			e.printStackTrace();
 		}
+
 		return pagejsp;
 	}
 
@@ -71,7 +83,7 @@ public class LivreMetier {
 	 * Get all Livre
 	 * 
 	 * @param request get all Livre
-	 * @return all Livre
+	 * @return all Livre and all eleves for select
 	 * @throws SQLException
 	 */
 
@@ -105,7 +117,7 @@ public class LivreMetier {
 	 * Get all Livre Available
 	 * 
 	 * @param request get all Livre
-	 * @return all Livre available
+	 * @return all Livre available and all eleves for select
 	 */
 
 	public static String processGetAllLivresAvailable(HttpServletRequest request) {
@@ -145,14 +157,24 @@ public class LivreMetier {
 		String pagejsp = "/WEB-INF/error.jsp";
 		String numelev = request.getParameter("numelev");
 		ArrayList<Livre> alllivres = new ArrayList<Livre>();
+		ArrayList<Eleve> alleleves = new ArrayList<Eleve>();
 
-		alllivres = LivreDao.getLivresByEleveNum(numelev);
-		if (alllivres.isEmpty()) {
-			request.setAttribute("txterro", "No Livre founded for elve no:" + numelev);
-			pagejsp = "/searchlivre.jsp";
-		} else {
-			request.setAttribute("alllivres", alllivres);
-			pagejsp = "/alllivre.jsp";
+		try {
+			alleleves = EleveDao.getAllEleves();
+			alllivres = LivreDao.getLivresByEleveNum(numelev);
+			if (alllivres.isEmpty()) {
+				request.setAttribute("txterro", "No Livre founded for eleve no:" + numelev);
+				pagejsp = "/searchlivre.jsp";
+			} else {
+				request.setAttribute("alllivres", alllivres);
+				request.setAttribute("allleleves", alleleves);
+				pagejsp = "/alllivre.jsp";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			request.setAttribute("txtconfirmation", "ERROR");
+			pagejsp = "/alllivreform.jsp";
+			e.printStackTrace();
 		}
 
 		return pagejsp;
