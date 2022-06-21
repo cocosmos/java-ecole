@@ -10,6 +10,11 @@ import com.crea.dev4.ecole.model.beans.Eleve;
 import com.crea.dev4.ecole.model.dao.ChambreDao;
 import com.crea.dev4.ecole.model.dao.EleveDao;
 
+/**
+ * Eleve Metier
+ * @author Mipam
+ *
+ */
 public class EleveMetier {
 
 	/**
@@ -96,7 +101,7 @@ public class EleveMetier {
 			allelevs = EleveDao.getAllEleves();
 			allchambres = ChambreDao.getAllChambres();
 			if (allelevs.isEmpty()) {
-				request.setAttribute("txtconfirmation", "No Eleve founded");
+				request.setAttribute("txterro", "No Eleve founded");
 				pagejsp = "/alleleveform.jsp";
 			} else {
 				request.setAttribute("allchambres", allchambres);
@@ -104,7 +109,7 @@ public class EleveMetier {
 				pagejsp = "/alleleves.jsp";
 			}
 		} catch (SQLException e) {
-			request.setAttribute("txtconfirmation", "ERROR");
+			request.setAttribute("txterro", "ERROR");
 			pagejsp = "/alleleveform.jsp";
 			e.printStackTrace();
 		}

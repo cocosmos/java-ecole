@@ -15,11 +15,10 @@
 		  </div>
 		  <button type="submit" class="btn btn-primary">Valider</button>
 			
-			<%
-			String txterro = (String) request.getAttribute("txterro");
-			if(txterro!=null) {
-			out.print(txterro);
-			}
-			%>
+			<c:if test="${txterro!=null}">
+			<div class="mt-5 alert alert-<c:out value="${successornot}" default="danger"/>" role="alert">
+				<c:out value="${txterro}"/>
+			</div>
+		</c:if>
 		</form>
 	</div>
