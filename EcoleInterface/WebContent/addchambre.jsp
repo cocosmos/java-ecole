@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
+
 <title>Ajout Chambre</title>
-</head>
-<body>
-	<div class="container">
+
+	<div class="container mt-5">
 		<h1 class="pgtitre">Ajouter une chambre</h1>
 		<form name="id" action="ControleurPrincipal?idaction=addchambre" method="POST">
 		  <div class="mb-3">
@@ -27,5 +23,3 @@
 			%>
 		</form>
 	</div>
-</body>
-</html>

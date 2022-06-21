@@ -1,22 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>All Inscrits To Uv</title>
-</head>
-<body>
-	<h1 align="center">All Inscrits</h1>
+	
+	<title>All inscrits</title>
 
-	<table style="width: 100%; margin: auto;"
+<div class="container mt-5">
+	<h1 class="text-center mb-3">All Inscrits</h1>
+
+	<table 
 		class="table table-dark table-striped">
 		<thead>
 			<tr>
 				<th>Code</th>
 				<th>Num Eleve</th>
 				<th>Note</th>
-				<th></th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,5 +45,4 @@
 
 		</tbody>
 	</table>
-</body>
-</html>
+</div>

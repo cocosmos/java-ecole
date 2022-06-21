@@ -1,45 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Ajout Eleve</title>
-</head>
-<body>
-	<div align="center">
-		<h1 class="pgtitre">Ajouter un eleve</h1>
+
+<title>Add Eleve</title>
+
+
+		<h1 class="pgtitre text-center">Add Eleve</h1>
 		<form name="id" class="form"
 			action="ControleurPrincipal?idaction=addEleve" method="POST">
-			<table>
-				<tr>
-					<td width="120px">Numero Eleve :</td>
-					<td><input type="text" name="numelev" id="numelev" /></td>
-				</tr>
-				<tr>
-					<td width="120px">Nom Eleve :</td>
-					<td><input type="text" name="nomelev" id="nomelev" /></td>
-				</tr>
-				<tr>
-					<td width="120px">Age :</td>
-					<td><input type="text" name="agelev" id="agelev" /></td>
-				</tr>
-				<tr>
-					<td width="120px">Adresse :</td>
-					<td><input type="text" name="adresselev" id="adresselev" /></td>
-				</tr>
-				<tr>
-					<td width="120px"><input type="submit" value="Valider"
-						class="submit" /></td>
-				</tr>
-			</table>
+			<div class="mb-3">
+				<label for="numelev" class="form-label">Number</label> 
+				<input type="text" class="form-control" id="numelev" name="numelev" required>
+			</div>
+			<div class="mb-3">
+				<label for="nomelev" class="form-label">Name</label> <input
+					type="text" class="form-control" id="nomelev" name="nomelev" required>
+			</div>
+			<div class="mb-3">
+				<label for="agelev" class="form-label">Age</label> <input
+					type="text" class="form-control" id="agelev" name="agelev" required>
+			</div>
+			<div class="mb-3">
+				<label for="adresselev" class="form-label">Adress</label> <input
+					type="text" class="form-control" id="adresselev" name="adresselev" required>
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Submit</button>
 			<%
 			String txterro = (String) request.getAttribute("txterro");
-			if(txterro!=null) {
-			out.print(txterro);
+			if (txterro != null) {
+				out.print(txterro);
 			}
 			%>
 		</form>
 	</div>
-</body>
-</html>

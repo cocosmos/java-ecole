@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
 
 <title>All Livres</title>
 
-<body>
-	<h1 align="center">All Livres</h1>
+<div class="container mt-5">
+	<h1 class="text-center">All Livres</h1>
 
 	<table class="table table-dark table-striped">
 		<thead>
@@ -86,5 +84,4 @@
 
 		</tbody>
 	</table>
-</body>
-</html>
+</div>

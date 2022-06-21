@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
-	<h1 align="center">List all chambres</h1>
-		<table style="margin: auto;" class="table table-dark table-striped">
+<title>All Chambres</title>
+<div class="container mt-5">
+	<h1 class="text-center">List all chambres</h1>
+		<table class="table table-dark table-striped">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -36,5 +37,4 @@
 				
 			</tbody>
 		</table>
-</body>
-</html>
+</div>

@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
+
+
 <title>All UV FORM</title>
-</head>
-<body>
-<div align="center">
+
+<div class="container mt-5 text-center">
 	<h1 class="pgtitre">List all UV</h1>
 	<form name="id" class="form"
 		action="ControleurPrincipal?idaction=getAllUv" method="POST">
@@ -22,5 +19,3 @@
 		
 		%>
 	</div>
-</body>
-</html>

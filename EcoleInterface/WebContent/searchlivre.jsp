@@ -1,28 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
+
 <title>Search Livre</title>
-</head>
-<body>
-	<div class="container">
-		<h1 class="pgtitre">Search Livre</h1>
+
+	<div class="container mt-5">
+		<h1 class="text-center">Search Livre</h1>
 		<form name="id" action="ControleurPrincipal?idaction=getLivreByCote" method="POST">
-		  <div class="mb-3">
-		    <label for="nocode" class="form-label" >By cote of Livre: </label>
+		<label for="nocode" class="form-label" >By cote of Livre: </label>
+		 <div class="mb-3 input-group">
+		    
 		    <input type="text" class="form-control" id="cote" required name="cote">
+		    <button type="submit" class="btn btn-primary">Submit</button>
 		  </div>
-		  <button type="submit" class="btn btn-primary">Submit</button>
+		  
 		</form>
 		<form name="id" action="ControleurPrincipal?idaction=getAllLivresSharedToEleve" method="POST">
-		  <div class="mb-3">
-		    <label for="numelev" class="form-label">Elev num :</label>
-		   
+		  <label for="numelev" class="form-label">Elev num :</label>
+		  <div class="mb-3 input-group">
 		     <input type="text" class="form-control" id="numelev" required name="numelev"> 
+		      <button type="submit" class="btn btn-primary">Submit</button>
 		  </div>
-		  <button type="submit" class="btn btn-primary">Submit</button>
+		 
 		</form>
 		<%
 			String txterro = (String) request.getAttribute("txterro");
@@ -31,5 +29,3 @@
 			}
 			%>
 	</div>
-</body>
-</html>

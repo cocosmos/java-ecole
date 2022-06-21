@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
+
 <title>All Chambres</title>
-</head>
-<body>
-	<div align="center">
+
+
+	<div class="container mt-5 text-center">
 		<h2 class="pgtitre">La liste de toutes les chambres</h2>
 		<form name="id" class="form"
 			action="ControleurPrincipal?idaction=getallChambres" method="POST">
@@ -27,5 +24,3 @@
 			
 			%>
 	</div>
-</body>
-</html>

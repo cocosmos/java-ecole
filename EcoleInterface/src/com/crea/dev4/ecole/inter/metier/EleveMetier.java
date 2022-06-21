@@ -28,23 +28,28 @@ public class EleveMetier {
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
 
 		if (elevToFind == null) {
+			
 			String nom = request.getParameter("nomelev"); // a partir de chaque formulaire HTML/XHTML/JSTL/JSP
-			int age = Integer.parseInt(request.getParameter("agelev")); // a partir de chaque formulaire
-																		// HTML/XHTML/JSTL/JSP
+			int age = Integer.parseInt(request.getParameter("agelev")); // a partir de chaque formulaire										// HTML/XHTML/JSTL/JSP
 			String adresse = request.getParameter("adresselev"); // a partir de chaque formulaire
-																	// HTML/XHTML/JSTL/JSP
-			Eleve elnew = new Eleve(num, 0, nom, age, adresse);
-			int code = EleveDao.addEleve(elnew);
-			System.out.println("COde de l'operation : " + code);
-			if (code == 1) {
-				addornot = "Student " + elnew.getNom() + " added with success !!";
+			//Check if null
+			if(nom !=null && adresse!=null && age!=0) {
+				Eleve elnew = new Eleve(num, 0, nom, age, adresse);
+				int code = EleveDao.addEleve(elnew);
+				System.out.println("COde de l'operation : " + code);
+				if (code == 1) {
+					addornot = "Student " + elnew.getNom() + " added with success !!";
+				}
+			} else {
+				addornot = "Please write all field";
 			}
+			
 			request.setAttribute("txterro", addornot);
-			pagejsp = "/addeleve.jsp";
 		} else {
 			request.setAttribute("txterro", "Erreur Eleve Existant");
-			pagejsp = "/addeleve.jsp";
+			
 		}
+		pagejsp = "/addeleve.jsp";
 		return pagejsp;
 	}
 

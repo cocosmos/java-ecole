@@ -1,22 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>All UV</title>
-</head>
-<body>
-	<h1 align="center">All UV</h1>
 
-	<table style="width: 60%; margin: auto;"
+<title>All UV</title>
+
+<div class="container mt-5 text-center">
+	<h1 >All UV</h1>
+
+	<table
 		class="table table-dark table-striped">
 		<thead>
 			<tr>
 				<th>Code</th>
 				<th>Hours</th>
 				<th>Coord</th>
-				<th></th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -67,5 +64,4 @@
 
 		</tbody>
 	</table>
-</body>
-</html>
+</div>
