@@ -63,7 +63,11 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
+				if (response.getString(4) != null) {
+					l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
+				} else {
+					l.setDatepret(null);
+				}
 				l.affiche();
 				listeLivres.add(l);
 				i++;
@@ -97,7 +101,11 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
+				if (response.getString(4) != null) {
+					l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
+				} else {
+					l.setDatepret(null);
+				}
 				l.affiche();
 				listeLivres.add(l);
 				i++;
@@ -194,10 +202,15 @@ public class LivreDao {
 		int result = -1;
 		String request = null;
 		DBAction.DBConnexion();
+		LocalDateTime dateTime = LocalDateTime.now();
+		java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(dateTime);
 
-		// UPDATE livre SET num='[value-2]', datepret='[value-4]' WHERE cote
-		// ="ISBN10001"
-		request = "UPDATE livre SET num ='" + newNum + "'WHERE cote ='" + cote + "'";
+		if (newNum == null) { // rends son emprunt
+			request = "UPDATE livre SET num = NULL, datepret = NULL WHERE cote ='" + cote + "'";
+		} else {// emprunte ou change d'umprinter
+			request = "UPDATE livre SET num = '" + newNum + "', datepret = '" + sqlDate + "' WHERE cote ='" + cote
+					+ "'";
+		}
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {

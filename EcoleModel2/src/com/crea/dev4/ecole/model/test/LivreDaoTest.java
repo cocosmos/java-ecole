@@ -24,12 +24,12 @@ public class LivreDaoTest {
 		l.affiche();
 	}
 
-//	@Test
-//	public void testUpdateLivreNumByCote() {
-//		System.out.println("Test update");
-//		LocalDateTime dateTime = LocalDateTime.now();
-//		java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(dateTime);
-//		System.out.println(sqlDate);
-//	}
+	@Test
+	public void testUpdateLivreNumByCote() {
+		System.out.println("Test update");
+		int l = LivreDao.updateLivreNumByCote("ISBN10003", null);
+		int test = LivreDao.updateLivreNumByCote("ISBN10004", "AGUE001");
+		System.out.println(l + " " + test);
+	}
 
 }
