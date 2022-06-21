@@ -1,7 +1,6 @@
 package com.crea.dev4.ecole.model.beans;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 public class Livre {
 	// Attributs
@@ -55,7 +54,7 @@ public class Livre {
 	}
 
 	public void affiche() {
-		System.out.print("cote " + cote + " num " + num + " title " + titre + "datepret" + datepret);
+		System.out.print("cote " + cote + " num " + num + " title " + titre + "datepret" + datepret + "\n");
 	}
 
 	public String toString() {

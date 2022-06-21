@@ -94,17 +94,17 @@ public class ControleurPrincipal extends HttpServlet {
 			pagejsp = ChambreMetier.processGetChambreByNo(request);
 			break;
 		case "getChambresByPrice":
-			pagejsp= ChambreMetier.processGetChambreByPrice(request);
+			pagejsp = ChambreMetier.processGetChambreByPrice(request);
 			break;
 		case "getChambreByEleveNum":
-			pagejsp= ChambreMetier.processGetChambreByEleveNum(request);
+			pagejsp = ChambreMetier.processGetChambreByEleveNum(request);
 			break;
-			
+
 		/**********************************************************
 		 * Traitement metier pour les fonctionnalites de Uv
 		 *********************************************************/
 		case "getAllUv":
-			pagejsp= UvMetier.processGetAllUv(request);
+			pagejsp = UvMetier.processGetAllUv(request);
 			break;
 		case "getUvByCode":
 			pagejsp = UvMetier.processGetUvByCode(request);
@@ -113,28 +113,27 @@ public class ControleurPrincipal extends HttpServlet {
 			pagejsp = UvMetier.processGetUvByNbhSuperior(request);
 			break;
 		case "updateUvNbh":
-			pagejsp= UvMetier.processUpdateUvNbh(request);
+			pagejsp = UvMetier.processUpdateUvNbh(request);
 			break;
 		case "updateUvCoord":
-			pagejsp= UvMetier.processUpdateUvCoord(request);
+			pagejsp = UvMetier.processUpdateUvCoord(request);
 			break;
 		case "deleteUv":
-			pagejsp= UvMetier.processDeleteUv(request);
+			pagejsp = UvMetier.processDeleteUv(request);
 			break;
-			
-			
+
 		/**********************************************************
 		 * Traitement metier pour les fonctionnalites du Livre
 		 *********************************************************/
 		case "addLivre":
 			pagejsp = LivreMetier.processAddLivre(request);
 			break;
-//		case "getLivreByCote":
-//			pagejsp = LivreMetier.processGetLivreByCote(request);
-//			break;
-//		case "getAllLivres":
-//			pagejsp = LivreMetier.processGetAllLivres(request);
-//			break;
+		case "getLivreByCote":
+			pagejsp = LivreMetier.processGetLivreByCote(request);
+			break;
+		case "getAllLivres":
+			pagejsp = LivreMetier.processGetAllLivres(request);
+			break;
 //		case "getAllLivresSharedToEleve":
 //			pagejsp = LivreMetier.processGetLivresSharedToEleve(request);
 //			break;
@@ -150,13 +149,13 @@ public class ControleurPrincipal extends HttpServlet {
 //		case "deleteLivreByCote":
 //			pagejsp = LivreMetier.processDeleteLivreByCote(request);
 //			break;
-			
+
 		/**********************************************************
-		 * Traitement m�tier pour les fonctionnalites de Inscrit
+		 * Traitement metier pour les fonctionnalites de Inscrit
 		 *********************************************************/
 		// TD DO
 		default:
-			pagejsp= "/index.jsp";
+			pagejsp = "/index.jsp";
 			System.out.println("None selected");
 			break;
 		}

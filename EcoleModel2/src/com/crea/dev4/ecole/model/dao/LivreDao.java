@@ -42,7 +42,7 @@ public class LivreDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		Livre l = new Livre();
+
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num = " + num;
@@ -50,11 +50,13 @@ public class LivreDao {
 			response = DBAction.getStm().executeQuery(request);
 			// 3==> La récupération du résultat dans un objet Livre
 			while (response.next()) {
+				Livre l = new Livre();
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
 				l.setDatepret(response.getDate(4));
 				l.affiche();
+				listeLivres.add(l);
 				i++;
 			}
 			if (!response.isClosed()) {
@@ -62,7 +64,7 @@ public class LivreDao {
 			}
 
 		} catch (SQLException l1) {
-			listeLivres.add(l);
+
 			l1.printStackTrace();
 		}
 		return listeLivres;
@@ -74,7 +76,7 @@ public class LivreDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		Livre l = new Livre();
+
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num is NULL";
@@ -82,11 +84,13 @@ public class LivreDao {
 			response = DBAction.getStm().executeQuery(request);
 			// 3==> La récupération du résultat dans un objet Livre
 			while (response.next()) {
+				Livre l = new Livre();
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
 				l.setDatepret(response.getDate(4));
 				l.affiche();
+				listeLivres.add(l);
 				i++;
 			}
 			if (!response.isClosed()) {
@@ -94,7 +98,7 @@ public class LivreDao {
 			}
 
 		} catch (SQLException l1) {
-			listeLivres.add(l);
+
 			l1.printStackTrace();
 		}
 		return listeLivres;
@@ -106,7 +110,7 @@ public class LivreDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		Livre l = new Livre();
+
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre";
@@ -114,11 +118,13 @@ public class LivreDao {
 			response = DBAction.getStm().executeQuery(request);
 			// 3==> La récupération du résultat dans un objet Livre
 			while (response.next()) {
+				Livre l = new Livre();
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
 				l.setDatepret(response.getDate(4));
 				l.affiche();
+				listeLivres.add(l);
 				i++;
 			}
 			if (!response.isClosed()) {
@@ -126,7 +132,7 @@ public class LivreDao {
 			}
 
 		} catch (SQLException l1) {
-			listeLivres.add(l);
+
 			l1.printStackTrace();
 		}
 		return listeLivres;
@@ -138,7 +144,8 @@ public class LivreDao {
 		String request = null;
 
 		DBAction.DBConnexion();
-		request = "INSERT INTO livre (cote, titre) VALUES ('" + newLivre.getCote() + "','" + newLivre.getTitre() + "') ";
+		request = "INSERT INTO livre (cote, titre) VALUES ('" + newLivre.getCote() + "','" + newLivre.getTitre()
+				+ "') ";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {

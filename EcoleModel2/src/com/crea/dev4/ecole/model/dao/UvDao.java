@@ -14,13 +14,13 @@ public class UvDao {
 		Uv u = new Uv();
 		String request = null;
 		ResultSet response = null;
-		// =1=> connexion ï¿½ la BD
+		// =1=> connexion è la BD
 		DBAction.DBConnexion();
-		// =2.1=> prÃ©parer notre requï¿½te sql SELECT
+		// =2.1=> prÃ©parer notre requète sql SELECT
 		request = "SELECT * FROM uv WHERE code = \'" + code + "\'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La rï¿½cupï¿½ration du rï¿½sultat dans un objet UV
+			// 3==> La rècupèration du rèsultat dans un objet UV
 			if (response.next()) {
 				u.setCode(response.getString(1));
 				u.setNbh(response.getInt(2));
@@ -41,8 +41,8 @@ public class UvDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		
-		// =1=> connexion ï¿½ la BD
+
+		// =1=> connexion è la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM uv";
 		try {
@@ -60,7 +60,7 @@ public class UvDao {
 				response.close();
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return listeUvs;
@@ -72,8 +72,8 @@ public class UvDao {
 		String request = null;
 		ResultSet response = null;
 		int i = 0;
-		
-		// =1=> connexion ï¿½ la BD
+
+		// =1=> connexion è la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM uv WHERE nbh > " + nbh;
 		try {
@@ -91,7 +91,7 @@ public class UvDao {
 				response.close();
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return listeUvs;
@@ -105,7 +105,7 @@ public class UvDao {
 	 * " VALUES ('" + newUv.getCode() + "'," + newUv.getNbh() + "'," +
 	 * newUv.getCoord() + "') "; try { result =
 	 * DBAction.getStm().executeUpdate(request); } catch (SQLException ex) { if
-	 * (ex.getErrorCode() == 1062) {// la clï¿½ existe dï¿½jï¿½ result = -2; }
+	 * (ex.getErrorCode() == 1062) {// la clè existe dèjè result = -2; }
 	 * System.out.println(ex.getMessage()); }
 	 * 
 	 * DBAction.DBClose(); return result; }
@@ -146,7 +146,7 @@ public class UvDao {
 	public static int deleteUvByCode(String code) {
 		int result = -1;
 		String request = null;
-		// 1: connexion ï¿½ la BD
+		// 1: connexion è la BD
 		DBAction.DBConnexion();
 		// 2: prÃ©parer ma requpete de suppression
 		request = "DELETE FROM uv WHERE code ='" + code + "'";
