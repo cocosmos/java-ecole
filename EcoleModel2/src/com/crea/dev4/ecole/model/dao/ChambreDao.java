@@ -139,7 +139,7 @@ public class ChambreDao {
 		ResultSet response = null;
 		int i = 0;
 
-		// =1=> connexion � la BD
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 
 		try {
