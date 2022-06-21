@@ -146,9 +146,9 @@ public class ControleurPrincipal extends HttpServlet {
 		case "updateLivreBorrower":
 			pagejsp = LivreMetier.processUpdateLivreBorrower(request);
 			break;
-//		case "deleteLivreByCote":
-//			pagejsp = LivreMetier.processDeleteLivreByCote(request);
-//			break;
+		case "deleteLivreByCote":
+			pagejsp = LivreMetier.processDeleteLivreByCote(request);
+			break;
 
 		/**********************************************************
 		 * Traitement metier pour les fonctionnalites de Inscrit

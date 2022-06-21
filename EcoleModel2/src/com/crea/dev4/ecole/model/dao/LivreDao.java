@@ -229,7 +229,7 @@ public class LivreDao {
 		// 1: connexion à la BD
 		DBAction.DBConnexion();
 		// 2: préparer ma requpete de suppression
-		request = "DELETE FROM livre WHERE no ='" + cote + "'";
+		request = "DELETE FROM livre WHERE cote ='" + cote + "'";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {

@@ -93,6 +93,8 @@ public class LivreMetier {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			request.setAttribute("txtconfirmation", "ERROR");
+			pagejsp = "/alllivreform.jsp";
 			e.printStackTrace();
 		}
 
@@ -109,14 +111,24 @@ public class LivreMetier {
 	public static String processGetAllLivresAvailable(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		ArrayList<Livre> alllivres = new ArrayList<Livre>();
-		alllivres = LivreDao.getLivresAvailable();
+		ArrayList<Eleve> alleleves = new ArrayList<Eleve>();
 
-		if (alllivres.isEmpty()) {
-			request.setAttribute("txtconfirmation", "No Livre founded");
+		try {
+			alllivres = LivreDao.getLivresAvailable();
+			alleleves = EleveDao.getAllEleves();
+			if (alllivres.isEmpty()) {
+				request.setAttribute("txtconfirmation", "No Livre founded");
+				pagejsp = "/alllivreform.jsp";
+			} else {
+				request.setAttribute("alllivres", alllivres);
+				request.setAttribute("allleleves", alleleves);
+				pagejsp = "/alllivre.jsp";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			request.setAttribute("txtconfirmation", "ERROR");
 			pagejsp = "/alllivreform.jsp";
-		} else {
-			request.setAttribute("alllivres", alllivres);
-			pagejsp = "/alllivre.jsp";
+			e.printStackTrace();
 		}
 
 		return pagejsp;
@@ -189,12 +201,16 @@ public class LivreMetier {
 		String newEleve = request.getParameter("numelev");
 		Livre LivreFinded = LivreDao.getLivreByCote(cote);
 
-		if (newEleve == null) {
+		if (newEleve == "") {
+			newEleve = null;
+		}
+
+		if (LivreFinded == null) {
 			request.setAttribute("txtconfirmation", "Error");
 			pagejsp = "/alllivreform.jsp";
 
-		} else if (LivreFinded.getNum().equals(newEleve)) {
-			request.setAttribute("txtconfirmation", "Same Title - Not Updated");
+		} else if (LivreFinded.getNum() == newEleve) { // Same value
+			request.setAttribute("txtconfirmation", "Same Borrower - Not Updated");
 			pagejsp = "/alllivreform.jsp";
 		} else {
 			LivreDao.updateLivreNumByCote(cote, newEleve);
@@ -204,6 +220,38 @@ public class LivreMetier {
 		}
 		return pagejsp;
 
+	}
+
+	/**
+	 * Delete Livre by cote
+	 * 
+	 * @param request get cote of Livre
+	 * @return success if deleted otherwise error code
+	 */
+
+	public static String processDeleteLivreByCote(HttpServletRequest request) {
+		String pagejsp = "/WEB-INF/error.jsp";
+		String deleteornot = "Erreur : one eleve is assigned to this Livre";
+		String cote = request.getParameter("cote"); // a partir de chaque formulaire
+													// HTML/XHTML/JSTL/JSP
+		Livre LivreFinded = LivreDao.getLivreByCote(cote);
+
+		if (LivreFinded == null) {
+			request.setAttribute("txtconfirmation", "Error Livre not exist");
+			pagejsp = "/alllivreform.jsp";
+		} else if (LivreFinded.getNum() != null) {
+			request.setAttribute("txtconfirmation", deleteornot);
+			pagejsp = "/alllivreform.jsp";
+		} else {
+			int code = LivreDao.deleteLivreByNo(cote);
+			System.out.println("Code de l'operation : " + code + " cote " + cote);
+			if (code == 1) {
+				deleteornot = "Livre : " + cote + " is deleted !!";
+			}
+			request.setAttribute("txtconfirmation", deleteornot);
+			pagejsp = "/alllivreform.jsp";
+		}
+		return pagejsp;
 	}
 
 }
