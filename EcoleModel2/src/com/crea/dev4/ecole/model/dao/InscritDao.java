@@ -8,13 +8,17 @@ import com.crea.dev4.ecole.model.beans.Inscrit;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
 public class InscritDao {
-	/* GET Functions */
-	// Get liste Inscrits
+	/**
+	 * Get liste Inscrits
+	 * @param num of eleve
+	 * @return arraylist of all inscrit where num is the same than the param
+	 */
+	
 	public static ArrayList<Inscrit> getInscritsByEleveNum(String num) {
 		ArrayList<Inscrit> listeInscrits = new ArrayList<Inscrit>();
 		String request = null;
 		ResultSet response = null;
-		// =1=> connexion � la BD
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM inscrit WHERE num = '" + num + "'";
 		try {
@@ -39,13 +43,17 @@ public class InscritDao {
 		return listeInscrits;
 	}
 
-	// get all Inscrit
+
+	/**
+	 * Get all Inscrit
+	 * @return arraylist of a total all inscrit
+	 */
 	public static ArrayList<Inscrit> getAllInscrit() {
 		ArrayList<Inscrit> listeInscrit = new ArrayList<Inscrit>();
 		String request = null;
 		ResultSet response = null;
 
-		// =1=> connexion à la BD
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM inscrit";
 		try {
@@ -68,11 +76,17 @@ public class InscritDao {
 		return listeInscrit;
 	}
 
-	/* Delete Inscrit */
+	
+	/**
+	 * Delete Inscrit
+	 * @param code de l'uv
+	 * @param num de l'eleve
+	 * @return code of error or succes
+	 */
 	public static int deleteInscritByCodeAndNum(String code, String num) {
 		int result = -1;
 		String request = null;
-		// 1: connexion � la BD
+		// 1: connexion a la BD
 		DBAction.DBConnexion();
 		// 2: préparer ma requpete de suppression
 		request = "DELETE FROM inscrit WHERE code = '" + code + "' AND num = '" + num + "'";

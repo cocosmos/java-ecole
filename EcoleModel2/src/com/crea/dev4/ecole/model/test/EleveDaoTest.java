@@ -134,5 +134,13 @@ public class EleveDaoTest {
 		assertEquals(update_false, EleveDao.updateEleveNumChambreBynum("AGUE009", 8));
 		assertEquals(update_true, EleveDao.updateEleveNumChambreBynum("AGUE001", 9));
 	}
+//	@Test
+//	public void testUpdateEleveNumChambreBynum() {
+//		int update_false = 0;
+//		int update_true = -1452; // TODO Check on chambre database
+//
+//		assertEquals(update_false, EleveDao.updateEleveNumChambreBynum("AGUE009", 0));
+//		assertEquals(update_true, EleveDao.updateEleveNumChambreBynum("AGUE001", 22));
+//	}
 
 }

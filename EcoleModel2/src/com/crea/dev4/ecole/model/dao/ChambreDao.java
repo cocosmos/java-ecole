@@ -8,18 +8,24 @@ import com.crea.dev4.ecole.model.beans.Chambre;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
 public class ChambreDao {
-	/* GET functions */
+	
+	/**
+	 * Get chambre by no of chambre
+	 * @param no de la chambre
+	 * @return chambre trouver
+	 */
+	
 	public static Chambre getChambreByNo(int no) {
 		Chambre c = new Chambre();
 		String request = null;
 		ResultSet response = null;
 		// =1=> connexion à la BD
 		DBAction.DBConnexion();
-		// =2.1=> pr�parer notre requ�te sql SELECT
+		// =2.1=> preparer notre requete sql SELECT
 		request = "SELECT * FROM chambre WHERE no = \'" + no + "\'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La r�cup�ration du r�sultat dans un objet Chmabre
+			// 3==> La recuperation du resultat dans un objet Chmabre
 			if (response.next()) {
 				c.setNo(response.getInt(1));
 				c.setPrix(response.getFloat(2));
@@ -39,9 +45,9 @@ public class ChambreDao {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
 		String request = null;
 		ResultSet response = null;
-		int i = 0;
 		
-		// =1=> connexion � la BD
+		
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM chambre WHERE no IN (SELECT DISTINCT no FROM eleve WHERE num = \'" + numEleve + "\')";
 			
@@ -53,7 +59,7 @@ public class ChambreDao {
 				chamtmp.setPrix(response.getFloat(2));
 				chamtmp.affiche();
 				listeChambres.add(chamtmp);
-				i++;
+			
 			}
 			if (!response.isClosed()) {
 				response.close();
@@ -74,9 +80,9 @@ public class ChambreDao {
 
 		String request = null;
 		ResultSet response = null;
-		int i = 0;
 
-		// =1=> connexion � la BD
+
+		// =1=> connexion e la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM chambre WHERE prix > " + price;
 		try {
@@ -86,7 +92,7 @@ public class ChambreDao {
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
 				listeChambres.add(chamtmp);
-				i++;
+			
 			}
 			if (!response.isClosed()) {
 				response.close();
@@ -104,9 +110,9 @@ public class ChambreDao {
 		String request = "SELECT * FROM chambre";
 
 		ResultSet response = null;
-		int i = 0;
+	
 
-		// =1=> connexion � la BD
+		// =1=> connexion e la BD
 		DBAction.DBConnexion();
 
 		try {
@@ -117,7 +123,7 @@ public class ChambreDao {
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
 				listeChambres.add(chamtmp);
-				i++;
+		
 
 			}
 
@@ -137,7 +143,7 @@ public class ChambreDao {
 		
 
 		ResultSet response = null;
-		int i = 0;
+	
 
 		// =1=> connexion a la BD
 		DBAction.DBConnexion();
@@ -150,7 +156,7 @@ public class ChambreDao {
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
 				listeChambres.add(chamtmp);
-				i++;
+			
 
 			}
 
@@ -175,7 +181,7 @@ public class ChambreDao {
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {
-			if (ex.getErrorCode() == 1062) {// la cl� existe d�j�
+			if (ex.getErrorCode() == 1062) {// la cle existe deje
 				result = -2;
 			}
 			System.out.println(ex.getMessage());
@@ -186,19 +192,6 @@ public class ChambreDao {
 	}
 
 	/* UPDATE functions */
-	/*
-	 * public static int updateChambreNoEleveByNum(int no, String num, String
-	 * newNum) { int result = -1; String request = null; DBAction.DBConnexion();
-	 * request = "UPDATE chambre SET num ='" + newNum + "'WHERE no ='" + no + "'";
-	 * try { if (getChambreByNo(no).getNum() == num) {
-	 * 
-	 * result = DBAction.getStm().executeUpdate(request); } } catch (SQLException
-	 * ex) {
-	 * 
-	 * System.out.println(ex.getMessage()); }
-	 * 
-	 * DBAction.DBClose(); return result; }
-	 */
 
 	public static int updateChambrePriceByNo(int no, float newPrice) {
 		int result = -1;
