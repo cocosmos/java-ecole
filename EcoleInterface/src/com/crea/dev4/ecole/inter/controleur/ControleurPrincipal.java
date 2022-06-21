@@ -27,7 +27,7 @@ public class ControleurPrincipal extends HttpServlet {
 	 */
 	public ControleurPrincipal() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ControleurPrincipal extends HttpServlet {
 
 		switch (idform) {
 		/**********************************************************
-		 * Traitement m�tier pour les fonctionnalit�s de l'�l�ve
+		 * Traitement metier pour les fonctionnalites de l'eleve
 		 *********************************************************/
 		case "getelevebynum":
 			pagejsp = EleveMetier.processGetEleveBynum(request);
@@ -74,7 +74,7 @@ public class ControleurPrincipal extends HttpServlet {
 			pagejsp = EleveMetier.processUpdateChambreByEleve(request);
 			break;
 		/**********************************************************
-		 * Traitement m�tier pour les fonctionnalit�s de la chambre
+		 * Traitement metier pour les fonctionnalites de la chambre
 		 *********************************************************/
 		case "addchambre":
 			pagejsp = ChambreMetier.processAddChambre(request);

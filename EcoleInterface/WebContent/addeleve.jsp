@@ -3,8 +3,8 @@
 
 <title>Add Eleve</title>
 
-
-		<h1 class="pgtitre text-center">Add Eleve</h1>
+<div class="container mt-5">
+		<h1 class=" text-center">Add Eleve</h1>
 		<form name="id" class="form"
 			action="ControleurPrincipal?idaction=addEleve" method="POST">
 			<div class="mb-3">
@@ -17,7 +17,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="agelev" class="form-label">Age</label> <input
-					type="text" class="form-control" id="agelev" name="agelev" required>
+					type="number" class="form-control" id="agelev" name="agelev" required>
 			</div>
 			<div class="mb-3">
 				<label for="adresselev" class="form-label">Adress</label> <input
@@ -26,11 +26,11 @@
 
 
 			<button type="submit" class="btn btn-primary">Submit</button>
-			<%
-			String txterro = (String) request.getAttribute("txterro");
-			if (txterro != null) {
-				out.print(txterro);
-			}
-			%>
+			
 		</form>
+		<c:if test="${txterro!=null}">
+			<div class="mt-5 alert alert-<c:out value="${successornot}" default="danger"/>" role="alert">
+				<c:out value="${txterro}"/>
+			</div>
+		</c:if>
 	</div>
