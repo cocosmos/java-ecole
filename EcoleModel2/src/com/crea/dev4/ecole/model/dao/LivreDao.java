@@ -45,7 +45,7 @@ public class LivreDao {
 
 		// =1=> connexion � la BD
 		DBAction.DBConnexion();
-		request = "SELECT * FROM livre WHERE num = " + num;
+		request = "SELECT * FROM livre WHERE num = '" + num + "'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
 			// 3==> La récupération du résultat dans un objet Livre
@@ -82,7 +82,7 @@ public class LivreDao {
 		request = "SELECT * FROM livre WHERE num is NULL";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La récupération du résultat dans un objet Livre
+			// 3==> La r�cup�ration du r�sultat dans un objet Livre
 			while (response.next()) {
 				Livre l = new Livre();
 				l.setCote(response.getString(1));
@@ -111,12 +111,12 @@ public class LivreDao {
 		ResultSet response = null;
 		int i = 0;
 
-		// =1=> connexion � la BD
+		// =1=> connexion � la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre";
 		try {
 			response = DBAction.getStm().executeQuery(request);
-			// 3==> La récupération du résultat dans un objet Livre
+			// 3==> La récupération du r�sultat dans un objet Livre
 			while (response.next()) {
 				Livre l = new Livre();
 				l.setCote(response.getString(1));

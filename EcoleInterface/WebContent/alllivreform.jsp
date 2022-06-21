@@ -8,14 +8,14 @@
 </head>
 <body>
 <div align="center">
-	<h1 class="pgtitre">List all Livres</h1>
+	<h2 class="pgtitre">List all Livres</h2>
 	<form name="id" class="form"
 		action="ControleurPrincipal?idaction=getAllLivres" method="POST">
 		 <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	<h1 class="pgtitre">List all Livres Available</h1>
+	<h2 class="pgtitre">List all Livres Available</h2>
 	<form name="id" class="form"
-		action="ControleurPrincipal?idaction=getAllLivreAvailable" method="POST">
+		action="ControleurPrincipal?idaction=getAllLivresAvailable" method="POST">
 		 <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 		

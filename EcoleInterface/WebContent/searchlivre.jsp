@@ -18,8 +18,9 @@
 		</form>
 		<form name="id" action="ControleurPrincipal?idaction=getAllLivresSharedToEleve" method="POST">
 		  <div class="mb-3">
-		    <label for="elevnum" class="form-label">Number of Hours superior at :</label>
-		    <input type="text" class="form-control" id="elevnum" required name="elevnum"> 
+		    <label for="numelev" class="form-label">Elev num :</label>
+		   
+		     <input type="text" class="form-control" id="numelev" required name="numelev"> 
 		  </div>
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
