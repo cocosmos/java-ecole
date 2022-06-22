@@ -20,10 +20,10 @@ public class LivreDao {
 		Livre l = new Livre();
 		String request = null;
 		ResultSet response = null;
-		// =1=> connexion è la BD
+		// =1=> connexion ï¿½ la BD
 		DBAction.DBConnexion();
-		// =2.1=> preparer notre requète sql SELECT
-		request = "SELECT * FROM livre WHERE cote = \'" + cote + "\'";
+		// =2.1=> preparer notre requï¿½te sql SELECT
+		request = "SELECT * FROM livre WHERE cote = '" + cote + "'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
 			// 3==> La recuperation du resultat dans un objet Livre
@@ -53,7 +53,7 @@ public class LivreDao {
 		String request = null;
 		ResultSet response = null;
 
-		// =1=> connexion è la BD
+		// =1=> connexion ï¿½ la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num = '" + num + "'";
 		try {
@@ -90,7 +90,7 @@ public class LivreDao {
 		String request = null;
 		ResultSet response = null;
 
-		// =1=> connexion è la BD
+		// =1=> connexion ï¿½ la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num is NULL";
 		try {
@@ -127,7 +127,7 @@ public class LivreDao {
 		String request = null;
 		ResultSet response = null;
 
-		// =1=> connexion à la BD
+		// =1=> connexion ï¿½ la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre";
 		try {

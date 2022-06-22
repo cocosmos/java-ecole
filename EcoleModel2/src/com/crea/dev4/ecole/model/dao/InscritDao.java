@@ -63,7 +63,7 @@ public class InscritDao {
 				instmp.setCode(response.getString(1));
 				instmp.setNum(response.getString(2));
 				instmp.setNote(response.getFloat(3));
-				instmp.affiche();
+			instmp.affiche();
 				listeInscrit.add(instmp);
 			}
 			if (!response.isClosed()) {

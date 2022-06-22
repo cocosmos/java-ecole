@@ -58,7 +58,7 @@ public class Livre {
 	}
 
 	public String toString() {
-		return "cote " + cote + " num " + num + " title " + titre + "datepret" + datepret;
+		return "cote " + cote + " num " + num + " title " + titre + " datepret " + datepret;
 	}
 
 }

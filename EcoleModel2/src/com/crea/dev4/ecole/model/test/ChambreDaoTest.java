@@ -120,9 +120,9 @@ public class ChambreDaoTest {
 	@Test
 	public void testDeleteChambreByNo() {
 		int nb = ChambreDao.deleteChambreByNo(0);
+		int delete = 1;
 		assertEquals(0, nb);
-		int insert = 1;
-		assertEquals(insert, ChambreDao.addChambre(new Chambre(25, 500.50f)));
+		assertEquals(delete, ChambreDao.addChambre(new Chambre(25, 500.50f)));
 		nb = ChambreDao.deleteChambreByNo(25);
 		assertEquals(1, nb);
 	}
