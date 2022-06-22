@@ -88,8 +88,12 @@ public class LivreDaoTest {
 		int insert_true = 1;
 		System.out.println("Test add Livre");
 		assertEquals(insert_false, LivreDao.addLivre(new Livre("ISBN10000", null, "toto", null)));
-		assertEquals(insert_true, LivreDao.addLivre(new Livre("ISBN10005", null, "toto", null)));
+		//Test with single quote
+		assertEquals(insert_true, LivreDao.addLivre(new Livre("ISBN10005", null, "Bonjour l'arbitre d'handball", null)));
+		LivreDao.getLivreByCote("ISBN10005");
 		assertEquals(insert_true, LivreDao.deleteLivreByCote("ISBN10005"));
+	
+		
 	}
 
 	@Test

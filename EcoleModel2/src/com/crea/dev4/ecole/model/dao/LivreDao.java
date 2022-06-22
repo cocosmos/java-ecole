@@ -24,9 +24,9 @@ public class LivreDao {
 		Livre l = new Livre();
 		String request = null;
 		ResultSet response = null;
-		// =1=> connexion � la BD
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
-		// =2.1=> preparer notre requ�te sql SELECT
+		// =2.1=> preparer notre requete sql SELECT
 		request = "SELECT * FROM livre WHERE cote = '" + cote + "'";
 		try {
 			response = DBAction.getStm().executeQuery(request);
@@ -183,8 +183,12 @@ public class LivreDao {
 		String request = null;
 
 		DBAction.DBConnexion();
-		request = "INSERT INTO livre (cote, titre) VALUES ('" + newLivre.getCote() + "','" + newLivre.getTitre()
-				+ "') ";
+		
+		//Check if title contains single quote and replace it for sql request
+		String title = newLivre.getTitre();
+		String titlecleaned = title.replace("'", "\\'");
+		
+		request = "INSERT INTO livre (cote, titre) VALUES ('" + newLivre.getCote() + "','" + titlecleaned + "') ";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {
