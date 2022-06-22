@@ -38,14 +38,14 @@ public class EleveDaoTest {
 		assertEquals(delete, EleveDao.deleteEleveBynum("LAURENCY0040"));
 		assertEquals(delete, EleveDao.deleteEleveBynum("TABIS0030"));
 		assertEquals(delete, EleveDao.deleteEleveBynum("TAHAE0020"));
-		System.out.println("Eleve Supprim� ou pas : " + delete);
+		System.out.println("Eleve Supprime ou pas : " + delete);
 	}
 
 	@Test
 	public void testGetEleveByNum() {
-		Eleve e_ref = new Eleve("AGUE001", 0, "AGUE MAX", 40, "18 Rue Labat 75018 Paris");// "AGUE001", 1, "AGUE MAX",
+		Eleve e_ref = new Eleve("AGUE0010", 0, "AGUE MAX", 40, "18 Rue Labat 75018 Paris");// "AGUE001", 1, "AGUE MAX",
 		Eleve e = new Eleve();
-		e = EleveDao.getEleveByNum("AGUE001");
+		e = EleveDao.getEleveByNum("AGUE0010");
 		e.affiche();
 		assertEquals(e_ref.getAge(), e.getAge());
 		assertEquals(e_ref.getAdresse(), e.getAdresse());
@@ -85,11 +85,11 @@ public class EleveDaoTest {
 
 	@Test
 	public void testUpdateEleveAdresseBynum() throws SQLException {
-		int update_false = -2;
+		int update_false = 0;
 		int update_true = 1;
 
-		assertEquals(update_false, EleveDao.updateEleveAdresseBynum("AGUE009", "18 Rue des acacias Geneve"));
-		assertEquals(update_true, EleveDao.updateEleveAdresseBynum("AGUE001", "18 Rue des acacias Geneve"));
+		assertEquals(update_false, EleveDao.updateEleveAdresseBynum("AGUE00100", "18 Rue des acacias Geneve"));
+		assertEquals(update_true, EleveDao.updateEleveAdresseBynum("AGUE0010", "18 Rue des acacias Geneve"));
 	}
 
 	@Test
@@ -134,13 +134,5 @@ public class EleveDaoTest {
 		assertEquals(update_false, EleveDao.updateEleveNumChambreBynum("AGUE009", 8));
 		assertEquals(update_true, EleveDao.updateEleveNumChambreBynum("AGUE001", 9));
 	}
-//	@Test
-//	public void testUpdateEleveNumChambreBynum() {
-//		int update_false = 0;
-//		int update_true = -1452; // TODO Check on chambre database
-//
-//		assertEquals(update_false, EleveDao.updateEleveNumChambreBynum("AGUE009", 0));
-//		assertEquals(update_true, EleveDao.updateEleveNumChambreBynum("AGUE001", 22));
-//	}
 
 }

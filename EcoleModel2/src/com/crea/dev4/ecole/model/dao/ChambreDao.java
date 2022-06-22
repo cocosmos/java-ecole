@@ -45,7 +45,7 @@ public class ChambreDao {
 	 * Get chambres by num of the eleve
 	 * 
 	 * @param numEleve
-	 * @return ArrayList
+	 * @return ArrayList of all list
 	 */
 	public static ArrayList<Chambre> getChambresByNum(String numEleve) {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
@@ -76,7 +76,12 @@ public class ChambreDao {
 		return listeChambres;
 	}
 
-	// get chambres with price
+	/**
+	 * Get chambres where prix > of the price given in param
+	 * 
+	 * @param price you want to check
+	 * @return all the chambres where prix is superior of param given
+	 */
 	public static ArrayList<Chambre> getChambresByPrice(float price) {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
 
@@ -105,7 +110,11 @@ public class ChambreDao {
 		return listeChambres;
 	}
 
-	// get all chambres
+	/**
+	 * Get all chambres
+	 * 
+	 * @return an arraylist of all chambres
+	 */
 	public static ArrayList<Chambre> getAllChambres() {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
 		String request = "SELECT * FROM chambre";
@@ -135,6 +144,12 @@ public class ChambreDao {
 		}
 		return listeChambres;
 	}
+
+	/**
+	 * Get all chambres available
+	 * 
+	 * @return an arraylist of all chambres available
+	 */
 
 	public static ArrayList<Chambre> getChambresNoOccupied() {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
@@ -166,7 +181,12 @@ public class ChambreDao {
 		return listeChambres;
 	}
 
-	/* ADD functions */
+	/**
+	 * Add a new chambre
+	 * 
+	 * @param newChambre : no + prix
+	 * @return a new chambre with all price
+	 */
 	public static int addChambre(Chambre newChambre) {
 		int result = -1;
 		String request = null;
@@ -187,7 +207,13 @@ public class ChambreDao {
 		return result;
 	}
 
-	/* UPDATE functions */
+	/**
+	 * Update prix of a chambre
+	 * 
+	 * @param no       of the chambre
+	 * @param newPrice for the chanbre
+	 * @return the new chambre
+	 */
 
 	public static int updateChambrePriceByNo(int no, float newPrice) {
 		int result = -1;
@@ -205,13 +231,18 @@ public class ChambreDao {
 		return result;
 	}
 
-	/* DELETE functions */
+	/**
+	 * Delete Chambre by numero
+	 * 
+	 * @param noChambre
+	 * @return code success or error
+	 */
 	public static int deleteChambreByNo(int noChambre) {
 		int result = -1;
 		String request = null;
 		// 1: connexion à la BD
 		DBAction.DBConnexion();
-		// 2: préparer ma requpete de suppression
+		// 2: preparer ma requpete de suppression
 		request = "DELETE FROM chambre WHERE no =" + noChambre + "";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
