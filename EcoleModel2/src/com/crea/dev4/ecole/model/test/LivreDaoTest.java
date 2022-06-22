@@ -31,11 +31,11 @@ public class LivreDaoTest {
 		int delete = 1;
 		assertEquals(delete, LivreDao.updateLivreNumByCote("ISBN10009", null));
 		assertEquals(delete, EleveDao.deleteEleveBynum("TESTELEVE"));
-		assertEquals(delete, LivreDao.deleteLivreByNo("ISBN10008"));
-		assertEquals(delete, LivreDao.deleteLivreByNo("ISBN10009"));
-		assertEquals(delete, LivreDao.deleteLivreByNo("ISBN100010"));
-		assertEquals(delete, LivreDao.deleteLivreByNo("ISBN100011"));
-		assertEquals(delete, LivreDao.deleteLivreByNo("ISBN100012"));
+		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN10008"));
+		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN10009"));
+		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN100010"));
+		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN100011"));
+		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN100012"));
 		
 	}
 
@@ -89,7 +89,7 @@ public class LivreDaoTest {
 		System.out.println("Test add Livre");
 		assertEquals(insert_false, LivreDao.addLivre(new Livre("ISBN10000", null, "toto", null)));
 		assertEquals(insert_true, LivreDao.addLivre(new Livre("ISBN10005", null, "toto", null)));
-		assertEquals(insert_true, LivreDao.deleteLivreByNo("ISBN10005"));
+		assertEquals(insert_true, LivreDao.deleteLivreByCote("ISBN10005"));
 	}
 
 	@Test
@@ -118,12 +118,12 @@ public class LivreDaoTest {
 	}
 
 	@Test
-	public void testDeleteLivreByNo() {
+	public void testDeleteLivreByCote() {
 		int delete_true = 1;
 		int delete_false = 0;
 		assertEquals(delete_true, LivreDao.addLivre(new Livre("ISBN100015", null, "toto", null)));//insert
-		assertEquals(delete_false, LivreDao.deleteLivreByNo("ISBN1000111")); //False
-		assertEquals(delete_true, LivreDao.deleteLivreByNo("ISBN100015"));//true
+		assertEquals(delete_false, LivreDao.deleteLivreByCote("ISBN1000111")); //False
+		assertEquals(delete_true, LivreDao.deleteLivreByCote("ISBN100015"));//true
 	}
 
 }

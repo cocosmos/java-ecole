@@ -257,7 +257,7 @@ public class LivreMetier {
 			
 			deleteornot = "Error Livre not exist";
 		} else {
-			int code = LivreDao.deleteLivreByNo(cote);
+			int code = LivreDao.deleteLivreByCote(cote);
 			System.out.println("Code de l'operation : " + code + " cote " + cote);
 			if (code == 1) {
 				deleteornot = "Livre : " + cote + " is deleted !!";

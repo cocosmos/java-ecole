@@ -15,7 +15,11 @@ public class LivreDao {
 	 */
 	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
 
-	// get livre by cote
+	/**
+	 * Get livre by cote
+	 * @param cote of the livre
+	 * @return the livre founded
+	 */
 	public static Livre getLivreByCote(String cote) {
 		Livre l = new Livre();
 		String request = null;
@@ -47,13 +51,17 @@ public class LivreDao {
 		return l;
 	}
 
-	// Get liste livres
+	/**
+	 * Get livres by eleve num
+	 * @param num of the eleve
+	 * @return an arraylist of all livre from one eleve
+	 */
 	public static ArrayList<Livre> getLivresByEleveNum(String num) {
 		ArrayList<Livre> listeLivres = new ArrayList<Livre>();
 		String request = null;
 		ResultSet response = null;
 
-		// =1=> connexion � la BD
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num = '" + num + "'";
 		try {
@@ -84,13 +92,16 @@ public class LivreDao {
 		return listeLivres;
 	}
 
-	// Get liste livres available
+	/**
+	 * Get livres availables
+	 * @return an arraylist of all livres available
+	 */
 	public static ArrayList<Livre> getLivresAvailable() {
 		ArrayList<Livre> listeLivres = new ArrayList<Livre>();
 		String request = null;
 		ResultSet response = null;
 
-		// =1=> connexion � la BD
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre WHERE num is NULL";
 		try {
@@ -101,6 +112,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
+				//Check if null to parse date
 				if (response.getString(4) != null) {
 					l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
 				} else {
@@ -121,13 +133,16 @@ public class LivreDao {
 		return listeLivres;
 	}
 
-	// Get all livres
+	/**
+	 * Get all livres
+	 * @return an arraylist of all livres
+	 */
 	public static ArrayList<Livre> getAllLivres() {
 		ArrayList<Livre> listeLivres = new ArrayList<Livre>();
 		String request = null;
 		ResultSet response = null;
 
-		// =1=> connexion � la BD
+		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM livre";
 		try {
@@ -158,7 +173,11 @@ public class LivreDao {
 		return listeLivres;
 	}
 
-	/* ADD Functions */
+	/**
+	 * Add a new livre
+	 * @param newLivre : cote, num (null), title, datepret (null)
+	 * @return the result of the function
+	 */
 	public static int addLivre(Livre newLivre) {
 		int result = -1;
 		String request = null;
@@ -179,7 +198,12 @@ public class LivreDao {
 		return result;
 	}
 
-	/* UPDATE Functions */
+	/**
+	 * Update titre of livre by cote
+	 * @param cote of the livre you want to update
+	 * @param newTitre of the livre
+	 * @return the result of the function
+	 */
 	public static int updateLivreTitreByCote(String cote, String newTitre) {
 		int result = -1;
 		String request = null;
@@ -196,17 +220,23 @@ public class LivreDao {
 		return result;
 	}
 
-	// Update num by num and livre by cote
+	/**
+	 *  Update num of eleve and date of pret by cote
+	 * @param cote of the livre to update
+	 * @param newNum num of the eleve to update
+	 * @return result of the function
+	 */
 	public static int updateLivreNumByCote(String cote, String newNum) {
 		int result = -1;
 		String request = null;
 		DBAction.DBConnexion();
+		//Format date to sql
 		LocalDateTime dateTime = LocalDateTime.now();
 		java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(dateTime);
 
 		if (newNum == null) { // rends son emprunt
 			request = "UPDATE livre SET num = NULL, datepret = NULL WHERE cote ='" + cote + "'";
-		} else {// emprunte ou change d'umprinter
+		} else {// emprunte ou change d'emprunter
 			request = "UPDATE livre SET num = '" + newNum + "', datepret = '" + sqlDate + "' WHERE cote ='" + cote
 					+ "'";
 		}
@@ -221,8 +251,12 @@ public class LivreDao {
 		return result;
 	}
 
-	/* DELETE Functions */
-	public static int deleteLivreByNo(String cote) {
+	/**
+	 * Delete a livre by cote
+	 * @param cote of the livre to delete
+	 * @return result of the function
+	 */
+	public static int deleteLivreByCote(String cote) {
 		int result = -1;
 		String request = null;
 		// 1: connexion à la BD
