@@ -10,7 +10,9 @@ import com.crea.dev4.ecole.model.beans.Livre;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
 public class LivreDao {
-	/* GET Functions */
+	/**
+	 * Formatter of datetime reusable
+	 */
 	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
 
 	// get livre by cote
