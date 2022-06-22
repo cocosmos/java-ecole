@@ -1,7 +1,6 @@
 package com.crea.dev4.ecole.model.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,37 +10,43 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.crea.dev4.ecole.model.beans.Chambre;
+import com.crea.dev4.ecole.model.beans.Eleve;
 import com.crea.dev4.ecole.model.dao.ChambreDao;
+import com.crea.dev4.ecole.model.dao.EleveDao;
 
 public class ChambreDaoTest {
 
 	@Before
-	public void testAddListeEleveToTest() {
+	public void testAddListeChambreToTest() {
 		int insert = 1;
+		assertEquals(insert, EleveDao.addEleve(new Eleve("TESTELEVE", 0, "ELEVE TEST", 40, "Adresse")));
 		assertEquals(insert, ChambreDao.addChambre(new Chambre(10, 500.50f)));
 		assertEquals(insert, ChambreDao.addChambre(new Chambre(11, 300.50f)));
 		assertEquals(insert, ChambreDao.addChambre(new Chambre(12, 200.50f)));
 		assertEquals(insert, ChambreDao.addChambre(new Chambre(13, 100.50f)));
 		assertEquals(insert, ChambreDao.addChambre(new Chambre(14, 50.50f)));
+		assertEquals(insert, EleveDao.updateEleveNumChambreBynum("TESTELEVE", 10));
 	}
 
 	@After
-	public void testDeleteListeEleveToTest() {
+	public void testDeleteListeChambreToTest() {
 		int delete = 1;
+		assertEquals(delete, EleveDao.deleteEleveBynum("TESTELEVE"));
 		assertEquals(delete, ChambreDao.deleteChambreByNo(10));
 		assertEquals(delete, ChambreDao.deleteChambreByNo(11));
 		assertEquals(delete, ChambreDao.deleteChambreByNo(12));
 		assertEquals(delete, ChambreDao.deleteChambreByNo(13));
 		assertEquals(delete, ChambreDao.deleteChambreByNo(14));
+
 		// System.out.println("Chambre Supprimé ou pas : " + delete);
 	}
 
 	@Test
 	public void testGetChambreByNo() {
-		Chambre c_ref = new Chambre(1, 500.50f);
+		Chambre c_ref = new Chambre(12, 200.50f);
 		System.out.println("Test get chambre by no :");
 		Chambre c = new Chambre();
-		c = ChambreDao.getChambreByNo(1);
+		c = ChambreDao.getChambreByNo(12);
 
 		// c.affiche();
 		assertEquals(c_ref.getNo(), c.getNo());
@@ -52,13 +57,12 @@ public class ChambreDaoTest {
 	public void testGetChambresByNum() {
 		ArrayList<Chambre> liste = new ArrayList<Chambre>();
 		System.out.println("Test get chambre by num :");
-		liste = ChambreDao.getChambresByNum("AGUE001");
+		liste = ChambreDao.getChambresByNum("TESTELEVE");
 		for (Chambre c : liste) {
 			c.affiche();
-			assertEquals("AGUE MAX", c.getPrix());
+			assertEquals(10, c.getNo());
 		}
 	}
-
 
 	@Test
 	public void testGetChambresWithPrice() {
@@ -97,24 +101,30 @@ public class ChambreDaoTest {
 		int insert_false = -2;
 		int insert_true = 1;
 		System.out.println("Test add chambre");
-		assertEquals(insert_false, ChambreDao.addChambre(new Chambre(1, 500.50f)));
-		assertEquals(insert_true, ChambreDao.addChambre(new Chambre(6, 500.50f)));
-	}
-
-	@Test
-	public void testUpdateChambreNoEleveByNum() {
-		System.out.println("Test update chambre");
+		assertEquals(insert_false, ChambreDao.addChambre(new Chambre(12, 500.50f)));
+		assertEquals(insert_true, ChambreDao.addChambre(new Chambre(70, 500.50f)));
+		assertEquals(insert_true, ChambreDao.deleteChambreByNo(70));
 
 	}
 
 	@Test
 	public void testUpdateChambrePriceByNo() {
-		fail("Not yet implemented");
+		int insert_false = 0;
+		int insert_true = 1;
+		System.out.println("Test update chambre");
+		assertEquals(insert_false, ChambreDao.updateChambrePriceByNo(11111, 22.50f));
+		assertEquals(insert_true, ChambreDao.updateChambrePriceByNo(12, 100.50f));
+
 	}
 
 	@Test
 	public void testDeleteChambreByNo() {
-		fail("Not yet implemented");
+		int nb = ChambreDao.deleteChambreByNo(0);
+		assertEquals(0, nb);
+		int insert = 1;
+		assertEquals(insert, ChambreDao.addChambre(new Chambre(25, 500.50f)));
+		nb = ChambreDao.deleteChambreByNo(25);
+		assertEquals(1, nb);
 	}
 
 }

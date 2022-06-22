@@ -8,13 +8,14 @@ import com.crea.dev4.ecole.model.beans.Chambre;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
 public class ChambreDao {
-	
+
 	/**
 	 * Get chambre by no of chambre
+	 * 
 	 * @param no de la chambre
 	 * @return chambre trouver
 	 */
-	
+
 	public static Chambre getChambreByNo(int no) {
 		Chambre c = new Chambre();
 		String request = null;
@@ -40,17 +41,21 @@ public class ChambreDao {
 		return c;
 	}
 
-	// get chambres by num
+	/**
+	 * Get chambres by num of the eleve
+	 * 
+	 * @param numEleve
+	 * @return ArrayList
+	 */
 	public static ArrayList<Chambre> getChambresByNum(String numEleve) {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
 		String request = null;
 		ResultSet response = null;
-		
-		
+
 		// =1=> connexion a la BD
 		DBAction.DBConnexion();
 		request = "SELECT * FROM chambre WHERE no IN (SELECT DISTINCT no FROM eleve WHERE num = \'" + numEleve + "\')";
-			
+
 		try {
 			response = DBAction.getStm().executeQuery(request);
 			while (response.next()) {
@@ -59,20 +64,17 @@ public class ChambreDao {
 				chamtmp.setPrix(response.getFloat(2));
 				chamtmp.affiche();
 				listeChambres.add(chamtmp);
-			
+
 			}
 			if (!response.isClosed()) {
 				response.close();
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return listeChambres;
 	}
-
-
-
 
 	// get chambres with price
 	public static ArrayList<Chambre> getChambresByPrice(float price) {
@@ -80,7 +82,6 @@ public class ChambreDao {
 
 		String request = null;
 		ResultSet response = null;
-
 
 		// =1=> connexion e la BD
 		DBAction.DBConnexion();
@@ -92,7 +93,7 @@ public class ChambreDao {
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
 				listeChambres.add(chamtmp);
-			
+
 			}
 			if (!response.isClosed()) {
 				response.close();
@@ -110,7 +111,6 @@ public class ChambreDao {
 		String request = "SELECT * FROM chambre";
 
 		ResultSet response = null;
-	
 
 		// =1=> connexion e la BD
 		DBAction.DBConnexion();
@@ -123,7 +123,6 @@ public class ChambreDao {
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
 				listeChambres.add(chamtmp);
-		
 
 			}
 
@@ -140,10 +139,8 @@ public class ChambreDao {
 	public static ArrayList<Chambre> getChambresNoOccupied() {
 		ArrayList<Chambre> listeChambres = new ArrayList<Chambre>();
 		String request = "SELECT chambre.no, chambre.prix FROM `chambre` LEFT JOIN eleve ON chambre.no=eleve.no WHERE eleve.no IS NULL;";
-		
 
 		ResultSet response = null;
-	
 
 		// =1=> connexion a la BD
 		DBAction.DBConnexion();
@@ -156,7 +153,6 @@ public class ChambreDao {
 				chamtmp.setNo(response.getInt(1));
 				chamtmp.setPrix(response.getFloat(2));
 				listeChambres.add(chamtmp);
-			
 
 			}
 
