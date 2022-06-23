@@ -19,77 +19,54 @@
 
 
 </head>
-<body class="d-flex flex-nowrap bg-dark text-white">
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-    <a href="index.jsp" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <span class="fs-1">Ecole Mipam</span>
-    </a>
-    <hr>
-    <ul class="list-unstyled ps-0" >
-      <li class="mb-1">
-        <button class="fs-2 btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed nav-link" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          Eleves
-        </button>
-        <div class="collapse" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ">
-           		<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="addeleve.jsp">Add Eleve</a></li>
-				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="alleleveform.jsp">All Eleves</a></li>
-				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="searcheleve.jsp">Search Eleve</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1">
-        <button class=" fs-2 btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed nav-link" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          Chambres
-        </button>
-        <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-           	<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="addchambre.jsp">Add Chambre</a></li>
-				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="allchambreform.jsp">All Chambres</a></li>
-				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="searchchambre.jsp">Search Chambre</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1">
-        <button class="fs-2 btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed nav-link" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-          UV
-        </button>
-        <div class="collapse" id="orders-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-          <li><a class="nav-link d-inline-flex text-decoration-none rounded" href="alluvform.jsp">All UV</a></li>
-				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="searchuv.jsp">Search UV</a></li>
-          </ul>
-        </div>
-      </li>
-     
-      <li class="mb-1">
-        <button class="fs-2 btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed nav-link" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-          Livres
-        </button>
-        <div class="collapse" id="account-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ">
-          	<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="addlivre.jsp">Add Livre</a></li>
-				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="alllivreform.jsp">All Livres</a></li>
-				<li><a class="nav-link d-inline-flex text-decoration-none rounded" href="searchlivre.jsp">Search Livres</a></li>
-          </ul>
-        </div>
-      </li>
-       <li class="mb-1">
-       <button class="fs-2 btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed nav-link" data-bs-toggle="collapse" data-bs-target="#inscripts-collapse" aria-expanded="false">
-        Inscrits
-        </button>
-        <div class="collapse" id="inscripts-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ">
-           <li><a class="nav-link d-inline-flex text-decoration-none rounded" href="allinscritsform.jsp">All Inscrits</a></li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
-<div class="b-example-divider b-example-vr"></div>
+<body class=" bg-dark text-white">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+    <div class="container">
+      <a class="navbar-brand" href="index.jsp">Ecole Mipam</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample07">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Eleves</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown07">
+              <li><a class="dropdown-item" href="addeleve.jsp">Add Eleve</a></li>
+				<li><a class="dropdown-item" href="alleleveform.jsp">All Eleves</a></li>
+				<li><a class="dropdown-item" href="searcheleve.jsp">Search Eleve</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Chambres</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown07">
+             <li><a class="dropdown-item" href="addchambre.jsp">Add Chambre</a></li>
+				<li><a class="dropdown-item" href="allchambreform.jsp">All Chambres</a></li>
+				<li><a class="dropdown-item" href="searchchambre.jsp">Search Chambre</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Uv</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown07">
+				  <li><a class="dropdown-item" href="alluvform.jsp">All UV</a></li>
+				<li><a class="dropdown-item" href="searchuv.jsp">Search UV</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Livres</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown07">
+             	<li><a class="dropdown-item" href="addlivre.jsp">Add Livre</a></li>
+				<li><a class="dropdown-item" href="alllivreform.jsp">All Livres</a></li>
+				<li><a class="dropdown-item" href="searchlivre.jsp">Search Livres</a></li>
+            </ul>
+          </li>
+           <li class="nav-item dropdown">
+           		<a class="nav-link active" href="allinscritsform.jsp">All Inscrits</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   </body>
-
-
-
 </html>
