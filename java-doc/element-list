@@ -1,3 +1,7 @@
 com.crea.dev4.ecole.inter.controleur
 com.crea.dev4.ecole.inter.metier
+com.crea.dev4.ecole.model.beans
 com.crea.dev4.ecole.model.dao
+com.crea.dev4.ecole.model.test
+com.crea.dev4.ecole.model.utils
+com.crea.dev4.ecole.model.wrappers

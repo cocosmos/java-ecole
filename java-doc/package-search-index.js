@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.crea.dev4.ecole.inter.controleur"},{"l":"com.crea.dev4.ecole.inter.metier"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.crea.dev4.ecole.inter.controleur"},{"l":"com.crea.dev4.ecole.inter.metier"},{"l":"com.crea.dev4.ecole.model.beans"},{"l":"com.crea.dev4.ecole.model.dao"},{"l":"com.crea.dev4.ecole.model.test"},{"l":"com.crea.dev4.ecole.model.utils"},{"l":"com.crea.dev4.ecole.model.wrappers"}];updateSearchResults();
