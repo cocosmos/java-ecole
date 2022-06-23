@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import com.crea.dev4.ecole.model.beans.Livre;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
+/**
+ * Livre Dao
+ * 
+ * @author mipam
+ *
+ */
 public class LivreDao {
 	/**
 	 * Formatter of datetime reusable
@@ -17,6 +23,7 @@ public class LivreDao {
 
 	/**
 	 * Get livre by cote
+	 * 
 	 * @param cote of the livre
 	 * @return the livre founded
 	 */
@@ -53,6 +60,7 @@ public class LivreDao {
 
 	/**
 	 * Get livres by eleve num
+	 * 
 	 * @param num of the eleve
 	 * @return an arraylist of all livre from one eleve
 	 */
@@ -94,6 +102,7 @@ public class LivreDao {
 
 	/**
 	 * Get livres availables
+	 * 
 	 * @return an arraylist of all livres available
 	 */
 	public static ArrayList<Livre> getLivresAvailable() {
@@ -112,7 +121,7 @@ public class LivreDao {
 				l.setCote(response.getString(1));
 				l.setNum(response.getString(2));
 				l.setTitre(response.getString(3));
-				//Check if null to parse date
+				// Check if null to parse date
 				if (response.getString(4) != null) {
 					l.setDatepret(LocalDateTime.parse(response.getString(4), formatter));
 				} else {
@@ -135,6 +144,7 @@ public class LivreDao {
 
 	/**
 	 * Get all livres
+	 * 
 	 * @return an arraylist of all livres
 	 */
 	public static ArrayList<Livre> getAllLivres() {
@@ -175,6 +185,7 @@ public class LivreDao {
 
 	/**
 	 * Add a new livre
+	 * 
 	 * @param newLivre : cote, num (null), title, datepret (null)
 	 * @return the result of the function
 	 */
@@ -183,11 +194,11 @@ public class LivreDao {
 		String request = null;
 
 		DBAction.DBConnexion();
-		
-		//Check if title contains single quote and replace it for sql request
+
+		// Check if title contains single quote and replace it for sql request
 		String title = newLivre.getTitre();
 		String titlecleaned = title.replace("'", "\\'");
-		
+
 		request = "INSERT INTO livre (cote, titre) VALUES ('" + newLivre.getCote() + "','" + titlecleaned + "') ";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
@@ -204,7 +215,8 @@ public class LivreDao {
 
 	/**
 	 * Update titre of livre by cote
-	 * @param cote of the livre you want to update
+	 * 
+	 * @param cote     of the livre you want to update
 	 * @param newTitre of the livre
 	 * @return the result of the function
 	 */
@@ -225,8 +237,9 @@ public class LivreDao {
 	}
 
 	/**
-	 *  Update num of eleve and date of pret by cote
-	 * @param cote of the livre to update
+	 * Update num of eleve and date of pret by cote
+	 * 
+	 * @param cote   of the livre to update
 	 * @param newNum num of the eleve to update
 	 * @return result of the function
 	 */
@@ -234,7 +247,7 @@ public class LivreDao {
 		int result = -1;
 		String request = null;
 		DBAction.DBConnexion();
-		//Format date to sql
+		// Format date to sql
 		LocalDateTime dateTime = LocalDateTime.now();
 		java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(dateTime);
 
@@ -257,6 +270,7 @@ public class LivreDao {
 
 	/**
 	 * Delete a livre by cote
+	 * 
 	 * @param cote of the livre to delete
 	 * @return result of the function
 	 */
@@ -264,6 +278,7 @@ public class LivreDao {
 		int result = -1;
 		String request = null;
 		// 1: connexion à la BD
+
 		DBAction.DBConnexion();
 		// 2: preparer ma requpete de suppression
 		request = "DELETE FROM livre WHERE cote ='" + cote + "'";

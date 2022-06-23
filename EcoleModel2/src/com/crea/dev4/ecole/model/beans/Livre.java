@@ -2,13 +2,30 @@ package com.crea.dev4.ecole.model.beans;
 
 import java.time.LocalDateTime;
 
+/**
+ * Livre Beans
+ * 
+ * @author mipam
+ *
+ */
 public class Livre {
-	// Attributs
+	/**
+	 * Attributs
+	 */
 	private String cote;
 	private String num;
 	private String titre;
 	private LocalDateTime datepret;
 
+	/**
+	 * 
+	 * Constructors
+	 * 
+	 * @param cote
+	 * @param num
+	 * @param titre
+	 * @param datepret
+	 */
 	public Livre(String cote, String num, String titre, LocalDateTime datepret) {
 		super();
 		this.cote = cote;

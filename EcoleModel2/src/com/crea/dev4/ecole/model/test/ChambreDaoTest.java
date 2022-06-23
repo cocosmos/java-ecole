@@ -14,6 +14,13 @@ import com.crea.dev4.ecole.model.beans.Eleve;
 import com.crea.dev4.ecole.model.dao.ChambreDao;
 import com.crea.dev4.ecole.model.dao.EleveDao;
 
+/**
+ * ChambreDao TEST
+ * 
+ * @author mipam
+ *
+ */
+
 public class ChambreDaoTest {
 
 	@Before

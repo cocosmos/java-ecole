@@ -1,6 +1,5 @@
 package com.crea.dev4.ecole.inter.metier;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +11,19 @@ import com.crea.dev4.ecole.model.dao.EleveDao;
 import com.crea.dev4.ecole.model.dao.InscritDao;
 import com.crea.dev4.ecole.model.dao.UvDao;
 
+/**
+ * Inscrit Metier
+ * 
+ * @author mipam
+ *
+ */
+
 public class InscritMetier {
 	/**
 	 * Get all Inscrits
 	 * 
 	 * @param request get all Inscrits
 	 * @return all and all eleves for select
-	 * @throws SQLException
 	 */
 
 	public static String processGetAllInscrits(HttpServletRequest request) {

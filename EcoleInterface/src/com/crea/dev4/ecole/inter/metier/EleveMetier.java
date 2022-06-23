@@ -1,6 +1,5 @@
 package com.crea.dev4.ecole.inter.metier;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +11,9 @@ import com.crea.dev4.ecole.model.dao.EleveDao;
 
 /**
  * Eleve Metier
+ * 
  * @author Mipam
- *
+ * 
  */
 public class EleveMetier {
 
@@ -33,12 +33,13 @@ public class EleveMetier {
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
 
 		if (elevToFind == null) {
-			
+
 			String nom = request.getParameter("nomelev"); // a partir de chaque formulaire HTML/XHTML/JSTL/JSP
-			int age = Integer.parseInt(request.getParameter("agelev")); // a partir de chaque formulaire										// HTML/XHTML/JSTL/JSP
+			int age = Integer.parseInt(request.getParameter("agelev")); // a partir de chaque formulaire //
+																		// HTML/XHTML/JSTL/JSP
 			String adresse = request.getParameter("adresselev"); // a partir de chaque formulaire
-			//Check if null
-			if(nom !=null && adresse!=null && age!=0) {
+			// Check if null
+			if (nom != null && adresse != null && age != 0) {
 				Eleve elnew = new Eleve(num, 0, nom, age, adresse);
 				int code = EleveDao.addEleve(elnew);
 				System.out.println("COde de l'operation : " + code);
@@ -53,7 +54,7 @@ public class EleveMetier {
 			addornot = "Eleve exist already";
 		}
 		request.setAttribute("txterro", addornot);
-		
+
 		pagejsp = "/addeleve.jsp";
 		return pagejsp;
 	}
@@ -97,21 +98,16 @@ public class EleveMetier {
 		String pagejsp = "/WEB-INF/error.jsp";
 		ArrayList<Eleve> allelevs = new ArrayList<Eleve>();
 		ArrayList<Chambre> allchambres = new ArrayList<Chambre>();
-		try {
-			allelevs = EleveDao.getAllEleves();
-			allchambres = ChambreDao.getAllChambres();
-			if (allelevs.isEmpty()) {
-				request.setAttribute("txterro", "No Eleve founded");
-				pagejsp = "/alleleveform.jsp";
-			} else {
-				request.setAttribute("allchambres", allchambres);
-				request.setAttribute("allelevs", allelevs);
-				pagejsp = "/alleleves.jsp";
-			}
-		} catch (SQLException e) {
-			request.setAttribute("txterro", "ERROR");
+
+		allelevs = EleveDao.getAllEleves();
+		allchambres = ChambreDao.getAllChambres();
+		if (allelevs.isEmpty()) {
+			request.setAttribute("txterro", "No Eleve founded");
 			pagejsp = "/alleleveform.jsp";
-			e.printStackTrace();
+		} else {
+			request.setAttribute("allchambres", allchambres);
+			request.setAttribute("allelevs", allelevs);
+			pagejsp = "/alleleves.jsp";
 		}
 
 		return pagejsp;
@@ -120,8 +116,9 @@ public class EleveMetier {
 	/**
 	 * Get Eleves by Chambre by num chambre
 	 * 
-	 * @param request no of chambre 
-	 * @return all eleves int this particular chambre with array of all chambres to edit it
+	 * @param request no of chambre
+	 * @return all eleves int this particular chambre with array of all chambres to
+	 *         edit it
 	 */
 
 	public static String processGetElevesByChambreNo(HttpServletRequest request) {
@@ -129,29 +126,27 @@ public class EleveMetier {
 		int numchamb = Integer.parseInt(request.getParameter("numchamb"));
 		ArrayList<Eleve> allelevs = new ArrayList<Eleve>();
 		ArrayList<Chambre> allchambres = new ArrayList<Chambre>();
-		try {
-			allelevs = EleveDao.getEleveByNo(numchamb);
-			allchambres = ChambreDao.getAllChambres();
-			if (allelevs.isEmpty()) {
-				request.setAttribute("txterro", "No Eleve founded");
-				pagejsp = "/searcheleve.jsp";
-			} else {
-				request.setAttribute("allchambres", allchambres);
-				request.setAttribute("allelevs", allelevs);
-				pagejsp = "/alleleves.jsp";
-			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		allelevs = EleveDao.getEleveByNo(numchamb);
+		allchambres = ChambreDao.getAllChambres();
+		if (allelevs.isEmpty()) {
+			request.setAttribute("txterro", "No Eleve founded");
+			pagejsp = "/searcheleve.jsp";
+		} else {
+			request.setAttribute("allchambres", allchambres);
+			request.setAttribute("allelevs", allelevs);
+			pagejsp = "/alleleves.jsp";
 		}
 
 		return pagejsp;
 	}
 
 	/**
-	 *  Get All Eleves by datebirth
-	 * @param request date of birth 
-	 * @return all eleve with the same date of birth with array of all chambres to edit it
+	 * Get All Eleves by datebirth
+	 * 
+	 * @param request date of birth
+	 * @return all eleve with the same date of birth with array of all chambres to
+	 *         edit it
 	 */
 	public static String processGetElevesByDateNaissance(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
@@ -159,29 +154,28 @@ public class EleveMetier {
 		ArrayList<Eleve> allelevs = new ArrayList<Eleve>();
 		ArrayList<Chambre> allchambres = new ArrayList<Chambre>();
 		String foundornot = "";
-		try {
-			allelevs = EleveDao.getLstElevesByDateNaissance(year);
-			allchambres = ChambreDao.getAllChambres();
-			if (allelevs.isEmpty()) {
-				foundornot = "Aucun eleve trouve par annee de naissance(" + year + ")";
-				request.setAttribute("txterro", foundornot);
-				pagejsp = "/searcheleve.jsp";
-			} else {
-				request.setAttribute("allchambres", allchambres);
-				request.setAttribute("allelevs", allelevs);
-				pagejsp = "/alleleves.jsp";
-			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		allelevs = EleveDao.getLstElevesByDateNaissance(year);
+		allchambres = ChambreDao.getAllChambres();
+		if (allelevs.isEmpty()) {
+			foundornot = "Aucun eleve trouve par annee de naissance(" + year + ")";
+			request.setAttribute("txterro", foundornot);
+			pagejsp = "/searcheleve.jsp";
+		} else {
+			request.setAttribute("allchambres", allchambres);
+			request.setAttribute("allelevs", allelevs);
+			pagejsp = "/alleleves.jsp";
 		}
 
 		return pagejsp;
 	}
+
 	/**
-	 * Get Eleves by nom 
+	 * Get Eleves by nom
+	 * 
 	 * @param request the name of the eleve
-	 * @return all eleves with the same name with an array of all chambres to edit it
+	 * @return all eleves with the same name with an array of all chambres to edit
+	 *         it
 	 */
 
 	public static String processGetElevesByNom(HttpServletRequest request) {
@@ -191,7 +185,7 @@ public class EleveMetier {
 		ArrayList<Chambre> allchambres = new ArrayList<Chambre>();
 
 		String foundornot = "";
-		
+
 		allelevs = EleveDao.getElevesByNom(nomElev);
 		allchambres = ChambreDao.getAllChambres();
 
@@ -220,29 +214,31 @@ public class EleveMetier {
 		String num = request.getParameter("numelev");
 		String newAdress = request.getParameter("adresselev");
 
-
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
 
 		if (elevToFind == null) {
-			updatedornot= "Erreur Eleve Inexistant";
+			updatedornot = "Erreur Eleve Inexistant";
 		} else if (elevToFind.getAdresse().equals(newAdress)) {
-			updatedornot="Adresse inchange";
-		} else if(newAdress=="") {
-			updatedornot= "Ne peut etre null";
-		}else {
-			 EleveDao.updateEleveAdresseBynum(num, newAdress);
-			updatedornot = "L'adresse de l'eleve numero " + num + " a ete change de " + elevToFind.getAdresse()
-					+ " en " + newAdress;
-			request.setAttribute("successornot", "success");;
-			
+			updatedornot = "Adresse inchange";
+		} else if (newAdress == "") {
+			updatedornot = "Ne peut etre null";
+		} else {
+			EleveDao.updateEleveAdresseBynum(num, newAdress);
+			updatedornot = "L'adresse de l'eleve numero " + num + " a ete change de " + elevToFind.getAdresse() + " en "
+					+ newAdress;
+			request.setAttribute("successornot", "success");
+			;
+
 		}
 		request.setAttribute("txterro", updatedornot);
 		pagejsp = "/alleleveform.jsp";
 		return pagejsp;
 
 	}
+
 	/**
 	 * Update chambre for one eleve
+	 * 
 	 * @param request new chambre no and num of eleve
 	 * @return success or error
 	 */
@@ -254,30 +250,30 @@ public class EleveMetier {
 		String newChambre = request.getParameter("nochambre");
 		int code = 0;
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
-		
-		//Check if chambre is null and update it if
-		if(newChambre.equals("")||num.equals("")) {
+
+		// Check if chambre is null and update it if
+		if (newChambre.equals("") || num.equals("")) {
 			code = EleveDao.updateEleveNumChambreBynum(num, null);
 			updatedornot = "L'eleve numero " + num + " a change de la chambre no:" + elevToFind.getNo() + " en null";
 			request.setAttribute("successornot", "success");
 		} else {
 			int newChambreParsed = Integer.parseInt(newChambre);
 			Chambre chambreExist = ChambreDao.getChambreByNo(newChambreParsed);
-			
+
 			if (chambreExist == null) {
 				updatedornot = "Erreur Chambre inexistante";
-				
+
 			} else if (elevToFind.getNo() == newChambreParsed) {
-				updatedornot ="Meme chambre";
-				
+				updatedornot = "Meme chambre";
+
 			} else {
 				code = EleveDao.updateEleveNumChambreBynum(num, chambreExist.getNo());
 				updatedornot = "L'eleve numero " + num + " a change de la chambre no:" + elevToFind.getNo() + " en no:"
 						+ newChambre;
 				request.setAttribute("successornot", "success");
 			}
-	}
-		
+		}
+
 		System.out.println("code chambre: " + code);
 		request.setAttribute("txterro", updatedornot);
 		pagejsp = "/alleleveform.jsp";
@@ -295,7 +291,7 @@ public class EleveMetier {
 		String pagejsp = "/WEB-INF/error.jsp";
 		String deleteornot = "Not deleted, eleve in another table";
 		String num = request.getParameter("numelev"); // a partir de chaque formulaire HTML/XHTML/JSTL/JSP
-		
+
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
 
 		if (elevToFind == null) {

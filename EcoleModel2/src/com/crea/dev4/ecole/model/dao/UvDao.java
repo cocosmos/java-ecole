@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import com.crea.dev4.ecole.model.beans.Uv;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
+/**
+ * Uv Dao
+ * 
+ * @author mipam
+ *
+ */
+
 public class UvDao {
 
 	/**
@@ -111,6 +118,7 @@ public class UvDao {
 
 	/**
 	 * Add Functions optional
+	 * 
 	 * @param newUv
 	 * @return success or not
 	 */
@@ -144,15 +152,15 @@ public class UvDao {
 		int result = -1;
 		String request = null;
 		DBAction.DBConnexion();
-		if(newNbh >0) {
+		if (newNbh > 0) {
 			request = "UPDATE uv SET nbh ='" + newNbh + "'WHERE code ='" + code + "'";
 			try {
 				result = DBAction.getStm().executeUpdate(request);
 			} catch (SQLException ex) {
 				System.out.println(ex.getMessage());
 			}
-		} 
-		
+		}
+
 		DBAction.DBClose();
 		return result;
 	}
@@ -168,7 +176,7 @@ public class UvDao {
 		int result = -1;
 		String request = null;
 		DBAction.DBConnexion();
-		if(newCoord!=null) {
+		if (newCoord != null) {
 			request = "UPDATE uv SET coord ='" + newCoord + "'WHERE code ='" + code + "'";
 			try {
 				result = DBAction.getStm().executeUpdate(request);
@@ -176,7 +184,6 @@ public class UvDao {
 				System.out.println(ex.getMessage());
 			}
 		}
-		
 
 		DBAction.DBClose();
 		return result;

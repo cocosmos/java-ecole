@@ -3,6 +3,7 @@ package com.crea.dev4.ecole.model.test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,13 @@ import com.crea.dev4.ecole.model.beans.Eleve;
 import com.crea.dev4.ecole.model.beans.Livre;
 import com.crea.dev4.ecole.model.dao.EleveDao;
 import com.crea.dev4.ecole.model.dao.LivreDao;
+
+/**
+ * Livre Dao TEST
+ * 
+ * @author mipam
+ *
+ */
 
 public class LivreDaoTest {
 	@Before
@@ -36,16 +44,16 @@ public class LivreDaoTest {
 		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN100010"));
 		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN100011"));
 		assertEquals(delete, LivreDao.deleteLivreByCote("ISBN100012"));
-		
+
 	}
 
 	@Test
 	public void testGetLivreByCote() {
 		System.out.println("Test get livre by cote");
-		Livre l_ref =new Livre("ISBN10008",null, "Un vase dhonneur", null);
+		Livre l_ref = new Livre("ISBN10008", null, "Un vase dhonneur", null);
 		Livre l = new Livre();
 		l = LivreDao.getLivreByCote("ISBN10008");
-	
+
 		assertEquals(l_ref.getCote(), l.getCote());
 		assertEquals(l_ref.getTitre(), l.getTitre());
 	}
@@ -53,47 +61,47 @@ public class LivreDaoTest {
 	@Test
 	public void testGetLivresByEleveNum() {
 		System.out.println("Test get livre by Eleve num");
-		ArrayList<Livre> liste =new ArrayList<Livre>();
+		ArrayList<Livre> liste = new ArrayList<Livre>();
 		liste = LivreDao.getLivresByEleveNum("TESTELEVE");
-		for (Livre l :liste) {
+		for (Livre l : liste) {
 			assertEquals("TESTELEVE", l.getNum());
 		}
-    }
+	}
 
 	@Test
 	public void testGetLivresAvailable() {
 		System.out.println("Test get livres available");
-		
-		boolean get_false =false;
-		ArrayList<Livre> liste =new ArrayList<Livre>();
-		Livre l_ref =LivreDao.getLivreByCote("ISBN100010");
+
+		boolean get_false = false;
+		ArrayList<Livre> liste = new ArrayList<Livre>();
+		Livre l_ref = LivreDao.getLivreByCote("ISBN100010");
 		liste = LivreDao.getLivresAvailable();
-		
-		
+
 		assertEquals(get_false, liste.contains(l_ref));
 	}
 
 	@Test
 	public void testGetAllLivres() {
 		System.out.println("Test get all livres ");
-		ArrayList<Livre> liste =new ArrayList<Livre>();
+		ArrayList<Livre> liste = new ArrayList<Livre>();
 		liste = LivreDao.getAllLivres();
-		
+
 		System.out.println(liste);
 	}
 
 	@Test
 	public void testAddLivre() {
+
 		int insert_false = -2;
 		int insert_true = 1;
 		System.out.println("Test add Livre");
 		assertEquals(insert_false, LivreDao.addLivre(new Livre("ISBN10000", null, "toto", null)));
-		//Test with single quote
-		assertEquals(insert_true, LivreDao.addLivre(new Livre("ISBN10005", null, "Bonjour l'arbitre d'handball", null)));
+		// Test with single quote
+		assertEquals(insert_true,
+				LivreDao.addLivre(new Livre("ISBN10005", null, "Bonjour l'arbitre d'handball", null)));
 		LivreDao.getLivreByCote("ISBN10005");
 		assertEquals(insert_true, LivreDao.deleteLivreByCote("ISBN10005"));
-	
-		
+
 	}
 
 	@Test
@@ -101,11 +109,11 @@ public class LivreDaoTest {
 		int insert_false = 0;
 		int insert_true = 1;
 		System.out.println("Test update title by cote");
-		
+
 		assertEquals(insert_false, LivreDao.updateLivreTitreByCote("ISBN10060", null));
 		assertEquals(insert_true, LivreDao.updateLivreTitreByCote("ISBN100011", "NEW TITRE"));
-		 LivreDao.getLivreByCote("ISBN100011");
-		
+		LivreDao.getLivreByCote("ISBN100011");
+
 	}
 
 	@Test
@@ -113,11 +121,11 @@ public class LivreDaoTest {
 		int insert_false = 0;
 		int insert_true = 1;
 		System.out.println("Test update livre num by cote");
-		
+
 		assertEquals(insert_false, LivreDao.updateLivreNumByCote("ISBN10060", null));
 		assertEquals(insert_true, LivreDao.updateLivreNumByCote("ISBN10008", "TESTELEVE"));
-		 LivreDao.getLivreByCote("ISBN10008");
-		//Reput to null
+		LivreDao.getLivreByCote("ISBN10008");
+		// Reput to null
 		assertEquals(insert_true, LivreDao.updateLivreNumByCote("ISBN10008", null));
 	}
 
@@ -125,9 +133,9 @@ public class LivreDaoTest {
 	public void testDeleteLivreByCote() {
 		int delete_true = 1;
 		int delete_false = 0;
-		assertEquals(delete_true, LivreDao.addLivre(new Livre("ISBN100015", null, "toto", null)));//insert
-		assertEquals(delete_false, LivreDao.deleteLivreByCote("ISBN1000111")); //False
-		assertEquals(delete_true, LivreDao.deleteLivreByCote("ISBN100015"));//true
+		assertEquals(delete_true, LivreDao.addLivre(new Livre("ISBN100015", null, "toto", null)));// insert
+		assertEquals(delete_false, LivreDao.deleteLivreByCote("ISBN1000111")); // False
+		assertEquals(delete_true, LivreDao.deleteLivreByCote("ISBN100015"));// true
 	}
 
 }

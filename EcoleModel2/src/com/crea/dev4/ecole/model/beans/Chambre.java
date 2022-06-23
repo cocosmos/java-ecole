@@ -1,46 +1,78 @@
 package com.crea.dev4.ecole.model.beans;
 
+/**
+ * Chambre Beans
+ * 
+ * @author mipam
+ *
+ */
+
 public class Chambre {
-	// Attributs
+	/**
+	 * Attributs
+	 */
 	private Integer no;
 	private float prix;
-	// private String num;
 
-	// Constructeurs
+	/**
+	 * Constructors
+	 * 
+	 * @param no   of chambre
+	 * @param prix of chambre
+	 */
 	public Chambre(int no, float prix) {
 		super();
 		this.no = no;
 		this.prix = prix;
-		// this.num = num;
-
 	}
 
+	/**
+	 * Chambre Base
+	 */
 	public Chambre() {
 		this(0, 0.0f);
 	}
 
+	/**
+	 * get No
+	 * 
+	 * @return no
+	 */
 	public int getNo() {
 		return no;
 	}
 
+	/**
+	 * Set No
+	 * 
+	 * @param no of chambre
+	 */
 	public void setNo(int no) {
 		this.no = no;
 	}
 
-	/*
-	 * public String getNum() { return num; }
+	/**
+	 * Get prix
 	 * 
-	 * public void setNum(String num) { this.num = num; }
+	 * @return prix
 	 */
 
 	public float getPrix() {
 		return prix;
 	}
 
+	/**
+	 * Chambre Set Prix
+	 * 
+	 * @param prix of cahmbre
+	 */
 	public void setPrix(float prix) {
 		this.prix = prix;
 	}
 
+	/**
+	 * Affiche Chambre
+	 */
 	public void affiche() {
 		System.out.print("no " + no + " prix " + prix + "\n");
 	}

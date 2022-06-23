@@ -5,16 +5,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.crea.dev4.ecole.model.beans.Inscrit;
-
 import com.crea.dev4.ecole.model.utils.DBAction;
 
+/**
+ * Inscrit Dao
+ * 
+ * @author mipam
+ *
+ */
 public class InscritDao {
 	/**
 	 * Get liste Inscrits
+	 * 
 	 * @param num of eleve
 	 * @return arraylist of all inscrit where num is the same than the param
 	 */
-	
+
 	public static ArrayList<Inscrit> getInscritsByEleveNum(String num) {
 		ArrayList<Inscrit> listeInscrits = new ArrayList<Inscrit>();
 		String request = null;
@@ -44,9 +50,9 @@ public class InscritDao {
 		return listeInscrits;
 	}
 
-
 	/**
 	 * Get all Inscrit
+	 * 
 	 * @return arraylist of a total all inscrit
 	 */
 	public static ArrayList<Inscrit> getAllInscrit() {
@@ -64,7 +70,7 @@ public class InscritDao {
 				instmp.setCode(response.getString(1));
 				instmp.setNum(response.getString(2));
 				instmp.setNote(response.getFloat(3));
-			instmp.affiche();
+				instmp.affiche();
 				listeInscrit.add(instmp);
 			}
 			if (!response.isClosed()) {
@@ -76,9 +82,10 @@ public class InscritDao {
 		}
 		return listeInscrit;
 	}
-	
+
 	/**
 	 * Add Functions optional
+	 * 
 	 * @param newInscrit
 	 * @return success or not
 	 */
@@ -87,7 +94,8 @@ public class InscritDao {
 		String request = null;
 
 		DBAction.DBConnexion();
-		request = "INSERT INTO inscrit (code, num, note) VALUES ('" + newInscrit.getCode() + "','" + newInscrit.getNum() + "',"+ newInscrit.getNote() + ") ";
+		request = "INSERT INTO inscrit (code, num, note) VALUES ('" + newInscrit.getCode() + "','" + newInscrit.getNum()
+				+ "'," + newInscrit.getNote() + ") ";
 		try {
 			result = DBAction.getStm().executeUpdate(request);
 		} catch (SQLException ex) {
@@ -100,11 +108,11 @@ public class InscritDao {
 		return result;
 	}
 
-	
 	/**
 	 * Delete Inscrit
+	 * 
 	 * @param code de l'uv
-	 * @param num de l'eleve
+	 * @param num  de l'eleve
 	 * @return code of error or succes
 	 */
 	public static int deleteInscritByCodeAndNum(String code, String num) {

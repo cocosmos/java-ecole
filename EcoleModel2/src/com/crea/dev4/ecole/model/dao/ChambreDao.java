@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import com.crea.dev4.ecole.model.beans.Chambre;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
+/**
+ * Chambre Dao
+ * 
+ * @author mipam
+ *
+ */
+
 public class ChambreDao {
 
 	/**
@@ -44,7 +51,7 @@ public class ChambreDao {
 	/**
 	 * Get chambres by num of the eleve
 	 * 
-	 * @param numEleve
+	 * @param numEleve num of eleve
 	 * @return ArrayList of all list
 	 */
 	public static ArrayList<Chambre> getChambresByNum(String numEleve) {
@@ -234,7 +241,7 @@ public class ChambreDao {
 	/**
 	 * Delete Chambre by numero
 	 * 
-	 * @param noChambre
+	 * @param noChambre numero of chambre
 	 * @return code success or error
 	 */
 	public static int deleteChambreByNo(int noChambre) {

@@ -16,10 +16,16 @@ import com.crea.dev4.ecole.inter.metier.UvMetier;
 
 /**
  * Servlet implementation class ControleurPrincipal
+ * 
+ * @author mipam
+ *
  */
 @WebServlet("/ControleurPrincipal")
 public class ControleurPrincipal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Return page JSP
+	 */
 	private String pagejsp;
 
 	/**
@@ -27,7 +33,7 @@ public class ControleurPrincipal extends HttpServlet {
 	 */
 	public ControleurPrincipal() {
 		super();
-		
+
 	}
 
 	/**

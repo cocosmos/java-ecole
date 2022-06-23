@@ -1,6 +1,6 @@
 package com.crea.dev4.ecole.model.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
@@ -11,11 +11,18 @@ import org.junit.Test;
 import com.crea.dev4.ecole.model.beans.Uv;
 import com.crea.dev4.ecole.model.dao.UvDao;
 
+/**
+ * Uv DAO test
+ * 
+ * @author mipam
+ *
+ */
+
 public class UvDaoTest {
 	@Before
 	public void testAddListeUvToTest() {
 		int insert = 1;
-	
+
 		assertEquals(insert, UvDao.addUv(new Uv("JAVA_Grp2", 25, "TAHA")));
 		assertEquals(insert, UvDao.addUv(new Uv("JAVA_Grp3", 20, "RIDENE")));
 		assertEquals(insert, UvDao.addUv(new Uv("JAVA_Grp4", 30, "TAHA")));
@@ -30,16 +37,16 @@ public class UvDaoTest {
 		assertEquals(delete, UvDao.deleteUvByCode("JAVA_Grp3"));
 		assertEquals(delete, UvDao.deleteUvByCode("JAVA_Grp4"));
 		assertEquals(delete, UvDao.deleteUvByCode("JAVA_Grp5"));
-		
+
 	}
 
 	@Test
 	public void testGetUvByCode() {
 		System.out.println("Test get UV by code");
-		Uv u_ref =new Uv("JAVA_Grp2", 25, "TAHA");
+		Uv u_ref = new Uv("JAVA_Grp2", 25, "TAHA");
 		Uv u = new Uv();
 		u = UvDao.getUvByCode("JAVA_Grp2");
-	
+
 		assertEquals(u_ref.getCode(), u.getCode());
 		assertEquals(u_ref.getNbh(), u.getNbh());
 		assertEquals(u_ref.getCoord(), u.getCoord());
@@ -60,8 +67,8 @@ public class UvDaoTest {
 		liste = UvDao.getUvsWithHours(50);
 		System.out.println(liste);
 		for (Uv u : liste) {
-			
-			assertEquals(60,u.getNbh());
+
+			assertEquals(60, u.getNbh());
 		}
 	}
 
@@ -85,11 +92,11 @@ public class UvDaoTest {
 	public void testDeleteUvByCode() {
 		int delete_true = 1;
 		int delete_false = 0;
-		
-		assertEquals(delete_true, UvDao.addUv(new Uv("JAVA_Grp55", 46, "Toto")));//insert
-		
-		assertEquals(delete_false, UvDao.deleteUvByCode("JAVA_Grp5555")); //False
-		assertEquals(delete_true, UvDao.deleteUvByCode("JAVA_Grp55"));//true
+
+		assertEquals(delete_true, UvDao.addUv(new Uv("JAVA_Grp55", 46, "Toto")));// insert
+
+		assertEquals(delete_false, UvDao.deleteUvByCode("JAVA_Grp5555")); // False
+		assertEquals(delete_true, UvDao.deleteUvByCode("JAVA_Grp55"));// true
 	}
 
 }

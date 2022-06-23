@@ -1,8 +1,5 @@
 package com.crea.dev4.ecole.model.utils;
-/**
- * 
- * @author Taha RIDENE
- */
+
 //~--- JDK imports ------------------------------------------------------------
 
 import java.sql.Connection;
@@ -10,6 +7,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * DB Action
+ * 
+ * @author Taha RIDENE
+ */
 public class DBAction {
 
 	private static final String dbPath = "jdbc:mysql://localhost:3306/ecole_clean"; // N� de port mysql 3306, 8889

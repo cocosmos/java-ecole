@@ -12,6 +12,12 @@ import org.junit.Test;
 import com.crea.dev4.ecole.model.beans.Eleve;
 import com.crea.dev4.ecole.model.dao.EleveDao;
 
+/**
+ * Eleve Dao TEST
+ * 
+ * @author mipam
+ *
+ */
 public class EleveDaoTest {
 
 	@Before
@@ -19,8 +25,8 @@ public class EleveDaoTest {
 		int insert = 1;
 		assertEquals(insert, EleveDao.addEleve(new Eleve("AGUE0010", 0, "AGUE MAX", 40, "18 Rue Labat 75018 Paris")));
 		assertEquals(insert, EleveDao.addEleve(new Eleve("AGUE0020", 0, "AGUE MAX", 42, "19 Rue Le Monde Paris")));
-		assertEquals(insert, EleveDao
-				.addEleve(new Eleve("KAMTO0050", 0, "KAMTO Diog�ne", 50, "54 Rue des Ebisoires 78300 Poissy")));
+		assertEquals(insert,
+				EleveDao.addEleve(new Eleve("KAMTO0050", 0, "KAMTO Diog�ne", 50, "54 Rue des Ebisoires 78300 Poissy")));
 		assertEquals(insert, EleveDao
 				.addEleve(new Eleve("LAURENCY0040", 0, "LAURENCY Patrick", 52, "79 Rue des Poules 75015 Paris")));
 		assertEquals(insert,

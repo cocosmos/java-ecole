@@ -9,14 +9,25 @@ package com.crea.dev4.ecole.model.beans;
  */
 
 public class Eleve {
-	// Attributs
+	/**
+	 * Attributs
+	 */
+
 	private String num;
 	private Integer no;
 	private String nom;
 	private int age;
 	private String adresse;
 
-	// Constructeurs
+	/**
+	 * Constructeurs
+	 * 
+	 * @param num
+	 * @param no
+	 * @param nom
+	 * @param age
+	 * @param adresse
+	 */
 	public Eleve(String num, Integer no, String nom, int age, String adresse) {
 		super();
 		this.num = num;
@@ -30,7 +41,11 @@ public class Eleve {
 		this("", null, "", 0, "");
 	}
 
-	// Accesseurs
+	/**
+	 * Accesseurs
+	 * 
+	 * @return num
+	 */
 	public String getNum() {
 		return num;
 	}

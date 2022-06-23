@@ -8,6 +8,12 @@ import java.util.Calendar;
 import com.crea.dev4.ecole.model.beans.Eleve;
 import com.crea.dev4.ecole.model.utils.DBAction;
 
+/**
+ * Eleve DAO
+ * 
+ * @author mipam
+ *
+ */
 public class EleveDao {
 
 	/**
@@ -53,7 +59,7 @@ public class EleveDao {
 
 	/***
 	 * 
-	 * @param nomEleve
+	 * @param nomEleve nom of eleve
 	 * @return un nombre d'element = 0 ( "nom d'eleve" non existant) un nombre
 	 *         d'element = 1 et un age = -1 du premier objet de la liste retouree
 	 *         dans le cas d'une erreur SQL [Cette partie devrait etre developpee
@@ -100,32 +106,35 @@ public class EleveDao {
 	/**
 	 * Recuperer les eleves par leurs numero de chambre ;
 	 * 
-	 * @param no_ch : numero de chambre
-	 * @return : une liste d'eleves retrouves sinon null
+	 * @param no numero de chambre
+	 * @return une liste d'eleves retrouves sinon null
 	 */
-	public static ArrayList<Eleve> getEleveByNo(int no) throws SQLException {
+	public static ArrayList<Eleve> getEleveByNo(int no) {
 		// Creation de ma liste d'eleve partageant la meme chambre
 		ArrayList<Eleve> listEleveNo = new ArrayList<Eleve>();
 
 		String req = "SELECT num, no, nom, age, adresse FROM eleve where no = " + no + " ";
 		// Connexion
 		DBAction.DBConnexion();// System.out.println(req);
+		try {
+			// execution de la requete et init
+			DBAction.setRes(DBAction.getStm().executeQuery(req));
 
-		// execution de la requete et init
-		DBAction.setRes(DBAction.getStm().executeQuery(req));
-
-		// Creation de l'objet eleveTemp e travers le ResultSet BD
-		while (DBAction.getRes().next()) {
-			Eleve elevTemp = new Eleve();
 			// Creation de l'objet eleveTemp e travers le ResultSet BD
-			elevTemp.setNum(DBAction.getRes().getString(1));
-			elevTemp.setNo(DBAction.getRes().getInt(2));
-			elevTemp.setNom(DBAction.getRes().getString(3));
-			elevTemp.setAge(DBAction.getRes().getInt(4));
-			elevTemp.setAdresse(DBAction.getRes().getString(5));
-			listEleveNo.add(elevTemp);
-		}
+			while (DBAction.getRes().next()) {
+				Eleve elevTemp = new Eleve();
+				// Creation de l'objet eleveTemp e travers le ResultSet BD
+				elevTemp.setNum(DBAction.getRes().getString(1));
+				elevTemp.setNo(DBAction.getRes().getInt(2));
+				elevTemp.setNom(DBAction.getRes().getString(3));
+				elevTemp.setAge(DBAction.getRes().getInt(4));
+				elevTemp.setAdresse(DBAction.getRes().getString(5));
+				listEleveNo.add(elevTemp);
+			}
+		} catch (SQLException e) {
 
+			e.printStackTrace();
+		}
 		// Fermeture de la connexion
 		DBAction.DBClose();
 		// Retourner l'objet ElevTemp
@@ -234,11 +243,11 @@ public class EleveDao {
 	/**
 	 * Recuperer un ensemble deeleve qui ont la meme date de naissance
 	 * 
-	 * @param d : date de naissance
+	 * @param anneeNaissance annee de naissance
 	 * @return liste des eleve oubien null si aucun eleve ne correspond e la date de
 	 *         naissance
 	 */
-	public static ArrayList<Eleve> getLstElevesByDateNaissance(int anneeNaissance) throws SQLException {
+	public static ArrayList<Eleve> getLstElevesByDateNaissance(int anneeNaissance) {
 		ArrayList<Eleve> listEleveAnneeNaissance = new ArrayList<Eleve>();
 		// on recupere l'annee en cours
 		Calendar c = Calendar.getInstance();
@@ -254,21 +263,26 @@ public class EleveDao {
 		String req = "SELECT num, no, nom, age, adresse FROM eleve WHERE age =" + anneeNaissanceEleves + " ";
 		// Connexion
 		DBAction.DBConnexion();
-		// execution de la requete et init
-		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		try {
+			// execution de la requete et init
+			DBAction.setRes(DBAction.getStm().executeQuery(req));
 
-		while (DBAction.getRes().next()) {
-			// int i = 0;
-			// Instanciation de mon objet Eleve
-			Eleve elevTemp = new Eleve();
-			// Creation de l'objet eleveTemp e travers le ResultSet BD
-			elevTemp.setNum(DBAction.getRes().getString(1));
-			elevTemp.setNo(DBAction.getRes().getInt(2));
-			elevTemp.setNom(DBAction.getRes().getString(3));
-			elevTemp.setAge(DBAction.getRes().getInt(4));
-			elevTemp.setAdresse(DBAction.getRes().getString(5));
-			listEleveAnneeNaissance.add(elevTemp);
-			// i = i + 1;
+			while (DBAction.getRes().next()) {
+				// int i = 0;
+				// Instanciation de mon objet Eleve
+				Eleve elevTemp = new Eleve();
+				// Creation de l'objet eleveTemp e travers le ResultSet BD
+				elevTemp.setNum(DBAction.getRes().getString(1));
+				elevTemp.setNo(DBAction.getRes().getInt(2));
+				elevTemp.setNom(DBAction.getRes().getString(3));
+				elevTemp.setAge(DBAction.getRes().getInt(4));
+				elevTemp.setAdresse(DBAction.getRes().getString(5));
+				listEleveAnneeNaissance.add(elevTemp);
+				// i = i + 1;
+			}
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
 		}
 		// Fermeture de la connexion
 		DBAction.DBClose();
@@ -280,27 +294,33 @@ public class EleveDao {
 	 * 
 	 * @return la liste de tout les eleves
 	 */
-	public static ArrayList<Eleve> getAllEleves() throws SQLException {
+	public static ArrayList<Eleve> getAllEleves() {
 		ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
 
 		String req = "SELECT num, no, nom, age, adresse FROM eleve ";
 		// Connexion
 		DBAction.DBConnexion();
-		// execution de la requete et init
-		DBAction.setRes(DBAction.getStm().executeQuery(req));
 
-		while (DBAction.getRes().next()) {
-			// int i = 0;
-			// Instanciation de mon objet Eleve
+		try {
+			// execution de la requete et init
+			DBAction.setRes(DBAction.getStm().executeQuery(req));
+			while (DBAction.getRes().next()) {
+				// int i = 0;
+				// Instanciation de mon objet Eleve
+				Eleve elevTemp = new Eleve();
+				// Creation de l'objet eleveTemp a travers le ResultSet BD
+				elevTemp.setNum(DBAction.getRes().getString(1));
+				elevTemp.setNo(DBAction.getRes().getInt(2));
+				elevTemp.setNom(DBAction.getRes().getString(3));
+				elevTemp.setAge(DBAction.getRes().getInt(4));
+				elevTemp.setAdresse(DBAction.getRes().getString(5));
+				listEleve.add(elevTemp);
+				// i = i + 1;
+			}
+		} catch (SQLException ex) {
 			Eleve elevTemp = new Eleve();
-			// Creation de l'objet eleveTemp a travers le ResultSet BD
-			elevTemp.setNum(DBAction.getRes().getString(1));
-			elevTemp.setNo(DBAction.getRes().getInt(2));
-			elevTemp.setNom(DBAction.getRes().getString(3));
-			elevTemp.setAge(DBAction.getRes().getInt(4));
-			elevTemp.setAdresse(DBAction.getRes().getString(5));
 			listEleve.add(elevTemp);
-			// i = i + 1;
+			System.out.println(ex.getMessage());
 		}
 		// Fermeture de la connexion
 		DBAction.DBClose();

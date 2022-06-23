@@ -1,6 +1,5 @@
 package com.crea.dev4.ecole.inter.metier;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +8,13 @@ import com.crea.dev4.ecole.model.beans.Eleve;
 import com.crea.dev4.ecole.model.beans.Livre;
 import com.crea.dev4.ecole.model.dao.EleveDao;
 import com.crea.dev4.ecole.model.dao.LivreDao;
+
+/**
+ * Livre Metier
+ * 
+ * @author mipam
+ *
+ */
 
 public class LivreMetier {
 	/**
@@ -24,9 +30,9 @@ public class LivreMetier {
 		String titre = request.getParameter("titre");
 		Livre livreToFind = LivreDao.getLivreByCote(cote);
 
-		
-		if (cote.equals("")||titre.equals("")){addornot = "Fields cannot be null ";}
-		else if(livreToFind == null) {
+		if (cote.equals("") || titre.equals("")) {
+			addornot = "Fields cannot be null ";
+		} else if (livreToFind == null) {
 			Livre livreNew = new Livre(cote, null, titre, null);
 			int code = LivreDao.addLivre(livreNew);
 			System.out.println("COde de l'operation : " + code);
@@ -36,9 +42,9 @@ public class LivreMetier {
 			}
 		} else {
 			addornot = "Error Livre already exist ";
-	
+
 		}
-		
+
 		request.setAttribute("txterro", addornot);
 		pagejsp = "/addlivre.jsp";
 		return pagejsp;
@@ -60,23 +66,16 @@ public class LivreMetier {
 		ArrayList<Livre> alllivres = new ArrayList<Livre>();
 		ArrayList<Eleve> alleleves = new ArrayList<Eleve>();
 
-		try {
-			Livre LivreFinded = LivreDao.getLivreByCote(cote);
-			alleleves = EleveDao.getAllEleves();
-			if (LivreFinded == null) {
-				request.setAttribute("txterro", foundornot);
-				pagejsp = "/searchlivre.jsp";
-			} else {
-				alllivres.add(LivreFinded);
-				request.setAttribute("alllivres", alllivres);
-				request.setAttribute("allleleves", alleleves);
-				pagejsp = "/alllivre.jsp";
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			request.setAttribute("txterro", "ERROR");
-			pagejsp = "/alllivreform.jsp";
-			e.printStackTrace();
+		Livre LivreFinded = LivreDao.getLivreByCote(cote);
+		alleleves = EleveDao.getAllEleves();
+		if (LivreFinded == null) {
+			request.setAttribute("txterro", foundornot);
+			pagejsp = "/searchlivre.jsp";
+		} else {
+			alllivres.add(LivreFinded);
+			request.setAttribute("alllivres", alllivres);
+			request.setAttribute("allleleves", alleleves);
+			pagejsp = "/alllivre.jsp";
 		}
 
 		return pagejsp;
@@ -87,7 +86,7 @@ public class LivreMetier {
 	 * 
 	 * @param request get all Livre
 	 * @return all Livre and all eleves for select
-	 * @throws SQLException
+	 * 
 	 */
 
 	public static String processGetAllLivres(HttpServletRequest request) {
@@ -95,21 +94,15 @@ public class LivreMetier {
 		ArrayList<Livre> alllivres = new ArrayList<Livre>();
 		ArrayList<Eleve> alleleves = new ArrayList<Eleve>();
 
-		try {
-			alllivres = LivreDao.getAllLivres();
-			alleleves = EleveDao.getAllEleves();
-			if (alllivres.isEmpty()) {
-				request.setAttribute("txterro", "No Livre founded");
-				pagejsp = "/alllivreform.jsp";
-			} else {
-				request.setAttribute("alllivres", alllivres);
-				request.setAttribute("allleleves", alleleves);
-				pagejsp = "/alllivre.jsp";
-			}
-		} catch (SQLException e) {
-			request.setAttribute("txterro", "ERROR");
+		alllivres = LivreDao.getAllLivres();
+		alleleves = EleveDao.getAllEleves();
+		if (alllivres.isEmpty()) {
+			request.setAttribute("txterro", "No Livre founded");
 			pagejsp = "/alllivreform.jsp";
-			e.printStackTrace();
+		} else {
+			request.setAttribute("alllivres", alllivres);
+			request.setAttribute("allleleves", alleleves);
+			pagejsp = "/alllivre.jsp";
 		}
 
 		return pagejsp;
@@ -127,22 +120,15 @@ public class LivreMetier {
 		ArrayList<Livre> alllivres = new ArrayList<Livre>();
 		ArrayList<Eleve> alleleves = new ArrayList<Eleve>();
 
-		try {
-			alllivres = LivreDao.getLivresAvailable();
-			alleleves = EleveDao.getAllEleves();
-			if (alllivres.isEmpty()) {
-				request.setAttribute("txterro", "No Livre founded");
-				pagejsp = "/alllivreform.jsp";
-			} else {
-				request.setAttribute("alllivres", alllivres);
-				request.setAttribute("allleleves", alleleves);
-				pagejsp = "/alllivre.jsp";
-			}
-		} catch (SQLException e) {
-			
-			request.setAttribute("txterro", "ERROR");
+		alllivres = LivreDao.getLivresAvailable();
+		alleleves = EleveDao.getAllEleves();
+		if (alllivres.isEmpty()) {
+			request.setAttribute("txterro", "No Livre founded");
 			pagejsp = "/alllivreform.jsp";
-			e.printStackTrace();
+		} else {
+			request.setAttribute("alllivres", alllivres);
+			request.setAttribute("allleleves", alleleves);
+			pagejsp = "/alllivre.jsp";
 		}
 
 		return pagejsp;
@@ -161,22 +147,15 @@ public class LivreMetier {
 		ArrayList<Livre> alllivres = new ArrayList<Livre>();
 		ArrayList<Eleve> alleleves = new ArrayList<Eleve>();
 
-		try {
-			alleleves = EleveDao.getAllEleves();
-			alllivres = LivreDao.getLivresByEleveNum(numelev);
-			if (alllivres.isEmpty()) {
-				request.setAttribute("txterro", "No Livre founded for eleve no:" + numelev);
-				pagejsp = "/searchlivre.jsp";
-			} else {
-				request.setAttribute("alllivres", alllivres);
-				request.setAttribute("allleleves", alleleves);
-				pagejsp = "/alllivre.jsp";
-			}
-		} catch (SQLException e) {
-		
-			request.setAttribute("txterro", "ERROR");
-			pagejsp = "/alllivreform.jsp";
-			e.printStackTrace();
+		alleleves = EleveDao.getAllEleves();
+		alllivres = LivreDao.getLivresByEleveNum(numelev);
+		if (alllivres.isEmpty()) {
+			request.setAttribute("txterro", "No Livre founded for eleve no:" + numelev);
+			pagejsp = "/searchlivre.jsp";
+		} else {
+			request.setAttribute("alllivres", alllivres);
+			request.setAttribute("allleleves", alleleves);
+			pagejsp = "/alllivre.jsp";
 		}
 
 		return pagejsp;
@@ -196,7 +175,7 @@ public class LivreMetier {
 		Livre LivreFinded = LivreDao.getLivreByCote(cote);
 
 		if (newTitle.equals("")) {
-			updatedornot= "Field cannot be null";
+			updatedornot = "Field cannot be null";
 		} else if (LivreFinded.getTitre().equals(newTitle)) {
 			updatedornot = "Same Title - Not Updated";
 		} else {
@@ -223,12 +202,11 @@ public class LivreMetier {
 		String newEleve = request.getParameter("numelev");
 		Livre LivreFinded = LivreDao.getLivreByCote(cote);
 
-
 		if (newEleve.equals("")) {
-			updatedornot= "Field cannot be null";
+			updatedornot = "Field cannot be null";
 		} else if (LivreFinded.getNum() == newEleve) { // Same value
-			updatedornot ="Same Borrower - Not Updated";
-		
+			updatedornot = "Same Borrower - Not Updated";
+
 		} else {
 			LivreDao.updateLivreNumByCote(cote, newEleve);
 			updatedornot = "Livre Cote: " + cote + " assigned to " + newEleve;
@@ -253,8 +231,8 @@ public class LivreMetier {
 													// HTML/XHTML/JSTL/JSP
 		Livre LivreFinded = LivreDao.getLivreByCote(cote);
 
-		 if (LivreFinded == null) {
-			
+		if (LivreFinded == null) {
+
 			deleteornot = "Error Livre not exist";
 		} else {
 			int code = LivreDao.deleteLivreByCote(cote);
