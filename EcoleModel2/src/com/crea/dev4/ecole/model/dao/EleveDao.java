@@ -64,7 +64,7 @@ public class EleveDao {
 		ArrayList<Eleve> lstelevtmp = new ArrayList<Eleve>();
 		ResultSet rs = null;
 		Eleve elevtmp = new Eleve();
-		
+
 		// Se connecter e la BD
 		DBAction.DBConnexion();
 		// ecrire requete
@@ -80,7 +80,7 @@ public class EleveDao {
 				elevtmp.setAge(rs.getInt(4));
 				elevtmp.setAdresse(rs.getString(5));
 				lstelevtmp.add(elevtmp);
-				
+
 			}
 			if (!rs.isClosed()) {
 				rs.close();
@@ -166,12 +166,17 @@ public class EleveDao {
 	 * @return 1 si mise e jour oubien 0 si rien n'a ete mis e jour sinon
 	 *         -code_erreur s'il y a eu une erreur e l'echelle de la BD
 	 */
-	public static int updateEleveAdresseBynum(String num, String newAdresse) throws SQLException {
+	public static int updateEleveAdresseBynum(String num, String newAdresse) {
 		int result = -1;
 		DBAction.DBConnexion();
 		String req = "UPDATE eleve SET adresse = '" + newAdresse + "' WHERE num ='" + num + "' ";
-		result = DBAction.getStm().executeUpdate(req);
-		// System.out.println("Requete executee");
+		try {
+			result = DBAction.getStm().executeUpdate(req);
+			System.out.println("Requete executee");
+		} catch (SQLException ex) {
+			result = -ex.getErrorCode();
+		}
+
 		DBAction.DBClose();
 		return result;
 	}
