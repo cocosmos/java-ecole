@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.crea.dev4.ecole.model.beans.Inscrit;
+
 import com.crea.dev4.ecole.model.utils.DBAction;
 
 public class InscritDao {
@@ -74,6 +75,29 @@ public class InscritDao {
 			e.printStackTrace();
 		}
 		return listeInscrit;
+	}
+	
+	/**
+	 * Add Functions optional
+	 * @param newInscrit
+	 * @return success or not
+	 */
+	public static int addInscrit(Inscrit newInscrit) {
+		int result = -1;
+		String request = null;
+
+		DBAction.DBConnexion();
+		request = "INSERT INTO inscrit (code, num, note) VALUES ('" + newInscrit.getCode() + "','" + newInscrit.getNum() + "',"+ newInscrit.getNote() + ") ";
+		try {
+			result = DBAction.getStm().executeUpdate(request);
+		} catch (SQLException ex) {
+			if (ex.getErrorCode() == 1062) {
+				System.out.println(ex.getMessage());
+			}
+		}
+
+		DBAction.DBClose();
+		return result;
 	}
 
 	
