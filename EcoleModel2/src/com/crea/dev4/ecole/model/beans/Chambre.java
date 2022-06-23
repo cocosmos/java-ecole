@@ -2,7 +2,7 @@ package com.crea.dev4.ecole.model.beans;
 
 public class Chambre {
 	// Attributs
-	private int no;
+	private Integer no;
 	private float prix;
 	// private String num;
 

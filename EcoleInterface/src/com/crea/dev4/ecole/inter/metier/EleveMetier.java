@@ -219,7 +219,7 @@ public class EleveMetier {
 		String updatedornot = "not updated";
 		String num = request.getParameter("numelev");
 		String newAdress = request.getParameter("adresselev");
-		int code = 0;
+
 
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
 
@@ -230,16 +230,10 @@ public class EleveMetier {
 		} else if(newAdress=="") {
 			updatedornot= "Ne peut etre null";
 		}else {
-			try {
-				code = EleveDao.updateEleveAdresseBynum(num, newAdress);
-				updatedornot = "L'adresse de l'eleve numero " + num + " a ete change de " + elevToFind.getAdresse()
-						+ " en " + newAdress;
-				request.setAttribute("successornot", "success");
-			} catch (SQLException e) {
-				
-				System.out.println("Code de l'operation : " + code);
-				e.printStackTrace();
-			};
+			 EleveDao.updateEleveAdresseBynum(num, newAdress);
+			updatedornot = "L'adresse de l'eleve numero " + num + " a ete change de " + elevToFind.getAdresse()
+					+ " en " + newAdress;
+			request.setAttribute("successornot", "success");;
 			
 		}
 		request.setAttribute("txterro", updatedornot);
@@ -251,31 +245,39 @@ public class EleveMetier {
 	 * Update chambre for one eleve
 	 * @param request new chambre no and num of eleve
 	 * @return success or error
-	 * TODO
 	 */
 
 	public static String processUpdateChambreByEleve(HttpServletRequest request) {
 		String pagejsp = "/WEB-INF/error.jsp";
 		String updatedornot = "not updated";
 		String num = request.getParameter("numelev");
+		String newChambre = request.getParameter("nochambre");
 		int code = 0;
-		int newChambre = Integer.parseInt(request.getParameter("nochambre"));
-	
 		Eleve elevToFind = EleveDao.getEleveByNum(num);
-		Chambre chambreExist = ChambreDao.getChambreByNo(newChambre);
 		
-		if (chambreExist == null) {
-			updatedornot = "Erreur Chambre inexistante";
-			
-		} else if (elevToFind.getNo() == newChambre) {
-			updatedornot ="Meme chambre";
-			
-		} else {
-			code = EleveDao.updateEleveNumChambreBynum(num, chambreExist.getNo());
-			updatedornot = "L'eleve numero " + num + " a change de la chambre no:" + elevToFind.getNo() + " en no:"
-					+ newChambre;
+		//Check if chambre is null and update it if
+		if(newChambre.equals("")||num.equals("")) {
+			code = EleveDao.updateEleveNumChambreBynum(num, null);
+			updatedornot = "L'eleve numero " + num + " a change de la chambre no:" + elevToFind.getNo() + " en null";
 			request.setAttribute("successornot", "success");
-		}
+		} else {
+			int newChambreParsed = Integer.parseInt(newChambre);
+			Chambre chambreExist = ChambreDao.getChambreByNo(newChambreParsed);
+			
+			if (chambreExist == null) {
+				updatedornot = "Erreur Chambre inexistante";
+				
+			} else if (elevToFind.getNo() == newChambreParsed) {
+				updatedornot ="Meme chambre";
+				
+			} else {
+				code = EleveDao.updateEleveNumChambreBynum(num, chambreExist.getNo());
+				updatedornot = "L'eleve numero " + num + " a change de la chambre no:" + elevToFind.getNo() + " en no:"
+						+ newChambre;
+				request.setAttribute("successornot", "success");
+			}
+	}
+		
 		System.out.println("code chambre: " + code);
 		request.setAttribute("txterro", updatedornot);
 		pagejsp = "/alleleveform.jsp";

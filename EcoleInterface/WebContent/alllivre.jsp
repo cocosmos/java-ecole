@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<title>All Livres</title>
 
-<title>All Livres</title>
 
 <div class="container mt-5">
 	<h1 class="text-center">All Livres</h1>

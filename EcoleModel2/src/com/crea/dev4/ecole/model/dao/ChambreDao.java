@@ -16,7 +16,7 @@ public class ChambreDao {
 	 * @return chambre trouver
 	 */
 
-	public static Chambre getChambreByNo(int no) {
+	public static Chambre getChambreByNo(Integer no) {
 		Chambre c = new Chambre();
 		String request = null;
 		ResultSet response = null;

@@ -189,7 +189,7 @@ public class EleveDao {
 	 * @return 1 si mise e jour oubien 0 oubien code d'erreur s'il y a eu une erreur
 	 *         e l'echelle de la BD
 	 */
-	public static int updateEleveNumChambreBynum(String num, int newNo) {
+	public static int updateEleveNumChambreBynum(String num, Integer newNo) {
 		int result = -1;
 		DBAction.DBConnexion();
 

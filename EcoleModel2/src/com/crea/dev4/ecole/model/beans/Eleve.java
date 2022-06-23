@@ -11,13 +11,13 @@ package com.crea.dev4.ecole.model.beans;
 public class Eleve {
 	// Attributs
 	private String num;
-	private int no;
+	private Integer no;
 	private String nom;
 	private int age;
 	private String adresse;
 
 	// Constructeurs
-	public Eleve(String num, int no, String nom, int age, String adresse) {
+	public Eleve(String num, Integer no, String nom, int age, String adresse) {
 		super();
 		this.num = num;
 		this.no = no;
@@ -27,7 +27,7 @@ public class Eleve {
 	}
 
 	public Eleve() {
-		this("", 0, "", 0, "");
+		this("", null, "", 0, "");
 	}
 
 	// Accesseurs
